@@ -34,15 +34,40 @@ body {
     background-color: rgb(43 43 43 / 86%);
 }
 
-img {
+.cut {
+    position: relative;
+}
+
+.cutimage {
     width: 182px;
     height: 182px;
     box-sizing: border-box;
     /* padding: 3px; */
 }
 
-img:hover {
-    background-color: rgb(153, 153, 153);
+.cutname {
+    position: absolute;
+    bottom: 0;
+    height: 2rem;
+    margin: 0;
+    text-align: center;
+    color:white;
+    background-color: rgb(43 43 43 / 86%);
+    width: 100%;
+    /* visibility: hidden; */
+}
+
+.xbut {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+.xbut:hover {
+    background-color: rgb(255, 97, 24);
 }
 
 
@@ -59,4 +84,37 @@ img:hover {
     /* border: 1px solid rgb(43 43 43 / 86%); */
     cursor: pointer;
 }
+
+#settingButton:hover {
+    background-color: rgb(153, 153, 153);
+}
+
+
+#settingScreen {
+    visibility: hidden;
+    background-color: gray;
+    bottom: 0;
+    width: 100%;
+}
+
+
+#settingForm {
+    margin: 10rem;
+    border: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    /* background-color: blue; */
+}
+
+#settingForm input {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: rgb(43 43 43 / 86%);
+    color: white;
+    font-size: 1.5rem;
+}
+
 
