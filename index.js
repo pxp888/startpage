@@ -82,9 +82,13 @@ function displayNormal() {
         show.className = "show";
 
         let link = document.createElement("a");
+        let nlink = document.createElement("a");
         let x = info[i].children[1].innerHTML;
         if (x.slice(0, 4) != "http") { x = "https://" + x; }
         link.href = x;
+        nlink.href = x;
+        nlink.innerHTML = info[i].children[0].innerHTML;
+        nlink.classList.add("name");
 
         let im = document.createElement("img");
         x = info[i].children[2].innerHTML;
@@ -94,6 +98,7 @@ function displayNormal() {
         show.appendChild(link);
         link.appendChild(im);
         cut.appendChild(show);
+        show.appendChild(nlink);
     }
 }
 
@@ -118,9 +123,14 @@ function displayEdit() {
         xbut.src = "assets/images/x.webp";
         xbut.addEventListener("click", xPressed);
 
+        // let nlink = document.createElement("p");
+        // nlink.innerHTML = info[i].children[0].innerHTML;
+        // nlink.classList.add("name");
+
         cut.appendChild(show);
         show.appendChild(im);
         show.appendChild(xbut);
+        // show.appendChild(nlink);
     }
 
     let plus = document.createElement("img");
