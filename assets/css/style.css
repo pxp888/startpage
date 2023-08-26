@@ -1,18 +1,6 @@
 body {
     margin: 0;
     background-color: rgb(51 67 75);
-    /* background-color: rgb(43, 43, 43); */
-
-    /* background-image: url('../phone\ sync/Wallpapers/vintage.jpg'); */
-    /* background-image: url('../phone\ sync/Wallpapers/fresh.png'); */
-    /* background-image: url('../phone\ sync/Wallpapers/polygon_01_by_atlevel1alt-d8i3mke.jpg'); */
-    /* background-image: url('../phone\ sync/old wallpaper/google-pixel-wallpaper-0021.jpg'); */
-    
-    /* background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; */
-
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -23,7 +23,7 @@ function addBlank() {
     nxim.src = "assets/images/x.webp";
     nxim.className = "xbut";
     nxim.style.visibility = "visible";
-    nxim.addEventListener("click", kill);
+    nxim.addEventListener("click", removeShortcut);
 
     ntext.innerHTML = "New Shortcut";
     ntext.className = "cutname";
@@ -142,21 +142,25 @@ function update(event) {
     current.children[0].href = shortcutURL.value;
     current.children[1].innerHTML = shortcutName.value;
     current.children[3].src = shortcutIcon.value;
-
 }
 
-function kill(event) {
+function removeShortcut(event) {
     mom = event.target.parentNode;
     mom.remove();
 }
 
+function setListeners(){
+    let ims = document.getElementsByClassName("cutimage");
+    for (let i = 0; i < ims.length; i++) { ims[i].addEventListener("click", imageclicked); }
+    
+    let xbuttons = document.getElementsByClassName("xbut");
+    for (let i = 0; i < xbuttons.length; i++) { xbuttons[i].addEventListener("click", removeShortcut); }
+}
+
+
+
 let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEdit);
-
-let ims = document.getElementsByClassName("cutimage");
-for (let i = 0; i < ims.length; i++) {
-    ims[i].addEventListener("click", imageclicked);
-}
 
 let updatebut = document.getElementById("updateButton");
 updatebut.addEventListener("click", update);
@@ -164,9 +168,7 @@ updatebut.addEventListener("click", update);
 let newButton = document.getElementById("newButton");
 newButton.addEventListener("click", addBlank);
 
-let xbuttons = document.getElementsByClassName("xbut");
-for (let i = 0; i < xbuttons.length; i++) {
-    xbuttons[i].addEventListener("click", kill);
-}
+setListeners();
+
 
 
