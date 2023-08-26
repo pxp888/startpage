@@ -96,6 +96,8 @@ function saveData() {
         urls.push(cutlinks[i].href);
         icons.push(cutimages[i].src);
     }
+    localStorage.clear();
+
     localStorage.setItem("names", JSON.stringify(names));
     localStorage.setItem("urls", JSON.stringify(urls));
     localStorage.setItem("icons", JSON.stringify(icons));
@@ -105,7 +107,7 @@ function restoreData() {
     const names = JSON.parse(localStorage.getItem("names"));
     const urls = JSON.parse(localStorage.getItem("urls"));
     const icons = JSON.parse(localStorage.getItem("icons"));
-    if (names == null) {return;}
+    if (names === null) {return;}
 
     console.log(names.length);
     console.log(urls.length);
@@ -115,8 +117,7 @@ function restoreData() {
     let kids = mainlist.children;
     for (let i = 0; i < kids.length; i++) { kids[i].remove(); }
 
-    
-    for (let i = 0; i < names.length; i++) { 
+    for (let i = 0; i < names.length; i++) {
         let ndiv = document.createElement("div");
         let nlink = document.createElement("a");
         let nim = document.createElement("img");
@@ -146,26 +147,9 @@ function restoreData() {
         nlink.appendChild(nim);
 
         mainlist.appendChild(ndiv);
-    
     }
-
-    let cutnames = document.getElementsByClassName("cutname");
-    for (let i = 0; i < cutnames.length; i++) {
-        cutnames[i].innerHTML = names[i];
-    }
-
-    let cutlinks = document.getElementsByClassName("cutlink");
-    for (let i = 0; i < cutlinks.length; i++) {
-        cutlinks[i].href = urls[i];
-    }   
-
-    let cutimages = document.getElementsByClassName("cutimage");
-    for (let i = 0; i < cutimages.length; i++) {
-        cutimages[i].src = icons[i];
-    }
-
-    
 }
+    
 
 function toggleEdit() {
     editMode = !editMode;
@@ -235,7 +219,7 @@ function updateURL(event) {
     if (cur == null) {return;}
     let shortcutURL = document.getElementById("shortcutURL");
     let t = shortcutURL.value;
-    t = "https://" + shortcutURL.value;
+    if (!t.includes("https")) { t = "https://" + shortcutURL.value; }
     cur.getElementsByClassName("cutlink")[0].href = t;
 }
 
@@ -246,8 +230,6 @@ function updateIcon(event) {
     cur.getElementsByClassName("cutimage")[0].src = shortcutIcon.value;
 }
 
-
-// localStorage.clear();
 
 
 //try to restore previous state
