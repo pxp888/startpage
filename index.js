@@ -1,174 +1,188 @@
-var editmode = false;
-var current = null;
+var editMode = false;
 
 
-function clearSelected() {
-    current = null;
-    let cuts = document.getElementsByClassName("cut");
-    for (let i = 0; i < cuts.length; i++) {
-        cuts[i].style.border = "none";
+function clearCurrent() {
+    let cur = document.getElementsByClassName("current");
+    while (cur.length > 0) {
+        cur[0].classList.remove("current");
     }
+    let shortcutName = document.getElementById("shortcutName");
+    let shortcutURL = document.getElementById("shortcutURL");
+    let shortcutIcon = document.getElementById("shortcutIcon");
+    shortcutName.value = "";
+    shortcutURL.value = "";
+    shortcutIcon.value = "";
 }
 
-function addBlank() {
+function setLines() {
+    let cur = document.getElementsByClassName("current")[0];
+    if (cur == null) {return;}
+    let shortcutName = document.getElementById("shortcutName");
+    let shortcutURL = document.getElementById("shortcutURL");
+    let shortcutIcon = document.getElementById("shortcutIcon");
+
+    let name = cur.getElementsByClassName("cutname")[0].innerHTML;
+    shortcutName.value = name;
+
+    let url = cur.getElementsByClassName("cutlink")[0].href;
+    if (url=="javascript:void(0)") {url = "";}
+    shortcutURL.value = url;
+
+    let icon = cur.getElementsByClassName("cutimage")[0].src;
+    if (icon.includes("file:///")) {icon = "";}
+    shortcutIcon.value = icon;
+
+}
+
+function setCurrent(event) {
+    clearCurrent();
+    event.target.parentNode.classList.add("current");
+    setLines();
+}
+
+function removeCut(event) {
+    mom = event.target.parentNode;
+    mom.remove();
+    clearCurrent();
+}
+
+function addBlank(event) {
+    clearCurrent();
+
+    let mainlist = document.getElementById("mainlist");
+
     let ndiv = document.createElement("div");
     let nlink = document.createElement("a");
     let nim = document.createElement("img");
-    let ntext = document.createElement("p");
-    let nxim = document.createElement("img");
+    let nlab = document.createElement("p");
+    let nxbut = document.createElement("img");
+
+    ndiv.className = "cut current";
+
+    nlink.className = "cutlink";
+    nlink.href = "javascript:void(0)";
     
-    ndiv.className = "cut blank";
-    nlink.href = "#";
-
-    nxim.src = "assets/images/x.webp";
-    nxim.className = "xbut";
-    nxim.style.visibility = "visible";
-    nxim.addEventListener("click", removeShortcut);
-
-    ntext.innerHTML = "New Shortcut";
-    ntext.className = "cutname";
-
-    nim.src = "assets/images/plus.png";
     nim.className = "cutimage";
-    nim.addEventListener("click", imageclicked);
-    
+    nim.src = "assets/images/blankimage.png";
+    nim.addEventListener("click", setCurrent);
+
+    nlab.className = "cutname";
+    nlab.innerHTML = "New Shortcut";
+
+    nxbut.className = "xbut";
+    nxbut.src = "assets/images/x.webp";
+    nxbut.style.visibility = "visible";
+    nxbut.addEventListener("click", removeCut);
+
     ndiv.appendChild(nlink);
-    ndiv.appendChild(ntext);
-    ndiv.appendChild(nxim);
+    ndiv.appendChild(nlab);
+    ndiv.appendChild(nxbut);
     ndiv.appendChild(nim);
 
-    let mainlist = document.getElementById("mainlist");
-    mainlist.appendChild(ndiv);
+    mainlist.insertBefore(ndiv, mainlist.lastChild);
+    setLines();
 }
 
-function showEdit() {
-    //show the settings screen
-    let settingScreen= document.getElementById("settingScreen");    
-    settingScreen.style.visibility = "visible";
-
-    //show the x buttons
-    let xbuttons = document.getElementsByClassName("xbut");
-    for (let i = 0; i < xbuttons.length; i++) {
-        xbuttons[i].style.visibility = "visible";
-    }
-
-    //disable links for editing
-    let ims = document.getElementsByClassName("cutimage");
-    for (let i = 0; i < ims.length; i++) {
-        let mom = ims[i].parentNode;
-        let grandpa = mom.parentNode;
-        mom.style.visibility = "hidden";
-        grandpa.appendChild(ims[i]);
-    }
-
-    //add a blank shortcut
-    addBlank();
-}
-
-function hideEdit() {
-    //hide the settings screen and x buttons
-    let settingScreen= document.getElementById("settingScreen");
-    let xbuttons = document.getElementsByClassName("xbut");
-    settingScreen.style.visibility = "hidden";
-    for (let i = 0; i < xbuttons.length; i++) {
-        xbuttons[i].style.visibility = "hidden";
-    }
-
-    //enable links again
-    let ims = document.getElementsByClassName("cutimage");
-    for (let i = 0; i < ims.length; i++) {
-        let mom = ims[i].parentNode;
-        let bro = mom.children[0];
-        bro.style.visibility = "visible";
-        bro.appendChild(ims[i]);
-    }
-
-    //remove blank shortcuts
-    let mainlist = document.getElementById("mainlist");
-    let blanks = document.getElementsByClassName("cut blank");
-    while (blanks.length > 0) {
-        mainlist.removeChild(blanks[0]);
-    }
-    
-    clearSelected();
-}
 
 function toggleEdit() {
-    editmode = !editmode;
-    let settingScreen= document.getElementById("settingScreen");
-    let xbuttons = document.getElementsByClassName("xbut");
+    editMode = !editMode;
 
-    if (editmode) {
-        showEdit();
+    if (editMode) {
+        //show settings 
+        document.getElementById("settingScreen").style.visibility = "visible";
+
+        //disable links
+        let ims = document.getElementsByClassName("cutimage");
+        for (let i = 0; i < ims.length; i++) {
+            ims[i].parentNode.parentNode.appendChild(ims[i]);
         }
-     else {
-        hideEdit();
-    }
-}
 
-function imageclicked(event) {
-    let shortcutIcon = document.getElementById("shortcutIcon");
-    let shortcutName = document.getElementById("shortcutName");
-    let shortcutURL = document.getElementById("shortcutURL");
+        //show x buttons
+        let xbtns = document.getElementsByClassName("xbut");
+        for (let i = 0; i < xbtns.length; i++) {
+            xbtns[i].style.visibility = "visible";
+        }
 
-    mom = event.target.parentNode;
+        //add plus button
+        let plus = document.createElement("img");
+        plus.src = "assets/images/plus.png";
+        plus.className = "plusButton";
+        plus.addEventListener("click", addBlank);
+        
+        mainlist.appendChild(plus);
 
-    if (mom.className == "cut blank") {
-        shortcutIcon.value = "";
-        shortcutURL.value = "";
-        shortcutName.value = mom.children[1].innerHTML;   
     }
     else {
-        shortcutIcon.value = event.target.src;     
-        shortcutURL.value = mom.children[0].href;
-        shortcutName.value = mom.children[1].innerHTML;   
-    }
+        //hide settings
+        document.getElementById("settingScreen").style.visibility = "hidden";
 
-    clearSelected();
-    current = mom;
-    mom.style.border = "2px solid rgb(255,97,24)";
+        //enable links
+        let ims = document.getElementsByClassName("cutimage");
+        let links = document.getElementsByClassName("cutlink");
+        for (let i = 0; i < ims.length; i++) {
+            links[i].appendChild(ims[i]);
+        }
+
+        //hide x buttons
+        let xbtns = document.getElementsByClassName("xbut");
+        for (let i = 0; i < xbtns.length; i++) {
+            xbtns[i].style.visibility = "hidden";
+        }
+
+        //remove plus button
+        let pubs = document.getElementsByClassName("plusButton");
+        while (pubs.length > 0) {
+            pubs[0].parentNode.removeChild(pubs[0]);
+        }
+
+        clearCurrent();
+    }
 }
 
-function update(event) {
-    if (current == null) {return;}
-    let shortcutIcon = document.getElementById("shortcutIcon");
+function updateName(event) {
+    let cur = document.getElementsByClassName("current")[0];
+    if (cur == null) {return;}
     let shortcutName = document.getElementById("shortcutName");
+    cur.getElementsByClassName("cutname")[0].innerHTML = shortcutName.value;
+}
+
+function updateURL(event) {
+    let cur = document.getElementsByClassName("current")[0];
+    if (cur == null) {return;}
     let shortcutURL = document.getElementById("shortcutURL");
-
-    if (current.className == "cut blank") {
-        current.className = "cut";
-    }
-
-    current.children[0].href = shortcutURL.value;
-    current.children[1].innerHTML = shortcutName.value;
-    current.children[3].src = shortcutIcon.value;
+    let t = shortcutURL.value;
+    t = "https://" + shortcutURL.value;
+    console.log(t);
+    cur.getElementsByClassName("cutlink")[0].href = t;
 }
 
-function removeShortcut(event) {
-    mom = event.target.parentNode;
-    mom.remove();
-}
-
-function setListeners(){
-    let ims = document.getElementsByClassName("cutimage");
-    for (let i = 0; i < ims.length; i++) { ims[i].addEventListener("click", imageclicked); }
-    
-    let xbuttons = document.getElementsByClassName("xbut");
-    for (let i = 0; i < xbuttons.length; i++) { xbuttons[i].addEventListener("click", removeShortcut); }
+function updateIcon(event) {
+    let cur = document.getElementsByClassName("current")[0];
+    if (cur == null) {return;}
+    let shortcutIcon = document.getElementById("shortcutIcon");
+    cur.getElementsByClassName("cutimage")[0].src = shortcutIcon.value;
 }
 
 
+//connect buttons to functions
+let cutims = document.getElementsByClassName("cutimage");
+for (let i = 0; i < cutims.length; i++) {
+    cutims[i].addEventListener("click", setCurrent);
+}
+
+let xbtns = document.getElementsByClassName("xbut");
+for (let i = 0; i < xbtns.length; i++) {
+    xbtns[i].addEventListener("click", removeCut);
+}
 
 let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEdit);
 
-let updatebut = document.getElementById("updateButton");
-updatebut.addEventListener("click", update);
+let shortcutName = document.getElementById("shortcutName");
+shortcutName.addEventListener("input", updateName);
 
-let newButton = document.getElementById("newButton");
-newButton.addEventListener("click", addBlank);
+let shortcutURL = document.getElementById("shortcutURL");
+shortcutURL.addEventListener("input", updateURL);
 
-setListeners();
-
-
-
+let shortcutIcon = document.getElementById("shortcutIcon");
+shortcutIcon.addEventListener("input", updateIcon);
