@@ -46,7 +46,7 @@ function removeCut(event) {
     clearCurrent();
 }
 
-function addBlank(event) {
+function addBlank() {
     clearCurrent();
 
     let mainlist = document.getElementById("mainlist");
@@ -83,6 +83,89 @@ function addBlank(event) {
     setLines();
 }
 
+function saveData() {
+    const names = [];
+    const urls = [];
+    const icons = [];
+
+    let cutnames = document.getElementsByClassName("cutname");
+    let cutlinks = document.getElementsByClassName("cutlink");
+    let cutimages = document.getElementsByClassName("cutimage");
+    for (let i = 0; i < cutnames.length; i++) {
+        names.push(cutnames[i].innerHTML);
+        urls.push(cutlinks[i].href);
+        icons.push(cutimages[i].src);
+    }
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("urls", JSON.stringify(urls));
+    localStorage.setItem("icons", JSON.stringify(icons));
+}
+
+function restoreData() {
+    const names = JSON.parse(localStorage.getItem("names"));
+    const urls = JSON.parse(localStorage.getItem("urls"));
+    const icons = JSON.parse(localStorage.getItem("icons"));
+    if (names == null) {return;}
+
+    console.log(names.length);
+    console.log(urls.length);
+    console.log(icons.length);
+
+    let mainlist = document.getElementById("mainlist");
+    let kids = mainlist.children;
+    for (let i = 0; i < kids.length; i++) { kids[i].remove(); }
+
+    
+    for (let i = 0; i < names.length; i++) { 
+        let ndiv = document.createElement("div");
+        let nlink = document.createElement("a");
+        let nim = document.createElement("img");
+        let nlab = document.createElement("p");
+        let nxbut = document.createElement("img");
+
+        ndiv.className = "cut" ;
+
+        nlink.className = "cutlink";
+        nlink.href = urls[i];
+        
+        nim.className = "cutimage";
+        nim.src = icons[i];
+        nim.addEventListener("click", setCurrent);
+
+        nlab.className = "cutname";
+        nlab.innerHTML = names[i];
+
+        nxbut.className = "xbut";
+        nxbut.src = "assets/images/x.webp";
+        nxbut.style.visibility = "hidden";
+        nxbut.addEventListener("click", removeCut);
+
+        ndiv.appendChild(nlink);
+        ndiv.appendChild(nlab);
+        ndiv.appendChild(nxbut);
+        nlink.appendChild(nim);
+
+        mainlist.appendChild(ndiv);
+    
+    }
+
+    let cutnames = document.getElementsByClassName("cutname");
+    for (let i = 0; i < cutnames.length; i++) {
+        cutnames[i].innerHTML = names[i];
+    }
+
+    let cutlinks = document.getElementsByClassName("cutlink");
+    for (let i = 0; i < cutlinks.length; i++) {
+        cutlinks[i].href = urls[i];
+    }   
+
+    let cutimages = document.getElementsByClassName("cutimage");
+    for (let i = 0; i < cutimages.length; i++) {
+        cutimages[i].src = icons[i];
+    }
+
+    
+}
 
 function toggleEdit() {
     editMode = !editMode;
@@ -136,6 +219,7 @@ function toggleEdit() {
         }
 
         clearCurrent();
+        saveData();
     }
 }
 
@@ -163,6 +247,12 @@ function updateIcon(event) {
 }
 
 
+// localStorage.clear();
+
+
+//try to restore previous state
+restoreData();
+
 //connect buttons to functions
 let cutims = document.getElementsByClassName("cutimage");
 for (let i = 0; i < cutims.length; i++) {
@@ -185,3 +275,5 @@ shortcutURL.addEventListener("input", updateURL);
 
 let shortcutIcon = document.getElementById("shortcutIcon");
 shortcutIcon.addEventListener("input", updateIcon);
+
+
