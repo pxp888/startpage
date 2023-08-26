@@ -223,7 +223,7 @@ function updateURL(event) {
     if (cur == null) {return;}
     let shortcutURL = document.getElementById("shortcutURL");
     let t = shortcutURL.value;
-    if (!t.includes("https")) { t = "https://" + shortcutURL.value; }
+    if (!t.includes("http")) { t = "https://" + shortcutURL.value; }
     cur.getElementsByClassName("cutlink")[0].href = t;
 }
 
