@@ -58,6 +58,8 @@ function addBlank() {
     let nxbut = document.createElement("img");
 
     ndiv.className = "cut current";
+    ndiv.addEventListener("mouseover", showname);
+    ndiv.addEventListener("mouseout", hidename);
 
     nlink.className = "cutlink";
     nlink.href = "javascript:void(0)";
@@ -125,6 +127,8 @@ function restoreData() {
         let nxbut = document.createElement("img");
 
         ndiv.className = "cut" ;
+        ndiv.addEventListener("mouseover", showname);
+        ndiv.addEventListener("mouseout", hidename);
 
         nlink.className = "cutlink";
         nlink.href = urls[i];
@@ -235,6 +239,24 @@ function updateIcon(event) {
 //try to restore previous state
 restoreData();
 
+
+function showname(event) {
+    if (editMode) {return;}
+    t = event.target;
+    while (t.className != "cut") { t = t.parentNode; }
+    t.getElementsByClassName("cutname")[0].style.visibility = "visible";
+}
+
+function hidename(event) {
+    if (editMode) {return;}
+    t = event.target;
+    while (t.className != "cut") { t = t.parentNode; }
+    t.getElementsByClassName("cutname")[0].style.visibility = "hidden";
+}
+
+
+
+
 //connect buttons to functions
 let cutims = document.getElementsByClassName("cutimage");
 for (let i = 0; i < cutims.length; i++) {
@@ -245,6 +267,13 @@ let xbtns = document.getElementsByClassName("xbut");
 for (let i = 0; i < xbtns.length; i++) {
     xbtns[i].addEventListener("click", removeCut);
 }
+
+let cuts = document.getElementsByClassName("cut");
+for (let i = 0; i < cuts.length; i++) {
+    cuts[i].addEventListener("mouseover", showname);
+    cuts[i].addEventListener("mouseout", hidename);
+}
+
 
 let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEdit);
@@ -257,5 +286,6 @@ shortcutURL.addEventListener("input", updateURL);
 
 let shortcutIcon = document.getElementById("shortcutIcon");
 shortcutIcon.addEventListener("input", updateIcon);
+
 
 
