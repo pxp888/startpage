@@ -23,6 +23,7 @@ function addBlank() {
     nxim.src = "assets/images/x.webp";
     nxim.className = "xbut";
     nxim.style.visibility = "visible";
+    nxim.addEventListener("click", kill);
 
     ntext.innerHTML = "New Shortcut";
     ntext.className = "cutname";
@@ -68,7 +69,6 @@ function hideEdit() {
     //hide the settings screen and x buttons
     let settingScreen= document.getElementById("settingScreen");
     let xbuttons = document.getElementsByClassName("xbut");
-
     settingScreen.style.visibility = "hidden";
     for (let i = 0; i < xbuttons.length; i++) {
         xbuttons[i].style.visibility = "hidden";
@@ -145,7 +145,10 @@ function update(event) {
 
 }
 
-
+function kill(event) {
+    mom = event.target.parentNode;
+    mom.remove();
+}
 
 let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEdit);
@@ -160,5 +163,10 @@ updatebut.addEventListener("click", update);
 
 let newButton = document.getElementById("newButton");
 newButton.addEventListener("click", addBlank);
+
+let xbuttons = document.getElementsByClassName("xbut");
+for (let i = 0; i < xbuttons.length; i++) {
+    xbuttons[i].addEventListener("click", kill);
+}
 
 
