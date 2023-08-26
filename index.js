@@ -152,7 +152,6 @@ function updateURL(event) {
     let shortcutURL = document.getElementById("shortcutURL");
     let t = shortcutURL.value;
     t = "https://" + shortcutURL.value;
-    console.log(t);
     cur.getElementsByClassName("cutlink")[0].href = t;
 }
 
