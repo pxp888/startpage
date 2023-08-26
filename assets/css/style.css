@@ -15,8 +15,8 @@ body {
 
 #mainlist {
     padding: 5rem;
-    /* max-width: 1092px; */
-    max-width: 1292px;
+    max-width: 1092px;
+    /* max-width: 1292px; */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -31,7 +31,7 @@ body {
     position: relative;
     width: 182px;
     height: 182px;
-    margin: 0.5rem;
+    /* margin: 0.5rem; */
 }
 
 .show img {
