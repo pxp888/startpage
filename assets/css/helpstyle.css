@@ -4,9 +4,7 @@ body {
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* min-height: 95vh; */
-    /* font-family: Arial, Helvetica, sans-serif; */
+    
     font-size: 1.2rem;
 
     font-family: Lato,Helvetica Neue,Helvetica,sans-serif;
@@ -20,8 +18,15 @@ body {
 
 #header {
     color: white;
-    background-color: rgb(51 67 75);
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    
+    background-color: rgb(54, 54, 54);
 }
+
 
 #header > div {
     display: flex;
@@ -29,34 +34,42 @@ body {
     align-items: baseline;
 }
 
-.giant {
+#header .giant {
     font-size: 4rem;
     margin: 1rem;
+    color: gainsboro;
 }
 
 #header p {
-    color: gainsboro;
-    
+    color: rgb(146, 146, 146);   
 }
 
 #header a {
     text-decoration: none;
 }
 
-#nav {
-    display: flex;
-    flex-direction: row;
+#helplink {
+    margin-right: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-#nav p {
-    padding: 0rem 5rem 0rem 2rem;
-}
-
-#nav p:hover {
+#helplink:hover {
     color: black;
     background-color: gainsboro;
     cursor: pointer;
 }
+
+
+@keyframes opacityFadeIn {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 
 
 /* --------------------------------- HELP PAGE  ---------------------------------- */

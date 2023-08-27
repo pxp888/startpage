@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(51 67 75);
+    background-color: rgb(54, 54, 54);
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
@@ -19,6 +19,11 @@ body {
 #header {
     color: white;
     opacity: 0.4;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 #header:hover {
@@ -46,20 +51,16 @@ body {
     text-decoration: none;
 }
 
-#nav {
-    display: flex;
-    flex-direction: row;
+#helplink {
+    margin-right: 2rem;
 }
 
-#nav p {
-    padding: 0rem 5rem 0rem 2rem;
-}
-
-#nav p:hover {
+#helplink:hover {
     color: black;
     background-color: gainsboro;
     cursor: pointer;
 }
+
 
 @keyframes opacityFadeIn {
     0% {
@@ -87,7 +88,7 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: rgb(43 43 43 / 86%);
+    background-color: rgb(31, 31, 31);
     justify-content: center;
     padding: 5rem;
 }
