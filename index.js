@@ -8,13 +8,15 @@ function toggleEdit() {
     if (editmode) {
         displayEdit();
         let settingScreen = document.getElementById("settingScreen");
-        settingScreen.style.visibility = "visible";
+        // settingScreen.style.visibility = "visible";
+        settingScreen.style.display = "block";
 
     } else {
         displayNormal();
         let settingScreen = document.getElementById("settingScreen");
 
-        settingScreen.style.visibility = "hidden";
+        // settingScreen.style.visibility = "hidden";
+        settingScreen.style.display = "none";
 
         let plus = document.getElementsByClassName("plusButton");
         while (plus.length > 0) { plus[0].remove(); }

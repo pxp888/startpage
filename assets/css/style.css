@@ -126,7 +126,8 @@ body {
 /* --------------------------------- SETTING SCREEN ---------------------------------- */
 
 #settingScreen {
-    visibility: hidden;
+    /* visibility: hidden; */
+    display: none;
     background-color: gray;
     position: fixed;
     bottom: 0;
