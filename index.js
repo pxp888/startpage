@@ -94,6 +94,8 @@ function restoreDataFromLocalstorage() {
     }
 
     let mainlist = document.getElementById("mainlist");
+    let cuts = document.getElementsByClassName("cut");
+    while (cuts.length > 0) { cuts[0].remove(); }
 
     //create shortcut for each info item
     for (let i=0; i<names.length; i++) {
@@ -350,6 +352,21 @@ function downloadLocalStorage() {
     URL.revokeObjectURL(downloadLink.href);
 }
 
+function uploadLocalStorage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const localStorageData = event.target.result;
+        localStorage.clear();
+        Object.entries(JSON.parse(localStorageData)).forEach(([key, value]) => {
+            localStorage.setItem(key, value);
+        });
+        window.location.reload();
+    };
+    reader.readAsText(file);
+    restoreDataFromLocalstorage();
+}
+
 restoreDataFromLocalstorage();
 displayNormalIcons();
 
@@ -380,3 +397,6 @@ frameColorPicker.addEventListener("input", setFrameColor);
 
 let downloadButton = document.getElementById("downloadButton");
 downloadButton.addEventListener("click", downloadLocalStorage);
+
+let uploadButton = document.getElementById("uploadButton");
+uploadButton.addEventListener("change", uploadLocalStorage);

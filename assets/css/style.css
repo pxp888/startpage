@@ -30,6 +30,9 @@ body {
     display: none;
 }
 
+body > a {
+    display: none;
+}
 
 /* --------------------------------- ICONS ---------------------------------- */
 
@@ -198,6 +201,15 @@ body {
 }
 
 #settingScreen #colorDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#settingScreen #backupButtons {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
