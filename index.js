@@ -29,7 +29,7 @@ function restoreData() {
     let icons = JSON.parse(localStorage.getItem("icons"));
     let urls = JSON.parse(localStorage.getItem("urls"));
 
-    if (names == null) { 
+    if (names == null || names.length == 0) {
         names = []; 
         icons = [];
         urls = [];
