@@ -9,6 +9,16 @@
     <title>quicklinks</title>
 </head>
 <body>
+    <div id="header">
+        <div>
+            <p class="giant">Quicklinks</p>
+            <p>your customizable startpage</p>
+        </div>
+        <div id="nav">
+            <p>How it works</p>
+            <p id="hideHeaderButton">Hide this header</p>
+        </div>
+    </div>
     <!-- main shortcut list is here -->
     <div id="outerlist">
         <div id="mainlist">
@@ -33,7 +43,7 @@
             <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
         </div>
         <div>
-            <label>Move Item</label>
+            <p>Move Item</p>
             <p class="darkButton" id="leftArrow">Left</p>
             <p class="darkButton" id="rightArrow">Right</p>
         </div>
@@ -41,21 +51,17 @@
         <div>
             <label for="colorPicker">Back Color: </label>
             <input type="color" id="backgroundColorPicker">
-        <!-- </div>
-        <div> -->
             <label for="colorPicker">Frame color: </label>
             <input type="color" id="frameColorPicker">
         </div>
         <div>
-            <label>Backups </label>
-            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save</p>
-            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Restore</p>
+            <p>Other stuff </p>
+            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
+            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
+            <p class="darkButton" id="showHeaderButton">Show the header</p>
             <button id="downloadButton" style="display: none;">Save Data</button>
             <input type="file" id="uploadButton" accept=".json" style="display: none;">
-        </div>
-        
-        
-        
+        </div>        
     </div>
 
 

@@ -344,6 +344,7 @@ function downloadLocalStorage() {
 
     URL.revokeObjectURL(downloadLink.href);
 }
+
 function uploadLocalStorage(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -359,6 +360,22 @@ function uploadLocalStorage(event) {
     restoreDataFromLocalstorage();
 }
 
+function hideHeader(event) {
+    document.getElementById("header").style.visibility = "hidden";
+    localStorage.setItem("headerhidden", "true");
+}
+
+function showHeader(event) {
+    document.getElementById("header").style.visibility = "visible";
+    localStorage.setItem("headerhidden", "false");
+}
+
+function checkHeaderShowing() {
+    let x = localStorage.getItem("headerhidden");
+    if (x == "true") { hideHeader(); }
+}
+
+checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
 
@@ -392,3 +409,9 @@ downloadButton.addEventListener("click", downloadLocalStorage);
 
 let uploadButton = document.getElementById("uploadButton");
 uploadButton.addEventListener("change", uploadLocalStorage);
+
+let hideHeaderButton = document.getElementById("hideHeaderButton");
+hideHeaderButton.addEventListener("click", hideHeader);
+
+let showHeaderButton = document.getElementById("showHeaderButton");
+showHeaderButton.addEventListener("click", showHeader);
