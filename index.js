@@ -29,6 +29,66 @@ function restoreData() {
     let icons = JSON.parse(localStorage.getItem("icons"));
     let urls = JSON.parse(localStorage.getItem("urls"));
 
+    if (names == null) { 
+        names = []; 
+        icons = [];
+        urls = [];
+        names.push("Google");
+        urls.push("www.google.com");
+        icons.push("https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png");
+        names.push("Youtube");
+        urls.push("www.youtube.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/1384/1384060.png");
+        names.push("Gmail");
+        urls.push("www.gmail.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/732/732200.png");
+        names.push("Instagram");
+        urls.push("www.instagram.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/174/174855.png");
+        names.push("Spotify");
+        urls.push("www.spotify.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/174/174872.png");
+        names.push("Facebook");
+        urls.push("www.facebook.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/733/733547.png");
+        names.push("Twitter");
+        urls.push("www.twitter.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/733/733579.png");
+        names.push("Google Drive");
+        urls.push("www.drive.google.com");
+        icons.push("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/1147px-Google_Drive_icon_%282020%29.svg.png");
+        names.push("BBC");
+        urls.push("www.bbc.com");
+        icons.push("https://cdn.icon-icons.com/icons2/70/PNG/512/bbc_news_14062.png");
+        names.push("Netflix");
+        urls.push("www.netflix.com");
+        icons.push("https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/227_Netflix_logo-512.png");
+        names.push("Amazon");
+        urls.push("www.amazon.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/732/732177.png");
+        names.push("Reddit");
+        urls.push("www.reddit.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/2111/2111589.png");
+        names.push("Wikipedia");
+        urls.push("www.wikipedia.org");
+        icons.push("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/1024px-Wikipedia%27s_W.svg.png");
+        names.push("Github");
+        urls.push("www.github.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/733/733553.png");
+        names.push("LinkedIn");
+        urls.push("www.linkedin.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/174/174857.png");
+        names.push("Booking.com");
+        urls.push("www.booking.com");
+        icons.push("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Booking.com_Icon_2022.svg/1200px-Booking.com_Icon_2022.svg.png");
+        names.push("Google Photos");
+        urls.push("www.photos.google.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/2991/2991131.png");
+        names.push("Google Calendar");
+        urls.push("www.calendar.google.com");
+        icons.push("https://cdn-icons-png.flaticon.com/512/5968/5968499.png");
+    }
+
     let mainlist = document.getElementById("mainlist");
 
     //create shortcut for each info item

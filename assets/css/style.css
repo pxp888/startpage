@@ -23,6 +23,9 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     background-color: rgb(43 43 43 / 86%);
+    justify-content: center;
+
+
 }
 
 .info {
@@ -30,25 +33,17 @@ body {
 }
 
 .show {
+    margin: 5px;
     position: relative;
     width: 182px;
     height: 182px;
-    /* display: flex; */
     align-items: center;
 }
 
 .show img {
-    width: 175px;
-    height: 175px;
-    object-fit: cover;
-}
-
-.show .xbut {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    width: 180px;
+    height: 180px;
+    object-fit: fill;
 }
 
 .show .name {
@@ -91,6 +86,13 @@ body {
     }
 }
 
+.show .xbut {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 .xbut:hover {
     background-color: rgb(255, 97, 24);
@@ -125,19 +127,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-
 }
-
-/* #settingForm {
-    margin: 10rem;
-    border: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    background-color: blue;
-    font-size: 1.5rem;
-    color: white;
-} */
 
 #settingScreen input {
     margin: 1rem;
