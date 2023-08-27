@@ -20,14 +20,14 @@ body {
     align-items: baseline;
 }
 
-.giant {
+#header .giant {
     font-size: 4rem;
     margin: 1rem;
+    color: gainsboro;
 }
 
 #header p {
-    color: gainsboro;
-    
+    color: rgb(146, 146, 146);   
 }
 
 #header a {

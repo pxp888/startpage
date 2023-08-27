@@ -1,0 +1,96 @@
+
+
+body {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* min-height: 95vh; */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    
+}
+
+/* --------------------------------- HEADER ---------------------------------- */
+
+#header {
+    color: white;
+    background-color: rgb(51 67 75);
+}
+
+#header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.giant {
+    font-size: 4rem;
+    margin: 1rem;
+}
+
+#header p {
+    color: gainsboro;
+    
+}
+
+#header a {
+    text-decoration: none;
+}
+
+#nav {
+    display: flex;
+    flex-direction: row;
+}
+
+#nav p {
+    padding: 0rem 5rem 0rem 2rem;
+}
+
+#nav p:hover {
+    color: black;
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+
+/* --------------------------------- HELP PAGE  ---------------------------------- */
+
+.stackedit__html {
+    margin-left: 20rem;
+    margin-right: 20rem;
+    background-color: whitesmoke;
+}
+
+
+table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+td,th {
+    border-right: 1px solid #dcdcdc;
+    padding: 8px 12px
+}
+
+td:last-child,th:last-child {
+    border-right: 0
+}
+
+td {
+    border-top: 1px solid #dcdcdc
+}
+
+stackedit__html h1,h2,h3,h4,h5,h6 {
+    margin: 1.8em 0;
+    line-height: 1.33
+}
+
+stackedit__html h1:after,h2:after {
+    content: "";
+    display: block;
+    position: relative;
+    top: .33em;
+    border-bottom: 1px solid hsla(0,0%,50%,.33)
+}
