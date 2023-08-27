@@ -2,8 +2,6 @@ var editmode = false;
 
 
 function toggleEditMode() {
-    let mainlist = document.getElementById("mainlist");
-
     editmode = !editmode;
     if (editmode) {
         displayEditIcons();
@@ -157,7 +155,7 @@ function saveDataToLocalstorage() {
 }
 
 function displayNormalIcons() {
-    items = document.getElementsByClassName("show");
+    let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
 
     let info = document.getElementsByClassName("info");
@@ -189,7 +187,7 @@ function displayNormalIcons() {
 }
 
 function displayEditIcons() {
-    items = document.getElementsByClassName("show");
+    let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
     
     let info = document.getElementsByClassName("info");

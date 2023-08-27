@@ -150,7 +150,7 @@ body > a {
 
 #settingScreen {
     display: none;
-    background-color: gray;
+    background-color: rgb(153, 153, 153);
     position: fixed;
     bottom: 0;
     align-self: center;
