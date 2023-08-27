@@ -1,5 +1,4 @@
 body {
-    margin: 0;
     background-color: rgb(51 67 75);
     display: flex;
     flex-direction: column;
@@ -16,7 +15,6 @@ body {
 }
 
 #mainlist {
-    padding: 5rem;
     /* max-width: 1092px; */
     max-width: 1200px;
     display: flex;
@@ -24,6 +22,7 @@ body {
     flex-wrap: wrap;
     background-color: rgb(43 43 43 / 86%);
     justify-content: center;
+    padding: 5rem;
 }
 
 .info {
@@ -37,17 +36,16 @@ body > a {
 /* --------------------------------- ICONS ---------------------------------- */
 
 .show {
-    margin: 5px;
     position: relative;
     width: 182px;
     height: 182px;
     align-items: center;
+    margin: 5px;
 }
 
 .show img {
-    width: 180px;
-    height: 180px;
-    object-fit: fill;
+    width: 182px;
+    height: 182px;
 }
 
 .show .name {
@@ -116,8 +114,9 @@ body > a {
     bottom: 0;
     right: 0;
 
-    margin: 1rem;
-    padding: 1rem;
+    margin: 10px;
+    padding: 5px;
+
     border-radius: 50%;
     /* background-color: rgb(43 43 43 / 86%); */
     /* border: 1px solid rgb(43 43 43 / 86%); */
@@ -125,7 +124,18 @@ body > a {
 }
 
 #settingButton:hover {
-    background-color: rgb(153, 153, 153);
+    background-color: rgb(192, 192, 192);
+}
+
+
+.plusButton {
+    width: 182px;
+    height: 182px;
+    box-sizing: border-box;
+}
+
+.plusButton:hover {
+    background-color: gray;
 }
 
 
@@ -139,23 +149,24 @@ body > a {
 }
 
 #settingScreen {
-    display: none;
+    /* display: none; */
     background-color: gray;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    align-self: center;
+    width: 80%;
+    
 }
 
 #settingScreen input[type="text"] {
-    margin: 1rem;
-    margin-right: 10rem;
-    padding: 1rem;
-    border-radius: 1rem;
+    border-radius: 5px;
     border: none;
     background-color: rgb(43 43 43 / 86%);
     color: white;
     font-size: 1.2rem;
     flex-grow: 2;
+    margin: 10px;
+    height: 2rem;
 }
 
 #settingScreen > div {
@@ -166,47 +177,38 @@ body > a {
 }
 
 #settingScreen label {
-    margin: 1rem;
+    width: 100px;
+    margin: 10px;
 }
 
-#settingScreen #buttons {
+#settingScreen #moveButtons {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-content: flex-start;
-    margin: 1rem;
-    padding: 1rem;
 }
 
-#buttons > img {
+#moveButtons > img {
     width: 80px;
     height: 80px;
-    margin: 1rem;
-    padding: 1rem;
     border-radius: 50%;
+    margin: 10px;
 }
 
-#buttons > img:hover {
-    background-color: rgb(153, 153, 153);
-}
-
-.plusButton {
-    width: 182px;
-    height: 182px;
-    box-sizing: border-box;
-}
-
-.plusButton:hover {
-    background-color: gray;
+#moveButtons > img:hover {
+    background-color: rgb(192, 192, 192);
 }
 
 #settingScreen #colorDiv {
     display: flex;
-    flex-direction: row;
+    margin: 5px;
+    /* align-content: flex-start; */
     justify-content: flex-start;
-    align-items: center;
+}
+
+#colorDiv > label {
     margin: 1rem;
-    padding: 1rem;
+    width: max-content;
 }
 
 #settingScreen #backupButtons {
@@ -214,6 +216,4 @@ body > a {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 1rem;
-    padding: 1rem;
 }
