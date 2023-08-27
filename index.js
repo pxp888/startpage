@@ -115,6 +115,21 @@ function restoreDataFromLocalstorage() {
         ndiv.appendChild(info);
         mainlist.appendChild(ndiv);
     }
+
+    //set background color
+    let bgcolor = localStorage.getItem("bgcolor");
+    if (bgcolor != null) { 
+        document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor; 
+        document.getElementById("backgroundColorPicker").value = bgcolor;
+    }
+    
+    //set frame color
+    let framecolor = localStorage.getItem("framecolor");
+    if (framecolor != null) { 
+        document.getElementById("mainlist").style.backgroundColor = framecolor; 
+        document.getElementById("frameColorPicker").value = framecolor;
+    }
+    
 }
 
 function saveDataToLocalstorage() {
@@ -132,6 +147,11 @@ function saveDataToLocalstorage() {
     localStorage.setItem("names", JSON.stringify(names));
     localStorage.setItem("urls", JSON.stringify(urls));
     localStorage.setItem("icons", JSON.stringify(icons));
+
+    let bgcolor = document.getElementsByTagName("body")[0].style.backgroundColor;
+    let framecolor = document.getElementById("mainlist").style.backgroundColor;
+    localStorage.setItem("bgcolor", bgcolor);
+    localStorage.setItem("framecolor", framecolor);
 }
 
 function displayNormalIcons() {
@@ -300,6 +320,16 @@ function moveItemDown(event) {
     x.parentNode.insertBefore(y, x);
 }
 
+function setBackGroundColor(event) {
+    let selectedColor = event.target.value;
+    document.getElementsByTagName("body")[0].style.backgroundColor = selectedColor;
+}
+
+function setFrameColor(event) {
+    document.getElementById("mainlist").style.backgroundColor = event.target.value;
+}
+
+
 restoreDataFromLocalstorage();
 displayNormalIcons();
 
@@ -321,3 +351,9 @@ leftArrow.addEventListener("click", moveItemUp);
 
 let rightArrow = document.getElementById("rightArrow");
 rightArrow.addEventListener("click", moveItemDown);
+
+let colorPicker = document.getElementById("backgroundColorPicker");
+colorPicker.addEventListener("input", setBackGroundColor);
+
+let frameColorPicker = document.getElementById("frameColorPicker");
+frameColorPicker.addEventListener("input", setFrameColor);
