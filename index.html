@@ -20,7 +20,6 @@
 
     <!-- Settings section -->
     <div id="settingScreen">
-        
         <div>
             <label for="shortcutName">Name</label>
             <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
@@ -33,25 +32,32 @@
             <label for="shortcutIcon">Icon URL</label>
             <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
         </div>
-        <div id="moveButtons">
+        <div>
             <label>Move Item</label>
-            <img id="leftArrow" src="assets/images/left.png" alt="left arrow">
-            <img id="rightArrow" src="assets/images/right.png" alt="right arrow">
-        </div>    
-        <div id="colorDiv">
-            <label for="colorPicker">BackGround color: </label>
+            <p class="darkButton" id="leftArrow">Left</p>
+            <p class="darkButton" id="rightArrow">Right</p>
+        </div>
+        
+        <div>
+            <label for="colorPicker">Back Color: </label>
             <input type="color" id="backgroundColorPicker">
+        <!-- </div>
+        <div> -->
             <label for="colorPicker">Frame color: </label>
             <input type="color" id="frameColorPicker">
         </div>
-        <div id="backupButtons">
-            <button id="downloadButton">Save Data</button>
-            <label for="uploadButton">Upload Data File </label>
-            <input type="file" id="uploadButton" accept=".json">
+        <div>
+            <label>Backups </label>
+            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save</p>
+            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Restore</p>
+            <button id="downloadButton" style="display: none;">Save Data</button>
+            <input type="file" id="uploadButton" accept=".json" style="display: none;">
         </div>
+        
+        
+        
     </div>
 
-    
 
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
