@@ -270,8 +270,6 @@ function urlUpdate(event) {
     let info = x[0].parentNode.children[0];
     let n = event.target.value;
     info.children[1].innerHTML = n;
-
-
 }
 
 function iconUpdate(event) {
@@ -284,6 +282,24 @@ function iconUpdate(event) {
 }
 
 
+function moveUp(event) {
+    let x = document.getElementsByClassName("selected")[0];
+    if (x == null) { return; }
+    while (x.className != "cut") { x = x.parentNode; }
+    let y = x.previousSibling;
+    if (y == null) { return; }
+    x.parentNode.insertBefore(x, y);
+}
+
+function moveDown(event) {
+    let x = document.getElementsByClassName("selected")[0];
+    if (x == null) { return; }
+    while (x.className != "cut") { x = x.parentNode; }
+    let y = x.nextSibling;
+    if (y == null) { return; }
+    if (y.nextSibling == null) { return; }
+    x.parentNode.insertBefore(y, x);
+}
 
 restoreData();
 displayNormal();
@@ -301,3 +317,8 @@ shortcutURL.addEventListener("input", urlUpdate);
 let shortcutIcon = document.getElementById("shortcutIcon");
 shortcutIcon.addEventListener("input", iconUpdate);
 
+let leftArrow = document.getElementById("leftArrow");
+leftArrow.addEventListener("click", moveUp);
+
+let rightArrow = document.getElementById("rightArrow");
+rightArrow.addEventListener("click", moveDown);
