@@ -31,7 +31,6 @@ body {
 }
 
 
-
 /* --------------------------------- ICONS ---------------------------------- */
 
 .show {
@@ -187,7 +186,6 @@ body {
 #buttons > img:hover {
     background-color: rgb(153, 153, 153);
 }
-
 
 .plusButton {
     width: 182px;

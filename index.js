@@ -1,19 +1,19 @@
 var editmode = false;
 
 
-function toggleEdit() {
+function toggleEditMode() {
     let mainlist = document.getElementById("mainlist");
 
     editmode = !editmode;
     if (editmode) {
-        displayEdit();
+        displayEditIcons();
         let settingScreen = document.getElementById("settingScreen");
         // settingScreen.style.visibility = "visible";
         settingScreen.style.display = "block";
         document.getElementById("spacer").style.display = "block";
 
     } else {
-        displayNormal();
+        displayNormalIcons();
         let settingScreen = document.getElementById("settingScreen");
 
         // settingScreen.style.visibility = "hidden";
@@ -23,11 +23,11 @@ function toggleEdit() {
         let plus = document.getElementsByClassName("plusButton");
         while (plus.length > 0) { plus[0].remove(); }
 
-        saveData();
+        saveDataToLocalstorage();
     }
 }
 
-function restoreData() {
+function restoreDataFromLocalstorage() {
     //get info from localstorage
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
@@ -117,7 +117,7 @@ function restoreData() {
     }
 }
 
-function saveData() {
+function saveDataToLocalstorage() {
     let info = document.getElementsByClassName("info");
     let names = [];
     let urls = [];
@@ -134,7 +134,7 @@ function saveData() {
     localStorage.setItem("icons", JSON.stringify(icons));
 }
 
-function displayNormal() {
+function displayNormalIcons() {
     items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
 
@@ -166,7 +166,7 @@ function displayNormal() {
     }
 }
 
-function displayEdit() {
+function displayEditIcons() {
     items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
     
@@ -229,7 +229,7 @@ function addBlankItem() {
     ndiv.appendChild(info);
     mainlist.appendChild(ndiv);
 
-    displayEdit();
+    displayEditIcons();
     let x = document.getElementsByClassName("show");
     x[x.length-2].classList.add("selected");
 }
@@ -281,8 +281,7 @@ function iconUpdate(event) {
     x[0].parentNode.children[1].children[0].src = event.target.value;
 }
 
-
-function moveUp(event) {
+function moveItemUp(event) {
     let x = document.getElementsByClassName("selected")[0];
     if (x == null) { return; }
     while (x.className != "cut") { x = x.parentNode; }
@@ -291,7 +290,7 @@ function moveUp(event) {
     x.parentNode.insertBefore(x, y);
 }
 
-function moveDown(event) {
+function moveItemDown(event) {
     let x = document.getElementsByClassName("selected")[0];
     if (x == null) { return; }
     while (x.className != "cut") { x = x.parentNode; }
@@ -301,12 +300,12 @@ function moveDown(event) {
     x.parentNode.insertBefore(y, x);
 }
 
-restoreData();
-displayNormal();
+restoreDataFromLocalstorage();
+displayNormalIcons();
 
 
 let settingButton = document.getElementById("settingButton");
-settingButton.addEventListener("click", toggleEdit);
+settingButton.addEventListener("click", toggleEditMode);
 
 let shortcutName = document.getElementById("shortcutName");
 shortcutName.addEventListener("input", nameUpdate);
@@ -318,7 +317,7 @@ let shortcutIcon = document.getElementById("shortcutIcon");
 shortcutIcon.addEventListener("input", iconUpdate);
 
 let leftArrow = document.getElementById("leftArrow");
-leftArrow.addEventListener("click", moveUp);
+leftArrow.addEventListener("click", moveItemUp);
 
 let rightArrow = document.getElementById("rightArrow");
-rightArrow.addEventListener("click", moveDown);
+rightArrow.addEventListener("click", moveItemDown);
