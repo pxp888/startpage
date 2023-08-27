@@ -128,7 +128,7 @@ body {
 
 /* --------------------------------- SETTING SCREEN ---------------------------------- */
 
-/* This only appears to prevent the setting screen from blocking the lower portion of the mainlist. */
+/* The spacer only appears to prevent the setting screen from blocking the lower portion of the mainlist. */
 #spacer {
     display: none;
     width: 100%;

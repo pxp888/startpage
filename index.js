@@ -329,6 +329,26 @@ function setFrameColor(event) {
     document.getElementById("mainlist").style.backgroundColor = event.target.value;
 }
 
+function downloadLocalStorage() {
+    // Get the contents of localStorage
+    const localStorageData = JSON.stringify(localStorage);
+
+    // Create a Blob containing the data
+    const blob = new Blob([localStorageData], { type: 'application/json' });
+
+    // Create a link element to download the Blob
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'localStorageBackup.json';
+    downloadLink.textContent = 'Download Backup';
+
+    // Append the link to the document and click it to trigger download
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    // Clean up the URL object after the download link is clicked
+    URL.revokeObjectURL(downloadLink.href);
+}
 
 restoreDataFromLocalstorage();
 displayNormalIcons();
@@ -357,3 +377,6 @@ colorPicker.addEventListener("input", setBackGroundColor);
 
 let frameColorPicker = document.getElementById("frameColorPicker");
 frameColorPicker.addEventListener("input", setFrameColor);
+
+let downloadButton = document.getElementById("downloadButton");
+downloadButton.addEventListener("click", downloadLocalStorage);
