@@ -24,8 +24,6 @@ body {
     flex-wrap: wrap;
     background-color: rgb(43 43 43 / 86%);
     justify-content: center;
-
-
 }
 
 .info {
@@ -63,7 +61,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     
     visibility: hidden;
     opacity: 0;
@@ -103,12 +100,16 @@ body {
     /* background-color: rgb(255, 97, 24); */
 }
 
+
+/* --------------------------------- SETTING BUTTON ---------------------------------- */
+
 #settingButton {
     width: 80px;
     height: 80px;
     position: fixed;
     bottom: 0;
     right: 0;
+
     margin: 1rem;
     padding: 1rem;
     border-radius: 50%;
@@ -120,6 +121,9 @@ body {
 #settingButton:hover {
     background-color: rgb(153, 153, 153);
 }
+
+
+/* --------------------------------- SETTING SCREEN ---------------------------------- */
 
 #settingScreen {
     visibility: hidden;
@@ -151,6 +155,28 @@ body {
 #settingScreen label {
     margin: 1rem;
 }
+
+#settingScreen #buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#buttons > img {
+    width: 80px;
+    height: 80px;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+#buttons > img:hover {
+    background-color: rgb(153, 153, 153);
+}
+
 
 .plusButton {
     width: 182px;

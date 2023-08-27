@@ -52,7 +52,7 @@ function restoreData() {
         urls.push("www.facebook.com");
         icons.push("https://cdn-icons-png.flaticon.com/512/733/733547.png");
         names.push("Twitter");
-        urls.push("www.twitter.com");
+        urls.push("https://twitter.com/");
         icons.push("https://cdn-icons-png.flaticon.com/512/733/733579.png");
         names.push("Google Drive");
         urls.push("www.drive.google.com");
@@ -85,7 +85,7 @@ function restoreData() {
         urls.push("www.photos.google.com");
         icons.push("https://cdn-icons-png.flaticon.com/512/2991/2991131.png");
         names.push("Google Calendar");
-        urls.push("www.calendar.google.com");
+        urls.push("https://calendar.google.com/calendar/r?pli=1");
         icons.push("https://cdn-icons-png.flaticon.com/512/5968/5968499.png");
     }
 
@@ -181,7 +181,7 @@ function displayEdit() {
         let xbut = document.createElement("img");
         xbut.classList.add("xbut");
         xbut.src = "assets/images/x.webp";
-        xbut.addEventListener("click", xPressed);
+        xbut.addEventListener("click", removeItem);
 
         // let nlink = document.createElement("p");
         // nlink.innerHTML = info[i].children[0].innerHTML;
@@ -197,7 +197,7 @@ function displayEdit() {
     plus.classList.add("show");
     plus.classList.add("plusButton");
     plus.src = "assets/images/plus.png";
-    plus.addEventListener("click", addBlank);
+    plus.addEventListener("click", addBlankItem);
 
     let mainlist = document.getElementById("mainlist");
     mainlist.appendChild(plus);
@@ -207,7 +207,7 @@ function displayEdit() {
     for (let i = 0; i < lines.length; i++) { lines[i].value = ""; }
 }
 
-function addBlank() {
+function addBlankItem() {
     let mainlist = document.getElementById("mainlist");
     
     let ndiv = document.createElement("div");
@@ -230,7 +230,7 @@ function addBlank() {
     x[x.length-2].classList.add("selected");
 }
 
-function xPressed(event) {
+function removeItem(event) {
     let x = event.target;
     while (x.className != "cut") { x = x.parentNode; }
     x.remove();
