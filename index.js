@@ -6,7 +6,6 @@ function toggleEditMode() {
     if (editmode) {
         displayEditIcons();
         let settingScreen = document.getElementById("settingScreen");
-        // settingScreen.style.visibility = "visible";
         settingScreen.style.display = "block";
         document.getElementById("spacer").style.display = "block";
 
@@ -365,17 +364,26 @@ function uploadLocalStorage(event) {
 function hideHeader(event) {
     document.getElementById("header").style.visibility = "hidden";
     localStorage.setItem("headerhidden", "true");
+    document.getElementById("showHeaderButton").innerHTML = "Show Header";
 }
 
 function showHeader(event) {
     document.getElementById("header").style.visibility = "visible";
     localStorage.setItem("headerhidden", "false");
+    document.getElementById("showHeaderButton").innerHTML = "Hide Header";
 }
 
 function checkHeaderShowing() {
     let x = localStorage.getItem("headerhidden");
     if (x == "true") { hideHeader(); }
 }
+
+function toggleHeaderVisibility(){
+    let x = document.getElementById("header").style.visibility;
+    if (x == "hidden") { showHeader(); }
+    else { hideHeader(); }
+}
+
 
 checkHeaderShowing();
 restoreDataFromLocalstorage();
@@ -412,8 +420,5 @@ downloadButton.addEventListener("click", downloadLocalStorage);
 let uploadButton = document.getElementById("uploadButton");
 uploadButton.addEventListener("change", uploadLocalStorage);
 
-let hideHeaderButton = document.getElementById("hideHeaderButton");
-hideHeaderButton.addEventListener("click", hideHeader);
-
 let showHeaderButton = document.getElementById("showHeaderButton");
-showHeaderButton.addEventListener("click", showHeader);
+showHeaderButton.addEventListener("click", toggleHeaderVisibility);
