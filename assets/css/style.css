@@ -30,6 +30,8 @@ body {
     display: none;
 }
 
+
+
 /* --------------------------------- ICONS ---------------------------------- */
 
 .show {
@@ -127,8 +129,14 @@ body {
 
 /* --------------------------------- SETTING SCREEN ---------------------------------- */
 
+/* This only appears to prevent the setting screen from blocking the lower portion of the mainlist. */
+#spacer {
+    display: none;
+    width: 100%;
+    height: 480px;
+}
+
 #settingScreen {
-    /* visibility: hidden; */
     display: none;
     background-color: gray;
     position: fixed;
