@@ -15,20 +15,20 @@
             <p>your customizable startpage</p>
         </div>
         <div id="nav">
-            <p>How it works</p>
+            <a href="help.html"><p>How it works</p></a>
             <p id="hideHeaderButton">Hide this header</p>
         </div>
     </div>
+
     <!-- main shortcut list is here -->
     <div id="outerlist">
         <div id="mainlist">
             
         </div>
     </div>
-
     <div id="spacer"></div>
 
-    <!-- Settings section -->
+    <!-- Settings section, normally hidden -->
     <div id="settingScreen">
         <div>
             <label for="shortcutName">Name</label>
@@ -59,12 +59,16 @@
             <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
             <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
             <p class="darkButton" id="showHeaderButton">Show the header</p>
+            <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
+
+            <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
+            <a id="helpLink" href="help.html" style="display: none;">hidden help button</a>
             <button id="downloadButton" style="display: none;">Save Data</button>
             <input type="file" id="uploadButton" accept=".json" style="display: none;">
-        </div>        
+        </div>
     </div>
 
-
+    <!-- Settings Button  -->
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
     <script src="index.js"></script>

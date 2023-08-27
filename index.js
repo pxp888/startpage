@@ -178,6 +178,7 @@ function displayNormalIcons() {
         x = info[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
+        im.alt = info[i].children[0].innerHTML;
 
         show.appendChild(link);
         link.appendChild(im);
@@ -200,6 +201,7 @@ function displayEditIcons() {
         let x = info[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
+        im.alt = info[i].children[0].innerHTML;
         im.addEventListener("click", selectItem);
         
         let xbut = document.createElement("img");
