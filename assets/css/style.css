@@ -7,7 +7,8 @@ body {
     /* font-family: Arial, Helvetica, sans-serif; */
     font-size: 1.2rem;
 
-    font-family: Lato,Helvetica Neue,Helvetica,sans-serif;
+    font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
+    font-weight: 300;
     font-variant-ligatures: common-ligatures;
     line-height: 1.67;
     -webkit-font-smoothing: antialiased;
@@ -24,6 +25,8 @@ body {
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+    height: min-content;
+    margin: 0rem;
 }
 
 #header:hover {
@@ -39,7 +42,7 @@ body {
 
 #header .giant {
     font-size: 4rem;
-    margin: 1rem;
+    margin: 0rem;
     color: gainsboro;
 }
 
@@ -225,6 +228,7 @@ body > a {
     align-self: center;
     width: 100%;
     padding: 5px 0px 5px 0px;
+    font-weight: 400;
 }
 
 #settingScreen input {

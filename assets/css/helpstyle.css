@@ -7,7 +7,8 @@ body {
     
     font-size: 1.2rem;
 
-    font-family: Lato,Helvetica Neue,Helvetica,sans-serif;
+    font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
+    font-weight: 300;
     font-variant-ligatures: common-ligatures;
     line-height: 1.67;
     -webkit-font-smoothing: antialiased;
@@ -25,6 +26,7 @@ body {
     align-items: baseline;
     
     background-color: rgb(54, 54, 54);
+    margin: 0rem;
 }
 
 
@@ -36,7 +38,7 @@ body {
 
 #header .giant {
     font-size: 4rem;
-    margin: 1rem;
+    margin: 0rem;
     color: gainsboro;
 }
 
