@@ -286,14 +286,20 @@ function selectItem(event) {
 
 function nameUpdate(event) {
     let x = document.getElementsByClassName("selected");
-    if (x.length == 0) { return; }
+    if (x.length == 0) {
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
     let info = x[0].parentNode.children[0];
     info.children[0].innerHTML = event.target.value;
 }
 
 function urlUpdate(event) {
     let x = document.getElementsByClassName("selected");
-    if (x.length == 0) { return; }
+    if (x.length == 0) { 
+        alert("No item selected, please click a link to edit"); 
+        return; 
+    }
     let info = x[0].parentNode.children[0];
     let n = event.target.value;
     info.children[1].innerHTML = n;
@@ -301,7 +307,10 @@ function urlUpdate(event) {
 
 function iconUpdate(event) {
     let x = document.getElementsByClassName("selected");
-    if (x.length == 0) { return; }
+    if (x.length == 0) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
     let info = x[0].parentNode.children[0];
     info.children[2].innerHTML = event.target.value;
     
@@ -310,7 +319,10 @@ function iconUpdate(event) {
 
 function moveItemUp(event) {
     let x = document.getElementsByClassName("selected")[0];
-    if (x == null) { return; }
+    if (x == null) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
     while (x.className != "cut") { x = x.parentNode; }
     let y = x.previousSibling;
     if (y == null) { return; }
@@ -319,7 +331,10 @@ function moveItemUp(event) {
 
 function moveItemDown(event) {
     let x = document.getElementsByClassName("selected")[0];
-    if (x == null) { return; }
+    if (x == null) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
     while (x.className != "cut") { x = x.parentNode; }
     let y = x.nextSibling;
     if (y == null) { return; }
