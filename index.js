@@ -154,6 +154,9 @@ function saveDataToLocalstorage() {
 }
 
 function displayNormalIcons() {
+    let ics = localStorage.getItem("iconsize");
+    if (ics == null) { ics = 182; }
+
     let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
 
@@ -163,6 +166,8 @@ function displayNormalIcons() {
         let cut = info[i].parentNode;
         let show = document.createElement("div");
         show.className = "show";
+        show.style.width = ics + "px";
+        show.style.height = ics + "px";
 
         let link = document.createElement("a");
         let nlink = document.createElement("a");
@@ -187,14 +192,20 @@ function displayNormalIcons() {
 }
 
 function displayEditIcons() {
+    let ics = localStorage.getItem("iconsize");
+    if (ics == null) { ics = 182; }
+
     let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
+    
     
     let info = document.getElementsByClassName("info");
     for (let i = 0; i < info.length; i++) { 
         let cut = info[i].parentNode;
         let show = document.createElement("div");
         show.className = "show";
+        show.style.width = ics + "px";
+        show.style.height = ics + "px";
 
         let im = document.createElement("img");
         let x = info[i].children[2].innerHTML;
@@ -208,14 +219,9 @@ function displayEditIcons() {
         xbut.src = "assets/images/x.webp";
         xbut.addEventListener("click", removeItem);
 
-        // let nlink = document.createElement("p");
-        // nlink.innerHTML = info[i].children[0].innerHTML;
-        // nlink.classList.add("name");
-
         cut.appendChild(show);
         show.appendChild(im);
         show.appendChild(xbut);
-        // show.appendChild(nlink);
     }
 
     let plus = document.createElement("img");
@@ -384,6 +390,19 @@ function toggleHeaderVisibility(){
     else { hideHeader(); }
 }
 
+function setIconSize(event) {
+    let ics = event.target.value;
+    if ((ics < 50) || (ics > 1000)) { return; }
+    localStorage.setItem("iconsize", ics);
+
+    let mainlist = document.getElementById("mainlist");
+    let divs = mainlist.getElementsByClassName("show");
+    for (let i = 0; i < divs.length; i++) { 
+        divs[i].style.width = ics + "px"; 
+        divs[i].style.height = ics + "px";
+    }
+}
+
 
 checkHeaderShowing();
 restoreDataFromLocalstorage();
@@ -422,3 +441,6 @@ uploadButton.addEventListener("change", uploadLocalStorage);
 
 let showHeaderButton = document.getElementById("showHeaderButton");
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
+
+let iconSize = document.getElementById("iconSize");
+iconSize.addEventListener("input", setIconSize);

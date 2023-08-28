@@ -112,8 +112,8 @@ body > a {
 }
 
 .show img {
-    width: 182px;
-    height: 182px;
+    width: 100%;
+    height: 100%;
 }
 
 .show .name {
@@ -228,13 +228,13 @@ body > a {
     padding: 5px 0px 5px 0px;
 }
 
-#settingScreen input[type="text"] {
+#settingScreen input {
     border-radius: 0.25rem;
     border: none;
     background-color: rgb(43 43 43 / 86%);
     color: white;
     font-size: 1.2rem;
-    flex-grow: 2;
+    /* flex-grow: 1; */
     padding: inherit;
 }
 
@@ -252,7 +252,6 @@ body > a {
     margin-left: 2rem;
     margin-right: 1rem;
 }
-
 
 #settingScreen p {
     width: 7rem;
