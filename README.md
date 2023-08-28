@@ -1,6 +1,10 @@
+![screen](assets/screenshots/screen2.webp)
+
 # Simple
 
 a minimalist but beautiful and efficient startpage or homepage for design-conscious users.
+
+[Try it out here](https://pxp888.github.io/startpage/)
 
 ## what is it?
 It is a simple collection of links with corresponding icons for commonly used websites that is easy to customize for individual needs.
@@ -53,7 +57,12 @@ For a cleaner look the header can be permanently hidden.
 There is a link on the header to a help page showing how the controls work, and how to edit the page as desired.  
 
 ### settings pane
-All the controls are present 
+
+![settingsPanePicture](assets/screenshots/screen3.webp)
+
+All adjustments and settings are done through the settings pane. 
+
+The settings pane is toggled by pressing the settings gear icon on the lower right corner of the page.
 
 ## feature details
 ### animated display name over icons
