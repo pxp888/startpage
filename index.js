@@ -364,7 +364,7 @@ function downloadLocalStorage() {
 
     const downloadLink = document.createElement('a');
     downloadLink.href = URL.createObjectURL(blob);
-    downloadLink.download = 'localStorageBackup.json';
+    downloadLink.download = 'simpleStartpage.json';
     downloadLink.textContent = 'Download Backup';
 
     document.body.appendChild(downloadLink);

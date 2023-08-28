@@ -2,7 +2,6 @@ body {
     background-color: rgb(54, 54, 54);
     display: flex;
     flex-direction: column;
-    font-size: 1.2rem;
 
     font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
     font-weight: 300;
@@ -225,7 +224,7 @@ body > a {
     align-self: center;
     width: 100%;
     padding: 5px 0px 5px 0px;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 #settingScreen input {
@@ -233,8 +232,6 @@ body > a {
     border: none;
     background-color: rgb(43 43 43 / 86%);
     color: white;
-    font-size: 1.2rem;
-    /* flex-grow: 1; */
     padding: inherit;
 }
 
@@ -243,27 +240,21 @@ body > a {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: inherit;
 }
 
-#settingScreen label {
+#settingScreen label, #settingScreen p {
     width: 7rem;
     margin-left: 2rem;
     margin-right: 1rem;
-}
-
-#settingScreen p {
-    width: 7rem;
-    margin-left: 2rem;
-    margin-right: 1rem;
+    font-weight: 300;
 }
 
 .darkButton {
     margin: 1px 10px 1px 0px;
     color: gray;
     background-color: rgb(43 43 43 / 86%);
-    font-size: 1.2rem;
     border-radius: 0.25rem;
     min-width: 10rem;
     text-align: center;
@@ -276,3 +267,10 @@ body > a {
     cursor: pointer;
 }
 
+#settingScreen h4 {
+    margin: 0.5rem;
+    margin-left: 2rem;
+    padding: inherit;
+    font-weight: 400;
+    border-bottom: 1px solid gray;
+}
