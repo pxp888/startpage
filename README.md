@@ -34,6 +34,9 @@ Links can be edited and re-ordered through the settings pane.
 
 The settings pane is toggled by pressing the settings gear icon on the lower right corner of the page.  
 
+### Customizable Icon sizes
+
+
 ### Customizable background colors
 
 The background and frame around the links can be customized.  

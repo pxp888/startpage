@@ -154,8 +154,11 @@ function saveDataToLocalstorage() {
 }
 
 function displayNormalIcons() {
-    let ics = localStorage.getItem("iconsize");
-    if (ics == null) { ics = 182; }
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize == null) { targetIconSize = 182; }
+    let targetFrameSize = localStorage.getItem("framesize");
+    if (targetFrameSize == null) { targetFrameSize = 1200; }
+    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
 
     let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
@@ -166,8 +169,8 @@ function displayNormalIcons() {
         let cut = info[i].parentNode;
         let show = document.createElement("div");
         show.className = "show";
-        show.style.width = ics + "px";
-        show.style.height = ics + "px";
+        show.style.width = targetIconSize + "px";
+        show.style.height = targetIconSize + "px";
 
         let link = document.createElement("a");
         let nlink = document.createElement("a");
@@ -192,8 +195,11 @@ function displayNormalIcons() {
 }
 
 function displayEditIcons() {
-    let ics = localStorage.getItem("iconsize");
-    if (ics == null) { ics = 182; }
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize == null) { targetIconSize = 182; }
+    let targetFrameSize = localStorage.getItem("framesize");
+    if (targetFrameSize == null) { targetFrameSize = 1200; }
+    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
 
     let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
@@ -204,8 +210,8 @@ function displayEditIcons() {
         let cut = info[i].parentNode;
         let show = document.createElement("div");
         show.className = "show";
-        show.style.width = ics + "px";
-        show.style.height = ics + "px";
+        show.style.width = targetIconSize + "px";
+        show.style.height = targetIconSize + "px";
 
         let im = document.createElement("img");
         let x = info[i].children[2].innerHTML;
@@ -406,16 +412,25 @@ function toggleHeaderVisibility(){
 }
 
 function setIconSize(event) {
-    let ics = event.target.value;
-    if ((ics < 50) || (ics > 1000)) { return; }
-    localStorage.setItem("iconsize", ics);
+    let targetIconSize = event.target.value;
+    if ((targetIconSize < 50) || (targetIconSize > 1000)) { return; }
+    localStorage.setItem("iconsize", targetIconSize);
 
     let mainlist = document.getElementById("mainlist");
     let divs = mainlist.getElementsByClassName("show");
     for (let i = 0; i < divs.length; i++) { 
-        divs[i].style.width = ics + "px"; 
-        divs[i].style.height = ics + "px";
+        divs[i].style.width = targetIconSize + "px"; 
+        divs[i].style.height = targetIconSize + "px";
     }
+}
+
+function setFrameSize(event) {
+    let targetFrameSize = event.target.value;
+    if ((targetFrameSize < 400)||(targetFrameSize > 2500)) { return; }
+    localStorage.setItem("framesize", targetFrameSize);
+
+    let mainlist = document.getElementById("mainlist");
+    mainlist.style.maxWidth = targetFrameSize + "px";
 }
 
 
@@ -459,3 +474,6 @@ showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 
 let iconSize = document.getElementById("iconSize");
 iconSize.addEventListener("input", setIconSize);
+
+let frameSize = document.getElementById("frameSize");
+frameSize.addEventListener("input", setFrameSize);

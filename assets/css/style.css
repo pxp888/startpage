@@ -83,7 +83,6 @@ body {
 }
 
 #mainlist {
-    /* max-width: 1092px; */
     max-width: 1200px;
     display: flex;
     flex-direction: row;
