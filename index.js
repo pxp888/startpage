@@ -185,6 +185,7 @@ function displayNormalIcons() {
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
         im.alt = info[i].children[0].innerHTML;
+        im.addEventListener("click", function() { nlink.click(); });
 
         show.appendChild(im);
         show.appendChild(nlink);
@@ -201,7 +202,6 @@ function displayEditIcons() {
 
     let items = document.getElementsByClassName("show");
     while (items.length > 0) { items[0].remove(); }
-    
     
     let info = document.getElementsByClassName("info");
     for (let i = 0; i < info.length; i++) { 
@@ -234,12 +234,11 @@ function displayEditIcons() {
     plus.src = "assets/images/plus.png";
     plus.addEventListener("click", addBlankItem);
 
-    let mainlist = document.getElementById("mainlist");
-    mainlist.appendChild(plus);
+    document.getElementById("mainlist").appendChild(plus);
 
-    let x = document.getElementById("settingScreen");
-    let lines = x.getElementsByTagName("input");
-    for (let i = 0; i < lines.length; i++) { lines[i].value = ""; }
+    document.getElementById("shortcutName").value = "";
+    document.getElementById("shortcutURL").value = "";
+    document.getElementById("shortcutIcon").value = "";
 }
 
 function addBlankItem() {
@@ -262,7 +261,8 @@ function addBlankItem() {
 
     displayEditIcons();
     let x = document.getElementsByClassName("show");
-    x[x.length-2].classList.add("selected");
+    for (let i = 0; i < x.length-1; i++) { x[i].className="show notSelected"; }
+    x[x.length-2].className = "show selected";
 }
 
 function removeItem(event) {
@@ -272,13 +272,15 @@ function removeItem(event) {
 }
 
 function selectItem(event) {
-    let shows = document.getElementsByClassName("show");
-    for (let i = 0; i < shows.length; i++) { shows[i].className = "show"; }
-
     let x = event.target;
     if (x==null) { return; }
-    while (x.className != "show") { x = x.parentNode; }
-    x.classList.add("selected");
+
+    let shows = document.getElementsByClassName("show");
+    for (let i = 0; i < shows.length-1; i++) { 
+        shows[i].className = "show notSelected";
+    }
+    x = x.parentNode;
+    x.className = "show selected";
 
     let info = x.parentNode.children[0];
     let shortcutName = document.getElementById("shortcutName");
@@ -436,6 +438,7 @@ function setFrameSize(event) {
 checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
+toggleEditMode();
 
 
 let settingButton = document.getElementById("settingButton");
