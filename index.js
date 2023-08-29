@@ -172,14 +172,13 @@ function displayNormalIcons() {
         show.style.width = targetIconSize + "px";
         show.style.height = targetIconSize + "px";
 
-        let link = document.createElement("a");
         let nlink = document.createElement("a");
         let x = info[i].children[1].innerHTML;
         if (x.slice(0, 4) != "http") { x = "https://" + x; }
-        link.href = x;
         nlink.href = x;
         nlink.innerHTML = info[i].children[0].innerHTML;
         nlink.classList.add("name");
+        nlink.style.fontSize = targetIconSize/8 + "px";
 
         let im = document.createElement("img");
         x = info[i].children[2].innerHTML;
@@ -187,10 +186,9 @@ function displayNormalIcons() {
         im.src = x;
         im.alt = info[i].children[0].innerHTML;
 
-        show.appendChild(link);
-        link.appendChild(im);
-        cut.appendChild(show);
+        show.appendChild(im);
         show.appendChild(nlink);
+        cut.appendChild(show);
     }
 }
 
@@ -278,6 +276,7 @@ function selectItem(event) {
     for (let i = 0; i < shows.length; i++) { shows[i].className = "show"; }
 
     let x = event.target;
+    if (x==null) { return; }
     while (x.className != "show") { x = x.parentNode; }
     x.classList.add("selected");
 
