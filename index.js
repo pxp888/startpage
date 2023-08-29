@@ -478,3 +478,4 @@ iconSize.addEventListener("input", setIconSize);
 
 let frameSize = document.getElementById("frameSize");
 frameSize.addEventListener("input", setFrameSize);
+
