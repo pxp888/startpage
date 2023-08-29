@@ -438,7 +438,6 @@ function setFrameSize(event) {
 checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
-toggleEditMode();
 
 
 let settingButton = document.getElementById("settingButton");
