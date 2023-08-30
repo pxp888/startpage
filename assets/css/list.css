@@ -87,7 +87,8 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     background-color: rgb(31, 31, 31);
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: flex-start;
     padding: 5rem;
 }
 
@@ -97,7 +98,7 @@ body {
 /* --------------------------------- ICONS ---------------------------------- */
 
 
-.show {
+/* .show {
     color: white;
     position: relative;
     display: flex;
@@ -148,6 +149,20 @@ body {
     100% {
         opacity: 1;
     }
+} */
+
+.show {
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+}
+
+.show a, .show p {
+    text-decoration: none;
+    flex-grow: 1;
+    color: white;
 }
 
 .show .xbut {

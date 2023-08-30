@@ -157,15 +157,13 @@ function displayNormalIcons() {
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        // ndiv.style.width = targetIconSize + "px";
-        // ndiv.style.height = targetIconSize + "px";
+        ndiv.style.width = targetIconSize + "px";
+        ndiv.style.height = targetIconSize + "px";
 
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
-        im.style.width = targetIconSize + "px";
-        im.style.height = targetIconSize + "px";
 
         let link = document.createElement("a");
         link.innerHTML = cuts[i].children[0].innerHTML;
@@ -197,18 +195,17 @@ function displayEditIcons() {
     for (let i=0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        // ndiv.style.width = targetIconSize + "px";
-        // ndiv.style.height = targetIconSize + "px";
+        ndiv.style.width = targetIconSize + "px";
+        ndiv.style.height = targetIconSize + "px";
         
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
-        im.style.width = targetIconSize + "px";
-        im.style.height = targetIconSize + "px";
-
+        
         let link = document.createElement("p");
         link.innerHTML = cuts[i].children[0].innerHTML;
+        link.style.fontSize = targetIconSize/8 + "px";
         link.addEventListener("click", selectItem);
         
         let xbut = document.createElement("img");
@@ -226,6 +223,8 @@ function displayEditIcons() {
     plus.classList.add("show");
     plus.classList.add("plusButton");
     plus.src = "assets/images/plus.png";
+    plus.style.width = targetIconSize + "px";
+    plus.style.height = targetIconSize + "px";
     plus.addEventListener("click", addBlankItem);
 
     mainlist.appendChild(plus);
@@ -275,6 +274,9 @@ function selectItem(event) {
 }
 
 function addBlankItem() {
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize == null) { targetIconSize = 182; }
+
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
@@ -284,6 +286,8 @@ function addBlankItem() {
 
     let newShow = document.createElement("div");
     newShow.className = "show selected";
+    newShow.style.width = targetIconSize + "px";
+    newShow.style.height = targetIconSize + "px";
 
     let im = document.createElement("img");
     im.src = "assets/images/blankimage.png";
@@ -311,6 +315,8 @@ function addBlankItem() {
     newCut.appendChild(durl);
     newCut.appendChild(dicon);
     info.appendChild(newCut);
+
+
 
     document.getElementById("shortcutName").value = newCut.children[0].innerHTML;
     document.getElementById("shortcutURL").value = newCut.children[1].innerHTML;
@@ -421,6 +427,10 @@ function setIconSize(event) {
         shows[i].style.height = targetIconSize + "px";
         shows[i].children[1].style.fontSize = targetIconSize/8 + "px";
     }
+
+    let plus = document.getElementsByClassName("plusButton");
+    plus[0].style.width = targetIconSize + "px";
+    plus[0].style.height = targetIconSize + "px";
 }
 
 function setFrameSize(event) {
