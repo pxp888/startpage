@@ -1,5 +1,18 @@
 var editmode = false;
 
+function getIndex(x){
+    while (x.classList.length == 0) { x=x.parentNode; }
+    let group = document.getElementsByClassName(x.classList[0]);
+    let index = -1;
+    for (let i=0; i < group.length; i++) {
+        if (group[i] == x) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
+
 function restoreDataFromLocalstorage() {
     //get info from localstorage
     let names = JSON.parse(localStorage.getItem("names"));
@@ -125,20 +138,28 @@ function saveDataToLocalstorage() {
 }
 
 function displayNormalIcons() {
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize == null) { targetIconSize = 182; }
+    let targetFrameSize = localStorage.getItem("framesize");
+    if (targetFrameSize == null) { targetFrameSize = 1200; }
+    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
+
     let cuts = document.getElementsByClassName("cut");
+    let shows = document.getElementsByClassName("show");
     let mainlist = document.getElementById("mainlist");
     
-    let shows = document.getElementsByClassName("show");
-    while (shows.length > 0) {shows[0].remove();}
     let plusses = document.getElementsByClassName("plus");
+    while (shows.length > 0) {shows[0].remove();}
     while (plusses.length > 0) {plusses[0].remove();}
 
+    
 
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
+        ndiv.style.width = targetIconSize + "px";
+        ndiv.style.height = targetIconSize + "px";
 
-        
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
@@ -146,9 +167,10 @@ function displayNormalIcons() {
 
         let link = document.createElement("a");
         link.innerHTML = cuts[i].children[0].innerHTML;
+        link.style.fontSize = targetIconSize/8 + "px";
         
         x = cuts[i].children[1].innerHTML;
-        if (x.slice(0, 4) != "http") { x = "https://" + x; }
+        if (x.slice(0, 4) != "http") { x = "http://" + x; }
         link.href = x;
 
         ndiv.appendChild(im);
@@ -158,15 +180,23 @@ function displayNormalIcons() {
 }
 
 function displayEditIcons() {
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize == null) { targetIconSize = 182; }
+    let targetFrameSize = localStorage.getItem("framesize");
+    if (targetFrameSize == null) { targetFrameSize = 1200; }
+    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
+
     let cuts = document.getElementsByClassName("cut");
     let mainlist = document.getElementById("mainlist");
-    
     let shows = document.getElementsByClassName("show");
+
     while (shows.length > 0) {shows[0].remove();}
     
     for (let i=0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
+        ndiv.style.width = targetIconSize + "px";
+        ndiv.style.height = targetIconSize + "px";
         
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
@@ -195,6 +225,10 @@ function displayEditIcons() {
     plus.addEventListener("click", addBlankItem);
 
     mainlist.appendChild(plus);
+
+    document.getElementById("shortcutName").value = "";
+    document.getElementById("shortcutURL").value = "";
+    document.getElementById("shortcutIcon").value = "";
 }
 
 function toggleEditMode() {
@@ -221,17 +255,19 @@ function selectItem(event) {
     if (event.target==null) { return; }
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
-    let index = -1;
-    for (let i=0; i < shows.length; i++) {
-        if (shows[i].children[1] == event.target) {
-            index = i;
-            break;
-        }
-    }
+    
+    let index = getIndex(event.target);
     if (index == -1) { return; }
 
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
     shows[index].className="show selected";
+
+    let shortcutName = document.getElementById("shortcutName");
+    let shortcutURL = document.getElementById("shortcutURL");
+    let shortcutIcon = document.getElementById("shortcutIcon");
+    shortcutName.value = cuts[index].children[0].innerHTML;
+    shortcutURL.value = cuts[index].children[1].innerHTML;
+    shortcutIcon.value = cuts[index].children[2].innerHTML;
 }
 
 function addBlankItem() {
@@ -239,7 +275,6 @@ function addBlankItem() {
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
     let info = document.getElementById("info");
-
 
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
 
@@ -272,27 +307,221 @@ function addBlankItem() {
     newCut.appendChild(durl);
     newCut.appendChild(dicon);
     info.appendChild(newCut);
+
+    document.getElementById("shortcutName").value = newCut.children[0].innerHTML;
+    document.getElementById("shortcutURL").value = newCut.children[1].innerHTML;
+    document.getElementById("shortcutIcon").value = newCut.children[2].innerHTML;
 }
 
 function removeItem(event) {
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
 
-    let index = -1;
-    for (let i=0; i < shows.length; i++) {
-        if (shows[i].children[2] == event.target) {
-            index = i;
-            break;
-        }
-    }
+    let index = getIndex(event.target);
     if (index == -1) { return; }
     shows[index].remove();
     cuts[index].remove();
 }
 
+function nameUpdate(event) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
+        alert("No item selected, please click a link to edit");
+        return;
+    }
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+    let index = getIndex(selected[0]);
+    if (index == -1) { 
+        return; 
+    }
+    cuts[index].children[0].innerHTML = event.target.value;
+    shows[index].children[1].innerHTML = event.target.value;
+}
 
+function urlUpdate(event) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
+        alert("No item selected, please click a link to edit");
+        return;
+    }
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+    let index = getIndex(selected[0]);
+    if (index == -1) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
+    cuts[index].children[1].innerHTML = event.target.value;
+    let x = cuts[index].children[1].innerHTML;
+    if (x.slice(0, 4) != "http") { x = "http://" + x; }
+    shows[index].children[2].innerHTML = x;
+}
+
+function iconUpdate(event) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
+        alert("No item selected, please click a link to edit");
+        return;
+    }
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+    let index = getIndex(selected[0]);
+    if (index == -1) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
+    cuts[index].children[2].innerHTML = event.target.value;
+    shows[index].children[0].src = event.target.value;
+}
+
+function moveItemUp(event){
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+
+    let index = getIndex(document.getElementsByClassName("selected")[0]);
+    if (index == -1) { return; }
+    if ((index == 0)||(index == cuts.length)) { return; }
+    cuts[index].parentNode.insertBefore(cuts[index], cuts[index-1]);
+    shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
+}
+
+function moveItemDown(event){
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+
+    let index = getIndex(document.getElementsByClassName("selected")[0]);
+    if (index == -1) { return; }
+    if (index == cuts.length-1) { return; }
+    cuts[index].parentNode.insertBefore(cuts[index+1], cuts[index]);
+    shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
+}
+
+function setBackGroundColor(event) {
+    let selectedColor = event.target.value;
+    document.getElementsByTagName("body")[0].style.backgroundColor = selectedColor;
+}
+
+function setFrameColor(event) {
+    document.getElementById("mainlist").style.backgroundColor = event.target.value;
+}
+
+function setIconSize(event) {
+    let targetIconSize = event.target.value;
+    if ((targetIconSize < 50)||(targetIconSize > 1000)) { return; }
+    localStorage.setItem("iconsize", targetIconSize);
+
+    let shows = document.getElementsByClassName("show");
+    for (let i=0; i < shows.length-1; i++) {
+        shows[i].style.width = targetIconSize + "px";
+        shows[i].style.height = targetIconSize + "px";
+        shows[i].children[1].style.fontSize = targetIconSize/8 + "px";
+    }
+}
+
+function setFrameSize(event) {
+    let targetFrameSize = event.target.value;
+    if ((targetFrameSize < 400)||(targetFrameSize > 2000)) { return; }
+    localStorage.setItem("framesize", targetFrameSize);
+
+    let mainlist = document.getElementById("mainlist");
+    mainlist.style.maxWidth = targetFrameSize + "px";
+}
+
+function downloadLocalStorage() {
+    const localStorageData = JSON.stringify(localStorage);
+
+    const blob = new Blob([localStorageData], { type: 'application/json' });
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = 'simpleStartpage.json';
+    downloadLink.textContent = 'Download Backup';
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    URL.revokeObjectURL(downloadLink.href);
+}
+
+function uploadLocalStorage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const localStorageData = event.target.result;
+        localStorage.clear();
+        Object.entries(JSON.parse(localStorageData)).forEach(([key, value]) => {
+            localStorage.setItem(key, value);
+        });
+        window.location.reload();
+    };
+    reader.readAsText(file);
+    restoreDataFromLocalstorage();
+}
+
+function checkHeaderShowing() {
+    let x = localStorage.getItem("headerhidden");
+    if (x == null) { return; }
+    if (x == "true") { 
+        document.getElementById("header").style.visibility = "hidden";
+        document.getElementById("showHeaderButton").innerHTML = "Show Header";
+    }
+}
+
+function toggleHeaderVisibility(){
+    let x = document.getElementById("header").style.visibility;
+    if (x == "hidden") { 
+        document.getElementById("header").style.visibility = "visible";
+        localStorage.setItem("headerhidden", "false");
+        document.getElementById("showHeaderButton").innerHTML = "Hide Header";
+    }
+    else { 
+        document.getElementById("header").style.visibility = "hidden";
+        localStorage.setItem("headerhidden", "true");
+        document.getElementById("showHeaderButton").innerHTML = "Show Header";
+    }
+}
+
+checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
 
 let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEditMode);
+
+let shortcutName = document.getElementById("shortcutName");
+shortcutName.addEventListener("input", nameUpdate);
+
+let shortcutURL = document.getElementById("shortcutURL");
+shortcutURL.addEventListener("input", urlUpdate);
+
+let shortcutIcon = document.getElementById("shortcutIcon");
+shortcutIcon.addEventListener("input", iconUpdate);
+
+let leftArrow = document.getElementById("leftArrow");
+leftArrow.addEventListener("click", moveItemUp);
+
+let rightArrow = document.getElementById("rightArrow");
+rightArrow.addEventListener("click", moveItemDown);
+
+let backgroundColorPicker = document.getElementById("backgroundColorPicker");
+backgroundColorPicker.addEventListener("input", setBackGroundColor);
+
+let frameColorPicker = document.getElementById("frameColorPicker");
+frameColorPicker.addEventListener("input", setFrameColor);
+
+let iconSize = document.getElementById("iconSize");
+iconSize.addEventListener("input", setIconSize);
+
+let frameSize = document.getElementById("frameSize");
+frameSize.addEventListener("input", setFrameSize);
+
+let downloadButton = document.getElementById("downloadButton");
+downloadButton.addEventListener("click", downloadLocalStorage);
+
+let uploadButton = document.getElementById("uploadButton");
+uploadButton.addEventListener("change", uploadLocalStorage);
+
+let showHeaderButton = document.getElementById("showHeaderButton");
+showHeaderButton.addEventListener("click", toggleHeaderVisibility);
+

@@ -1,7 +1,77 @@
 body {
     margin: 0;
+
+    font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
+    font-weight: 300;
+    font-variant-ligatures: common-ligatures;
+    line-height: 1.67;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale  
 }
 
+/* --------------------------------- HEADER ---------------------------------- */
+
+#header {
+    color: white;
+    opacity: 0.4;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    height: min-content;
+    margin: 0rem;
+}
+
+#header:hover {
+    animation: 0.5s opacityFadeIn;
+    animation-fill-mode: forwards;
+}
+
+#header > div {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+#header .giant {
+    font-size: 4rem;
+    margin: 0rem;
+    color: gainsboro;
+}
+
+#header p {
+    color: rgb(146, 146, 146);   
+}
+
+#header a {
+    text-decoration: none;
+}
+
+#helplink {
+    margin-right: 2rem;
+}
+
+#helplink:hover {
+    color: black;
+    background-color: gainsboro;
+    cursor: pointer;
+}
+
+
+@keyframes opacityFadeIn {
+    0% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+
+/* --------------------------------- MAIN LIST AREA ---------------------------------- */
 
 #outerlist {
     display: flex;
@@ -19,6 +89,8 @@ body {
     justify-content: center;
     padding: 5rem;
 }
+
+
 
 
 /* --------------------------------- ICONS ---------------------------------- */
@@ -129,8 +201,65 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+
+    background-color: rgb(153, 153, 153);
+    padding: 5px 0px 5px 0px;
 }
 
+#settingScreen > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+#settingScreen input[type=text] {
+    border-radius: 0.25rem;
+    border: none;
+    background-color: rgb(43 43 43 / 86%);
+    color: gainsboro;
+    font-weight: 400;
+    padding: inherit;
+    width: 30rem;
+}
+
+#settingScreen h4 {
+    margin: 0.5rem;
+    margin-left: 2rem;
+    padding: inherit;
+    font-weight: 400;
+    border-bottom: 1px solid gray;
+}
+
+#settingScreen label, #settingScreen p {
+    width: 7rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    font-weight: 300;
+}
+
+
+#settingScreen .darkButton {
+    margin: 1px 10px 1px 0px;
+    color: gainsboro;
+    background-color: rgb(43 43 43 / 86%);
+    border-radius: 0.25rem;
+    min-width: 10rem;
+    text-align: center;
+    padding: inherit;
+    font-weight: 400;
+}
+
+#settingScreen .darkButton:hover {
+    background-color: rgb(192, 192, 192);
+    color: black;
+    cursor: pointer;
+}
+
+
+/* --------------------------------- SETTING BUTTON ---------------------------------- */
 
 #settingButton {
     width: 80px;
@@ -148,9 +277,8 @@ body {
     background-color: rgb(192, 192, 192);
 }
 
-#settingButton:hover {
-    
-    
+#settingButton:hover {    
     animation: 0.5s fadeIn;
     animation-fill-mode: forwards;
 }
+

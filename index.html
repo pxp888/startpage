@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/icon.css">
     <title>Simple</title>
 </head>
 
@@ -28,9 +28,12 @@
             
         </div>
     </div>
-    <div id="spacer"></div>
+    
+    <div id="info" style="display: none;"></div>
+        
 
     <!-- Settings section, normally hidden -->
+    <div id="spacer"></div>
     <div id="settingScreen">
         <h4>Icon Settings</h4>
         <div>
@@ -53,9 +56,9 @@
 
         <h4>Page Settings</h4>
         <div>
-            <label for="colorPicker">Back Color: </label>
+            <label for="backgroundColorPicker">Back Color: </label>
             <input type="color" id="backgroundColorPicker">
-            <label for="colorPicker">Frame color: </label>
+            <label for="frameColorPicker">Frame color: </label>
             <input type="color" id="frameColorPicker">
             <label for="iconSize">Icon Size: </label>
             <input type="range" id="iconSize" min="40" max="300" name="iconSize">
@@ -76,10 +79,9 @@
         </div>
     </div>
 
-    <!-- Settings Button  -->
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
-    <script src="index.js"></script>
+    <script src="icon.js"></script>
 </body>
 </html>
 
