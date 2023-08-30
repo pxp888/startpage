@@ -13,8 +13,53 @@ function getIndex(x){
     return index;
 }
 
+function addStyleTag() {
+    const style = document.createElement('style');
+    style.id = "customStyleTag";
+    style.textContent = `
+    .show {
+        color: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 120px;
+        height: 120px;
+    }
+
+    .show a, .show p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-decoration: none;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        opacity: 0;
+    }
+
+    .show a:hover, .show p:hover {
+        opacity: 1;
+        animation: 0.2s fadeIn;
+        animation-fill-mode: forwards;
+    }
+    `;
+    document.head.appendChild(style);
+}
+
 function restoreDataFromLocalstorage() {
-    //get info from localstorage
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
     let urls = JSON.parse(localStorage.getItem("urls"));
@@ -100,19 +145,37 @@ function restoreDataFromLocalstorage() {
         info.appendChild(ndiv);
     }
 
-        //set background color
-        let bgcolor = localStorage.getItem("bgcolor");
-        if (bgcolor != null) { 
-            document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor; 
-            document.getElementById("backgroundColorPicker").value = bgcolor;
+    //set background color
+    let bgcolor = localStorage.getItem("bgcolor");
+    if (bgcolor != null) { 
+        document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor; 
+        document.getElementById("backgroundColorPicker").value = bgcolor;
+    }
+    
+    //set frame color
+    let framecolor = localStorage.getItem("framecolor");
+    if (framecolor != null) { 
+        document.getElementById("mainlist").style.backgroundColor = framecolor; 
+        document.getElementById("frameColorPicker").value = framecolor;
+    }
+
+    //set icon size
+    let targetIconSize = localStorage.getItem("iconsize");
+    if (targetIconSize != null) {
+        let sheet = document.getElementById("customStyleTag").sheet;
+        let rules=sheet.cssRules;
+        let x;
+        for (let i=0; i<rules.length; i++) {
+            if (rules[i].selectorText == ".show") { x = rules[i].style; }
         }
-        
-        //set frame color
-        let framecolor = localStorage.getItem("framecolor");
-        if (framecolor != null) { 
-            document.getElementById("mainlist").style.backgroundColor = framecolor; 
-            document.getElementById("frameColorPicker").value = framecolor;
+        x.setProperty("width", targetIconSize + "px");
+        x.setProperty("height", targetIconSize + "px");
+
+        for (let i=0; i<rules.length; i++) {
+            if (rules[i].selectorText == ".show a, .show p") { x = rules[i].style; }
         }
+        x.setProperty("font-size", targetIconSize/8 + "px")
+    }
 }
 
 function saveDataToLocalstorage() {
@@ -138,8 +201,7 @@ function saveDataToLocalstorage() {
 }
 
 function displayNormalIcons() {
-    let targetIconSize = localStorage.getItem("iconsize");
-    if (targetIconSize == null) { targetIconSize = 182; }
+    
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
@@ -157,9 +219,7 @@ function displayNormalIcons() {
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        ndiv.style.width = targetIconSize + "px";
-        ndiv.style.height = targetIconSize + "px";
-
+        
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
@@ -167,8 +227,7 @@ function displayNormalIcons() {
 
         let link = document.createElement("a");
         link.innerHTML = cuts[i].children[0].innerHTML;
-        link.style.fontSize = targetIconSize/8 + "px";
-        
+                
         x = cuts[i].children[1].innerHTML;
         if (x.slice(0, 4) != "http") { x = "http://" + x; }
         link.href = x;
@@ -180,8 +239,6 @@ function displayNormalIcons() {
 }
 
 function displayEditIcons() {
-    let targetIconSize = localStorage.getItem("iconsize");
-    if (targetIconSize == null) { targetIconSize = 182; }
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
@@ -195,8 +252,6 @@ function displayEditIcons() {
     for (let i=0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        ndiv.style.width = targetIconSize + "px";
-        ndiv.style.height = targetIconSize + "px";
         
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
@@ -205,7 +260,6 @@ function displayEditIcons() {
         
         let link = document.createElement("p");
         link.innerHTML = cuts[i].children[0].innerHTML;
-        link.style.fontSize = targetIconSize/8 + "px";
         link.addEventListener("click", selectItem);
         
         let xbut = document.createElement("img");
@@ -223,8 +277,6 @@ function displayEditIcons() {
     plus.classList.add("show");
     plus.classList.add("plusButton");
     plus.src = "assets/images/plus.png";
-    plus.style.width = targetIconSize + "px";
-    plus.style.height = targetIconSize + "px";
     plus.addEventListener("click", addBlankItem);
 
     mainlist.appendChild(plus);
@@ -274,9 +326,6 @@ function selectItem(event) {
 }
 
 function addBlankItem() {
-    let targetIconSize = localStorage.getItem("iconsize");
-    if (targetIconSize == null) { targetIconSize = 182; }
-
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
@@ -286,8 +335,6 @@ function addBlankItem() {
 
     let newShow = document.createElement("div");
     newShow.className = "show selected";
-    newShow.style.width = targetIconSize + "px";
-    newShow.style.height = targetIconSize + "px";
 
     let im = document.createElement("img");
     im.src = "assets/images/blankimage.png";
@@ -421,16 +468,19 @@ function setIconSize(event) {
     if ((targetIconSize < 50)||(targetIconSize > 1000)) { return; }
     localStorage.setItem("iconsize", targetIconSize);
 
-    let shows = document.getElementsByClassName("show");
-    for (let i=0; i < shows.length-1; i++) {
-        shows[i].style.width = targetIconSize + "px";
-        shows[i].style.height = targetIconSize + "px";
-        shows[i].children[1].style.fontSize = targetIconSize/8 + "px";
+    let sheet = document.getElementById("customStyleTag").sheet;
+    let rules=sheet.cssRules;
+    let x;
+    for (let i=0; i<rules.length; i++) {
+        if (rules[i].selectorText == ".show") { x = rules[i].style; }
     }
+    x.setProperty("width", targetIconSize + "px");
+    x.setProperty("height", targetIconSize + "px");
 
-    let plus = document.getElementsByClassName("plusButton");
-    plus[0].style.width = targetIconSize + "px";
-    plus[0].style.height = targetIconSize + "px";
+    for (let i=0; i<rules.length; i++) {
+        if (rules[i].selectorText == ".show a, .show p") { x = rules[i].style; }
+    }
+    x.setProperty("font-size", targetIconSize/8 + "px")
 }
 
 function setFrameSize(event) {
@@ -496,6 +546,10 @@ function toggleHeaderVisibility(){
     }
 }
 
+
+
+
+addStyleTag();
 checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
