@@ -214,8 +214,6 @@ function displayNormalIcons() {
     while (shows.length > 0) {shows[0].remove();}
     while (plusses.length > 0) {plusses[0].remove();}
 
-    
-
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
@@ -288,12 +286,10 @@ function displayEditIcons() {
 
 function toggleEditMode() {
     editmode = !editmode;
-    let cuts = document.getElementsByClassName("cut");
-    let shows = document.getElementsByClassName("show");
+    let settingScreen = document.getElementById("settingScreen");
 
     if (editmode){
         displayEditIcons();
-        let settingScreen = document.getElementById("settingScreen");
         settingScreen.style.display = "block";
         document.getElementById("spacer").style.display = "block";
     }
@@ -301,7 +297,6 @@ function toggleEditMode() {
         displayNormalIcons();
         settingScreen.style.display = "none";
         document.getElementById("spacer").style.display = "none";
-
         saveDataToLocalstorage();
     }
 }
@@ -328,7 +323,6 @@ function selectItem(event) {
 function addBlankItem() {
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
     let info = document.getElementById("info");
 
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
@@ -362,8 +356,6 @@ function addBlankItem() {
     newCut.appendChild(durl);
     newCut.appendChild(dicon);
     info.appendChild(newCut);
-
-
 
     document.getElementById("shortcutName").value = newCut.children[0].innerHTML;
     document.getElementById("shortcutURL").value = newCut.children[1].innerHTML;
@@ -535,8 +527,6 @@ function toggleHeaderVisibility(){
         document.getElementById("showHeaderButton").innerHTML = "Show Header";
     }
 }
-
-
 
 
 addStyleTag();
