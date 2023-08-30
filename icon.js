@@ -59,6 +59,16 @@ function addStyleTag() {
     document.head.appendChild(style);
 }
 
+function cssChange(selector, property, value){
+    let sheet = document.getElementById("customStyleTag").sheet;
+    let rules=sheet.cssRules;
+    let x;
+    for (let i=0; i<rules.length; i++) {
+        if (rules[i].selectorText == selector) { x = rules[i].style; }
+    }
+    x.setProperty(property, value);
+}
+
 function restoreDataFromLocalstorage() {
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
@@ -162,19 +172,9 @@ function restoreDataFromLocalstorage() {
     //set icon size
     let targetIconSize = localStorage.getItem("iconsize");
     if (targetIconSize != null) {
-        let sheet = document.getElementById("customStyleTag").sheet;
-        let rules=sheet.cssRules;
-        let x;
-        for (let i=0; i<rules.length; i++) {
-            if (rules[i].selectorText == ".show") { x = rules[i].style; }
-        }
-        x.setProperty("width", targetIconSize + "px");
-        x.setProperty("height", targetIconSize + "px");
-
-        for (let i=0; i<rules.length; i++) {
-            if (rules[i].selectorText == ".show a, .show p") { x = rules[i].style; }
-        }
-        x.setProperty("font-size", targetIconSize/8 + "px")
+        cssChange(".show", "width", targetIconSize + "px");
+        cssChange(".show", "height", targetIconSize + "px");
+        cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
     }
 }
 
@@ -468,19 +468,9 @@ function setIconSize(event) {
     if ((targetIconSize < 50)||(targetIconSize > 1000)) { return; }
     localStorage.setItem("iconsize", targetIconSize);
 
-    let sheet = document.getElementById("customStyleTag").sheet;
-    let rules=sheet.cssRules;
-    let x;
-    for (let i=0; i<rules.length; i++) {
-        if (rules[i].selectorText == ".show") { x = rules[i].style; }
-    }
-    x.setProperty("width", targetIconSize + "px");
-    x.setProperty("height", targetIconSize + "px");
-
-    for (let i=0; i<rules.length; i++) {
-        if (rules[i].selectorText == ".show a, .show p") { x = rules[i].style; }
-    }
-    x.setProperty("font-size", targetIconSize/8 + "px")
+    cssChange(".show", "width", targetIconSize + "px");
+    cssChange(".show", "height", targetIconSize + "px");
+    cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
 }
 
 function setFrameSize(event) {
