@@ -157,13 +157,15 @@ function displayNormalIcons() {
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        ndiv.style.width = targetIconSize + "px";
-        ndiv.style.height = targetIconSize + "px";
+        // ndiv.style.width = targetIconSize + "px";
+        // ndiv.style.height = targetIconSize + "px";
 
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
+        im.style.width = targetIconSize + "px";
+        im.style.height = targetIconSize + "px";
 
         let link = document.createElement("a");
         link.innerHTML = cuts[i].children[0].innerHTML;
@@ -195,13 +197,15 @@ function displayEditIcons() {
     for (let i=0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        ndiv.style.width = targetIconSize + "px";
-        ndiv.style.height = targetIconSize + "px";
+        // ndiv.style.width = targetIconSize + "px";
+        // ndiv.style.height = targetIconSize + "px";
         
         let im = document.createElement("img");
         let x = cuts[i].children[2].innerHTML;
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
+        im.style.width = targetIconSize + "px";
+        im.style.height = targetIconSize + "px";
 
         let link = document.createElement("p");
         link.innerHTML = cuts[i].children[0].innerHTML;
