@@ -10,6 +10,10 @@ body {
     -moz-osx-font-smoothing: grayscale  
 }
 
+body > a {
+    display: none;
+}
+
 /* --------------------------------- HEADER ---------------------------------- */
 
 #header {
@@ -69,9 +73,7 @@ body {
     }
 }
 
-body > a {
-    display: none;
-}
+
 
 
 /* --------------------------------- MAIN LIST AREA ---------------------------------- */
@@ -96,96 +98,6 @@ body > a {
 
 
 
-/* --------------------------------- ICONS ---------------------------------- */
-
-/*
- .show {
-    color: white;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-}
-
-.show img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.show a, .show p {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-decoration: none;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    opacity: 0;
-}
-
-.show a:hover, .show p:hover {
-    opacity: 1;
-    animation: 0.2s fadeIn;
-    animation-fill-mode: forwards;
-}
-
-.show .xbut {
-    width: 25%;
-    height: 25%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: gray;
-    opacity: 0.3;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.xbut:hover {
-    background-color: rgb(255, 97, 24);
-    opacity: 1;
-} 
-
-.selected {
-    border: 3px solid rgb(255, 97, 24);
-}
-
-.unselected {
-    opacity: 0.5;
-} 
-
-
-.plusButton {
-    width: 182px;
-    height: 182px;
-}
-
-.plusButton:hover {
-    background-color: gray;
-} 
-*/
-
-
 
 /* --------------------------------- SETTING SCREEN ---------------------------------- */
 
@@ -206,7 +118,7 @@ body > a {
     padding: 5px 0px 5px 0px;
 }
 
-#settingScreen > div > div {
+#settingScreen > div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

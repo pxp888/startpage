@@ -1,4 +1,5 @@
 
+// changes the CSS of the main view area for the list view instead of an icon grid.  
 function setListCSS() {
     let style = document.getElementById("customStyleTag");
     style.textContent = `
@@ -87,6 +88,7 @@ function setListCSS() {
     for (let i = 0; i < x.length; i++) { x[i].style.display = "none"; }
 }
 
+// changes the CSS of the main view area between icon grid and list view.
 function changeViewMode(event) {
     viewmode = localStorage.getItem("viewmode");
     if (viewmode == null) {viewmode = "icon";}
@@ -141,8 +143,10 @@ function setListItemHeight(event) {
     cssChange(".show a, .show p", "font-size", height * 0.6 + "px");        
 }
 
-let viewModeButton = document.getElementById("viewModeButton");
-viewModeButton.addEventListener("click", changeViewMode);
+document.getElementById("viewModeButton").addEventListener("click", changeViewMode);
+document.getElementById("listItemWidth").addEventListener("input", setListItemWidth);
+document.getElementById("listItemHeight").addEventListener("input", setListItemHeight);
+
 
 viewmode = localStorage.getItem("viewmode");
 if (viewmode == "list") { 
@@ -151,10 +155,4 @@ if (viewmode == "list") {
 }
 
 
-
-let listItemWidth = document.getElementById("listItemWidth");
-listItemWidth.addEventListener("input", setListItemWidth);
-
-let listItemHeight = document.getElementById("listItemHeight");
-listItemHeight.addEventListener("input", setListItemHeight);
 

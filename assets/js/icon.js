@@ -1,5 +1,8 @@
 var editmode = false;
 
+// HELPER FUNCTIONS
+
+// Returns the index of the element in its group
 function getIndex(x){
     while (x.classList.length == 0) { x=x.parentNode; }
     let group = document.getElementsByClassName(x.classList[0]);
@@ -13,106 +16,7 @@ function getIndex(x){
     return index;
 }
 
-function setIconCSS() {
-    let style = document.getElementById("customStyleTag");
-    style.textContent = `
-    .show {
-        color: white;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-sizing: border-box;
-
-        width: 182px;
-        height: 182px;
-    }
-    
-    .show img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        cursor: pointer;
-    }
-    
-    .show a, .show p {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-    
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        font-size: 1.5rem;
-        font-weight: 400;
-        text-decoration: none;
-        
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    
-        opacity: 0;
-    }
-    
-    .show a:hover, .show p:hover {
-        opacity: 1;
-        animation: 0.2s fadeIn;
-        animation-fill-mode: forwards;
-    }
-    
-    .show .xbut {
-        width: 25%;
-        height: 25%;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: gray;
-        opacity: 0.3;
-    }
-    
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
-    
-    .xbut:hover {
-        background-color: rgb(255, 97, 24);
-        opacity: 1;
-    } 
-    
-    .selected {
-        border: 3px solid rgb(255, 97, 24);
-    }
-    
-    .unselected {
-        opacity: 0.5;
-    }    
-
-    .plusButton {
-        width: 182px;
-        height: 182px;
-    }
-    
-    .plusButton:hover {
-        background-color: gray;
-    }
-    `;
-}
-
-function addStyleTag() {
-    const style = document.createElement('style');
-    style.id = "customStyleTag";
-    document.head.appendChild(style);
-    setIconCSS();
-}
-
+// Changes the CSS of a selector
 function cssChange(selector, property, value){
     let sheet = document.getElementById("customStyleTag").sheet;
     let rules=sheet.cssRules;
@@ -123,7 +27,30 @@ function cssChange(selector, property, value){
     x.setProperty(property, value);
 }
 
+// PAGE SETUP FUNCTIONS
+
+// adds a style tag to the head of the document with the CSS for the icons
+
+function addStyleTag() {
+    const style = document.createElement('style');
+    style.id = "customStyleTag";
+    document.head.appendChild(style);
+    setIconCSS();
+}
+
+// checks if the header should be hidden
+function checkHeaderShowing() {
+    let x = localStorage.getItem("headerhidden");
+    if (x == null) { return; }
+    if (x == "true") { 
+        document.getElementById("header").style.visibility = "hidden";
+        document.getElementById("showHeaderButton").innerHTML = "Show Header";
+    }
+}
+
+// restores the data from localstorage, or sets defaults if there is no data
 function restoreDataFromLocalstorage() {
+    // create shortcut data
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
     let urls = JSON.parse(localStorage.getItem("urls"));
@@ -239,30 +166,121 @@ function restoreDataFromLocalstorage() {
     }
 }
 
-function saveDataToLocalstorage() {
-    let cuts = document.getElementsByClassName("cut");
-    let names = [];
-    let urls = [];
-    let icons = [];
+// sets the CSS for the icon view
+function setIconCSS() {
+    let style = document.getElementById("customStyleTag");
+    style.textContent = `
+    .show {
+        color: white;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
 
-    for (let i = 0; i < cuts.length; i++) {
-        names.push(cuts[i].children[0].innerHTML);
-        urls.push(cuts[i].children[1].innerHTML);
-        icons.push(cuts[i].children[2].innerHTML);
+        width: 182px;
+        height: 182px;
     }
+    
+    .show img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+    }
+    
+    .show a, .show p {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    
+        background-color: rgba(0, 0, 0, 0.8);
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 400;
+        text-decoration: none;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        opacity: 0;
+    }
+    
+    .show a:hover, .show p:hover {
+        opacity: 1;
+        animation: 0.2s fadeIn;
+        animation-fill-mode: forwards;
+    }
+    
+    .show .xbut {
+        width: 25%;
+        height: 25%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: gray;
+        opacity: 0.3;
+    }
+    
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .xbut:hover {
+        background-color: rgb(255, 97, 24);
+        opacity: 1;
+    } 
+    
+    .selected {
+        border: 3px solid rgb(255, 97, 24);
+    }
+    
+    .unselected {
+        opacity: 0.5;
+    }    
 
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("urls", JSON.stringify(urls));
-    localStorage.setItem("icons", JSON.stringify(icons));
-
-    let bgcolor = document.getElementsByTagName("body")[0].style.backgroundColor;
-    let framecolor = document.getElementById("mainlist").style.backgroundColor;
-    localStorage.setItem("bgcolor", bgcolor);
-    localStorage.setItem("framecolor", framecolor);
+    .plusButton {
+        width: 182px;
+        height: 182px;
+    }
+    
+    .plusButton:hover {
+        background-color: gray;
+    }
+    `;
 }
 
+// shows the settings pane and editing controls, or hides them
+function toggleEditMode() {
+    editmode = !editmode;
+    let settingScreen = document.getElementById("settingScreen");
+
+    if (editmode){
+        displayEditIcons();
+        settingScreen.style.display = "block";
+        document.getElementById("spacer").style.display = "block";
+    }
+    else {
+        displayNormalIcons();
+        settingScreen.style.display = "none";
+        document.getElementById("spacer").style.display = "none";
+        saveDataToLocalstorage();
+    }
+}
+
+// displays the icons with the editing controls
 function displayNormalIcons() {
-    
+    // set the frame width
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
@@ -271,8 +289,10 @@ function displayNormalIcons() {
     let shows = document.getElementsByClassName("show");
     let mainlist = document.getElementById("mainlist");
     
+    // remove existing icons
     while (shows.length > 0) {shows[0].remove();}
 
+    // create new icons from shortcut data
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
@@ -295,7 +315,9 @@ function displayNormalIcons() {
     }
 }
 
+// displays the icons with the editing controls, 
 function displayEditIcons() {
+    // set the frame width
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
@@ -304,8 +326,10 @@ function displayEditIcons() {
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
 
+    // remove existing icons
     while (shows.length > 0) {shows[0].remove();}
     
+    // create new icons from shortcut data
     for (let i=0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
@@ -330,6 +354,7 @@ function displayEditIcons() {
         mainlist.appendChild(ndiv);
     }
 
+    // add the plus button, which creates new shortcuts
     let plus = document.createElement("img");
     plus.className = "plusButton";
     plus.src = "assets/images/plus.png";
@@ -340,28 +365,37 @@ function displayEditIcons() {
 
     mainlist.appendChild(pdiv);
 
+    // clear the editing fields
     document.getElementById("shortcutName").value = "";
     document.getElementById("shortcutURL").value = "";
     document.getElementById("shortcutIcon").value = "";
 }
 
-function toggleEditMode() {
-    editmode = !editmode;
-    let settingScreen = document.getElementById("settingScreen");
+// SHORTCUT EDITING FUNCTIONS
 
-    if (editmode){
-        displayEditIcons();
-        settingScreen.style.display = "block";
-        document.getElementById("spacer").style.display = "block";
+function saveDataToLocalstorage() {
+    let cuts = document.getElementsByClassName("cut");
+    let names = [];
+    let urls = [];
+    let icons = [];
+
+    for (let i = 0; i < cuts.length; i++) {
+        names.push(cuts[i].children[0].innerHTML);
+        urls.push(cuts[i].children[1].innerHTML);
+        icons.push(cuts[i].children[2].innerHTML);
     }
-    else {
-        displayNormalIcons();
-        settingScreen.style.display = "none";
-        document.getElementById("spacer").style.display = "none";
-        saveDataToLocalstorage();
-    }
+
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("urls", JSON.stringify(urls));
+    localStorage.setItem("icons", JSON.stringify(icons));
+
+    let bgcolor = document.getElementsByTagName("body")[0].style.backgroundColor;
+    let framecolor = document.getElementById("mainlist").style.backgroundColor;
+    localStorage.setItem("bgcolor", bgcolor);
+    localStorage.setItem("framecolor", framecolor);
 }
 
+// update CSS for a selected shortcut, and update the editing fields
 function selectItem(event) {
     if (event.target==null) { return; }
     let shows = document.getElementsByClassName("show");
@@ -370,9 +404,11 @@ function selectItem(event) {
     let index = getIndex(event.target);
     if (index == -1) { return; }
 
+    // update CSS
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
     shows[index].className="show selected";
 
+    // update editing fields
     let shortcutName = document.getElementById("shortcutName");
     let shortcutURL = document.getElementById("shortcutURL");
     let shortcutIcon = document.getElementById("shortcutIcon");
@@ -381,16 +417,20 @@ function selectItem(event) {
     shortcutIcon.value = cuts[index].children[2].innerHTML;
 }
 
+// create new shortcut
 function addBlankItem() {
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
     let info = document.getElementById("info");
 
+    //deselect all other shortcuts
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
 
+    //create new shortcut, and mark it selected
     let newShow = document.createElement("div");
     newShow.className = "show selected";
 
+    //apply default blank image icon
     let im = document.createElement("img");
     im.src = "assets/images/blankimage.png";
     
@@ -418,11 +458,13 @@ function addBlankItem() {
     newCut.appendChild(dicon);
     info.appendChild(newCut);
 
+    //update editing fields
     document.getElementById("shortcutName").value = newCut.children[0].innerHTML;
     document.getElementById("shortcutURL").value = newCut.children[1].innerHTML;
     document.getElementById("shortcutIcon").value = newCut.children[2].innerHTML;
 }
 
+// remove shortcut
 function removeItem(event) {
     let shows = document.getElementsByClassName("show");
     let cuts = document.getElementsByClassName("cut");
@@ -433,6 +475,35 @@ function removeItem(event) {
     cuts[index].remove();
 }
 
+function moveItemUp(event){
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+
+    let index = getIndex(document.getElementsByClassName("selected")[0]);
+    if (index == -1) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
+    if ((index == 0)||(index == cuts.length)) { return; }
+    cuts[index].parentNode.insertBefore(cuts[index], cuts[index-1]);
+    shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
+}
+
+function moveItemDown(event){
+    let shows = document.getElementsByClassName("show");
+    let cuts = document.getElementsByClassName("cut");
+
+    let index = getIndex(document.getElementsByClassName("selected")[0]);
+    if (index == -1) { 
+        alert("No item selected, please click a link to edit");
+        return; 
+    }
+    if (index == cuts.length-1) { return; }
+    cuts[index].parentNode.insertBefore(cuts[index+1], cuts[index]);
+    shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
+}
+
+// update the name of the selected shortcut
 function nameFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
@@ -449,6 +520,7 @@ function nameFieldUpdate(event) {
     shows[index].children[1].innerHTML = event.target.value;
 }
 
+// update the URL of the selected shortcut
 function urlFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
@@ -468,6 +540,7 @@ function urlFieldUpdate(event) {
     shows[index].children[2].innerHTML = x;
 }
 
+// update the icon URL of the selected shortcut
 function iconFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
@@ -485,27 +558,7 @@ function iconFieldUpdate(event) {
     shows[index].children[0].src = event.target.value;
 }
 
-function moveItemUp(event){
-    let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
-
-    let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) { return; }
-    if ((index == 0)||(index == cuts.length)) { return; }
-    cuts[index].parentNode.insertBefore(cuts[index], cuts[index-1]);
-    shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
-}
-
-function moveItemDown(event){
-    let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
-
-    let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) { return; }
-    if (index == cuts.length-1) { return; }
-    cuts[index].parentNode.insertBefore(cuts[index+1], cuts[index]);
-    shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
-}
+// PAGE CUSTOMIZATION FUNCTIONS
 
 function setBackGroundColor(event) {
     let selectedColor = event.target.value;
@@ -534,6 +587,22 @@ function setFrameSize(event) {
     let mainlist = document.getElementById("mainlist");
     mainlist.style.maxWidth = targetFrameSize + "px";
 }
+
+function toggleHeaderVisibility(){
+    let x = document.getElementById("header").style.visibility;
+    if (x == "hidden") { 
+        document.getElementById("header").style.visibility = "visible";
+        localStorage.setItem("headerhidden", "false");
+        document.getElementById("showHeaderButton").innerHTML = "Hide Header";
+    }
+    else { 
+        document.getElementById("header").style.visibility = "hidden";
+        localStorage.setItem("headerhidden", "true");
+        document.getElementById("showHeaderButton").innerHTML = "Show Header";
+    }
+}
+
+// DATA EXPORT/IMPORT FUNCTIONS
 
 function downloadLocalStorage() {
     const localStorageData = JSON.stringify(localStorage);
@@ -566,71 +635,24 @@ function uploadLocalStorage(event) {
     restoreDataFromLocalstorage();
 }
 
-function checkHeaderShowing() {
-    let x = localStorage.getItem("headerhidden");
-    if (x == null) { return; }
-    if (x == "true") { 
-        document.getElementById("header").style.visibility = "hidden";
-        document.getElementById("showHeaderButton").innerHTML = "Show Header";
-    }
-}
 
-function toggleHeaderVisibility(){
-    let x = document.getElementById("header").style.visibility;
-    if (x == "hidden") { 
-        document.getElementById("header").style.visibility = "visible";
-        localStorage.setItem("headerhidden", "false");
-        document.getElementById("showHeaderButton").innerHTML = "Hide Header";
-    }
-    else { 
-        document.getElementById("header").style.visibility = "hidden";
-        localStorage.setItem("headerhidden", "true");
-        document.getElementById("showHeaderButton").innerHTML = "Show Header";
-    }
-}
+// EVENT LISTENERS
+document.getElementById("settingButton").addEventListener("click", toggleEditMode);
+document.getElementById("shortcutName").addEventListener("input", nameFieldUpdate);
+document.getElementById("shortcutURL").addEventListener("input", urlFieldUpdate);
+document.getElementById("shortcutIcon").addEventListener("input", iconFieldUpdate);
+document.getElementById("leftArrow").addEventListener("click", moveItemUp);
+document.getElementById("rightArrow").addEventListener("click", moveItemDown);
+document.getElementById("backgroundColorPicker").addEventListener("input", setBackGroundColor);
+document.getElementById("frameColorPicker").addEventListener("input", setFrameColor);
+document.getElementById("iconSize").addEventListener("input", setIconSize);
+document.getElementById("frameSize").addEventListener("input", setFrameSize);
+document.getElementById("downloadButton").addEventListener("click", downloadLocalStorage);
+document.getElementById("uploadButton").addEventListener("change", uploadLocalStorage);
+document.getElementById("showHeaderButton").addEventListener("click", toggleHeaderVisibility);
+
 
 addStyleTag();
 checkHeaderShowing();
 restoreDataFromLocalstorage();
 displayNormalIcons();
-
-let settingButton = document.getElementById("settingButton");
-settingButton.addEventListener("click", toggleEditMode);
-
-let shortcutName = document.getElementById("shortcutName");
-shortcutName.addEventListener("input", nameFieldUpdate);
-
-let shortcutURL = document.getElementById("shortcutURL");
-shortcutURL.addEventListener("input", urlFieldUpdate);
-
-let shortcutIcon = document.getElementById("shortcutIcon");
-shortcutIcon.addEventListener("input", iconFieldUpdate);
-
-let leftArrow = document.getElementById("leftArrow");
-leftArrow.addEventListener("click", moveItemUp);
-
-let rightArrow = document.getElementById("rightArrow");
-rightArrow.addEventListener("click", moveItemDown);
-
-let backgroundColorPicker = document.getElementById("backgroundColorPicker");
-backgroundColorPicker.addEventListener("input", setBackGroundColor);
-
-let frameColorPicker = document.getElementById("frameColorPicker");
-frameColorPicker.addEventListener("input", setFrameColor);
-
-let iconSize = document.getElementById("iconSize");
-iconSize.addEventListener("input", setIconSize);
-
-let frameSize = document.getElementById("frameSize");
-frameSize.addEventListener("input", setFrameSize);
-
-let downloadButton = document.getElementById("downloadButton");
-downloadButton.addEventListener("click", downloadLocalStorage);
-
-let uploadButton = document.getElementById("uploadButton");
-uploadButton.addEventListener("change", uploadLocalStorage);
-
-let showHeaderButton = document.getElementById("showHeaderButton");
-showHeaderButton.addEventListener("click", toggleHeaderVisibility);
-
-

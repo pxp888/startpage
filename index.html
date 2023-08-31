@@ -16,7 +16,7 @@
 <body>
     <div id="header">
         <div>
-            <p class="giant">Simple</p>
+            <p class="giant" onclick="document.getElementById('helplink').click()">Simple</p>
             <p>is better.</p>
         </div>
         <a href="help.html"><p id="helplink">How it works</p></a>
@@ -35,68 +35,70 @@
     <!-- Settings section, normally hidden -->
     <div id="spacer"></div>
     <div id="settingScreen">
+        <h4>Shortcut Settings</h4>
         <div>
-            <h4>Shortcut Settings</h4>
-            <div>
-                <label for="shortcutName">Name</label>
-                <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
-            </div>
-            <div>
-                <label for="shortcutURL">URL</label>
-                <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
-            </div>
-            <div>
-                <label for="shortcutIcon">Icon URL</label>
-                <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
-            </div>
-            <div>
-                <p>Item Order</p>
-                <p class="darkButton" id="leftArrow">Up</p>
-                <p class="darkButton" id="rightArrow">Down</p>
-            </div>
+            <label for="shortcutName">Name</label>
+            <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
         </div>
-
         <div>
-            <h4>Page Settings</h4>
-            <div>
-                <label for="backgroundColorPicker">Back Color: </label>
-                <input type="color" id="backgroundColorPicker">
-                <label for="frameColorPicker">Frame color: </label>
-                <input type="color" id="frameColorPicker">
-            </div>
-            <div>
-                <label for="frameSize">Frame Size: </label>
-                <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
-                <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
-                <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
-                
-                <label class = "listSettingItem" style="display: none;" for="listItemWidth">List Item Width: </label>
-                <input class = "listSettingItem" style="display: none;" type="range" id="listItemWidth" min="100" max="1000" name="listItemWidth">
-                <label class = "listSettingItem" style="display: none;" for="listItemHeight">List Item Height: </label>
-                <input class = "listSettingItem" style="display: none;" type="range" id="listItemHeight" min="10" max="400" name="listItemHeight">
-            </div>
-            <div>
-                <p>View</p>
-                <p class="darkButton" id="viewModeButton">List View</p>
-            </div>
-            <div>
-                <p>Other stuff</p>
-                <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
-                <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
-                <p class="darkButton" id="showHeaderButton">Hide Header</p>
-                <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
-            </div>
-                <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
-                <a id="helpLink" href="help.html" style="display: none;">hidden help button</a>
-                <button id="downloadButton" style="display: none;">Save Data</button>
-                <input type="file" id="uploadButton" accept=".json" style="display: none;">
+            <label for="shortcutURL">URL</label>
+            <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
+        </div>
+        <div>
+            <label for="shortcutIcon">Icon URL</label>
+            <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
+        </div>
+        <div>
+            <p>Item Order</p>
+            <p class="darkButton" id="leftArrow">Up</p>
+            <p class="darkButton" id="rightArrow">Down</p>
+        </div>
+        
+        <h4>Page Settings</h4>
+        <div>
+            <label for="backgroundColorPicker">Background: </label>
+            <input type="color" id="backgroundColorPicker">
+            <label for="frameColorPicker">Frame color: </label>
+            <input type="color" id="frameColorPicker">
+        </div>
+        <div>
+            <label for="frameSize">Frame Size: </label>
+            <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
+            
+            <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
+            <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
+            
+            <label class = "listSettingItem" style="display: none;" for="listItemWidth">Item Width: </label>
+            <input class = "listSettingItem" style="display: none;" type="range" id="listItemWidth" min="100" max="1000" name="listItemWidth">
+            <label class = "listSettingItem" style="display: none;" for="listItemHeight">Item Height: </label>
+            <input class = "listSettingItem" style="display: none;" type="range" id="listItemHeight" min="10" max="400" name="listItemHeight">
+        </div>
+        <div>
+            <p>View</p>
+            <p class="darkButton" id="viewModeButton">List View</p>
+            <p class="darkButton" id="showHeaderButton">Hide Header</p>
+            <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
+        </div>
+        <div>
+            <p>Other stuff</p>
+            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
+            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
+            
+        </div>
+        
+        <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
+        <div style="display: none;">
+            <a id="helpLink" href="help.html">hidden help button</a>
+            <button id="downloadButton">Save Data</button>
+            <input type="file" id="uploadButton" accept=".json">
         </div>
     </div>
 
+    <!-- This is the button that toggles the visibility of the settings section -->
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
-    <script src="icon.js"></script>
-    <script src="list.js"></script>
+    <script src="assets/js/icon.js"></script>
+    <script src="assets/js/list.js"></script>
 </body>
 </html>
 
