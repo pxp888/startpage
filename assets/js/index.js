@@ -113,27 +113,10 @@ function restoreDataFromLocalstorage() {
         names.push("Google Calendar");
         urls.push("https://calendar.google.com/calendar/r?pli=1");
         icons.push("https://cdn-icons-png.flaticon.com/512/5968/5968499.png");
-    }
 
-    let cuts = document.getElementsByClassName("cut");
-    while (cuts.length > 0) {cuts[0].remove();}
-
-    let info = document.getElementById("info");
-    for (let i = 0; i < names.length; i++) {
-        let ndiv = document.createElement("div");
-        ndiv.setAttribute("class", "cut");
-        let dname = document.createElement("p");
-        let durl = document.createElement("p");
-        let dicon = document.createElement("p");
-        dname.innerHTML = names[i];
-        durl.innerHTML = urls[i];
-        dicon.innerHTML = icons[i];
-
-        ndiv.appendChild(dname);
-        ndiv.appendChild(durl);
-        ndiv.appendChild(dicon);
-
-        info.appendChild(ndiv);
+        localStorage.setItem("names", JSON.stringify(names));
+        localStorage.setItem("urls", JSON.stringify(urls));
+        localStorage.setItem("icons", JSON.stringify(icons));
     }
 
     //set background color
@@ -274,7 +257,6 @@ function toggleEditMode() {
         displayNormalIcons();
         settingScreen.style.display = "none";
         document.getElementById("spacer").style.display = "none";
-        saveDataToLocalstorage();
     }
 }
 
@@ -285,7 +267,10 @@ function displayNormalIcons() {
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
 
-    let cuts = document.getElementsByClassName("cut");
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+
     let shows = document.getElementsByClassName("show");
     let mainlist = document.getElementById("mainlist");
     
@@ -293,19 +278,19 @@ function displayNormalIcons() {
     while (shows.length > 0) {shows[0].remove();}
 
     // create new icons from shortcut data
-    for (let i = 0; i < cuts.length; i++) {
+    for (let i = 0; i < names.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
         
         let im = document.createElement("img");
-        let x = cuts[i].children[2].innerHTML;
+        let x = icons[i];
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
 
         let link = document.createElement("a");
-        link.innerHTML = cuts[i].children[0].innerHTML;
-                
-        x = cuts[i].children[1].innerHTML;
+        link.innerHTML = names[i];
+    
+        x = urls[i];
         if (x.slice(0, 4) != "http") { x = "http://" + x; }
         link.href = x;
 
@@ -322,7 +307,9 @@ function displayEditIcons() {
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
 
-    let cuts = document.getElementsByClassName("cut");
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
 
@@ -330,17 +317,17 @@ function displayEditIcons() {
     while (shows.length > 0) {shows[0].remove();}
     
     // create new icons from shortcut data
-    for (let i=0; i < cuts.length; i++) {
+    for (let i=0; i < names.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
         
         let im = document.createElement("img");
-        let x = cuts[i].children[2].innerHTML;
+        let x = icons[i];
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
         
         let link = document.createElement("p");
-        link.innerHTML = cuts[i].children[0].innerHTML;
+        link.innerHTML = names[i];
         link.addEventListener("click", selectItem);
         
         let xbut = document.createElement("img");
@@ -373,34 +360,14 @@ function displayEditIcons() {
 
 // SHORTCUT EDITING FUNCTIONS
 
-function saveDataToLocalstorage() {
-    let cuts = document.getElementsByClassName("cut");
-    let names = [];
-    let urls = [];
-    let icons = [];
-
-    for (let i = 0; i < cuts.length; i++) {
-        names.push(cuts[i].children[0].innerHTML);
-        urls.push(cuts[i].children[1].innerHTML);
-        icons.push(cuts[i].children[2].innerHTML);
-    }
-
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("urls", JSON.stringify(urls));
-    localStorage.setItem("icons", JSON.stringify(icons));
-
-    let bgcolor = document.getElementsByTagName("body")[0].style.backgroundColor;
-    let framecolor = document.getElementById("mainlist").style.backgroundColor;
-    localStorage.setItem("bgcolor", bgcolor);
-    localStorage.setItem("framecolor", framecolor);
-}
-
 // update CSS for a selected shortcut, and update the editing fields
 function selectItem(event) {
     if (event.target==null) { return; }
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
-    
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+
     let index = getIndex(event.target);
     if (index == -1) { return; }
 
@@ -409,20 +376,16 @@ function selectItem(event) {
     shows[index].className="show selected";
 
     // update editing fields
-    let shortcutName = document.getElementById("shortcutName");
-    let shortcutURL = document.getElementById("shortcutURL");
-    let shortcutIcon = document.getElementById("shortcutIcon");
-    shortcutName.value = cuts[index].children[0].innerHTML;
-    shortcutURL.value = cuts[index].children[1].innerHTML;
-    shortcutIcon.value = cuts[index].children[2].innerHTML;
+    document.getElementById("shortcutName").value = names[index];
+    document.getElementById("shortcutURL").value = urls[index];
+    document.getElementById("shortcutIcon").value = icons[index];
 }
 
 // create new shortcut
 function addBlankItem() {
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
-    let info = document.getElementById("info");
-
+    
     //deselect all other shortcuts
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
 
@@ -448,59 +411,99 @@ function addBlankItem() {
     newShow.appendChild(xbut);
     mainlist.insertBefore(newShow, shows[shows.length-1]);
 
-    let newCut = document.createElement("div");
-    newCut.setAttribute("class", "cut");
-    let dname = document.createElement("p");
-    let durl = document.createElement("p");
-    let dicon = document.createElement("p");
-    newCut.appendChild(dname);
-    newCut.appendChild(durl);
-    newCut.appendChild(dicon);
-    info.appendChild(newCut);
-
     //update editing fields
-    document.getElementById("shortcutName").value = newCut.children[0].innerHTML;
-    document.getElementById("shortcutURL").value = newCut.children[1].innerHTML;
-    document.getElementById("shortcutIcon").value = newCut.children[2].innerHTML;
+    document.getElementById("shortcutName").value = "";
+    document.getElementById("shortcutURL").value = "";
+    document.getElementById("shortcutIcon").value = "";
+
+    //add new blank data to localstorage
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    names.push("");
+    icons.push("");
+    urls.push("");
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
 }
 
 // remove shortcut
 function removeItem(event) {
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
 
     let index = getIndex(event.target);
     if (index == -1) { return; }
     shows[index].remove();
-    cuts[index].remove();
+
+    //remove data from localstorage
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    names.splice(index, 1);
+    icons.splice(index, 1);
+    urls.splice(index, 1);
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
 }
 
 function moveItemUp(event){
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
 
     let index = getIndex(document.getElementsByClassName("selected")[0]);
     if (index == -1) { 
         alert("No item selected, please click a link to edit");
         return; 
     }
-    if ((index == 0)||(index == cuts.length)) { return; }
-    cuts[index].parentNode.insertBefore(cuts[index], cuts[index-1]);
+    if ((index == 0)||(index == shows.length)) { return; }
     shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
+
+    //update local store
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    let temp = names[index];
+    names[index] = names[index-1];
+    names[index-1] = temp;
+    temp = icons[index];
+    icons[index] = icons[index-1];
+    icons[index-1] = temp;
+    temp = urls[index];
+    urls[index] = urls[index-1];
+    urls[index-1] = temp;
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
 }
 
 function moveItemDown(event){
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
 
     let index = getIndex(document.getElementsByClassName("selected")[0]);
     if (index == -1) { 
         alert("No item selected, please click a link to edit");
         return; 
     }
-    if (index == cuts.length-1) { return; }
-    cuts[index].parentNode.insertBefore(cuts[index+1], cuts[index]);
+    if (index == shows.length-2) { return; }
     shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
+
+    //update local store
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    let temp = names[index];
+    names[index] = names[index+1];
+    names[index+1] = temp;
+    temp = icons[index];
+    icons[index] = icons[index+1];
+    icons[index+1] = temp;
+    temp = urls[index];
+    urls[index] = urls[index+1];
+    urls[index+1] = temp;
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
 }
 
 // update the name of the selected shortcut
@@ -511,13 +514,16 @@ function nameFieldUpdate(event) {
         return;
     }
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
     let index = getIndex(selected[0]);
     if (index == -1) { 
         return; 
     }
-    cuts[index].children[0].innerHTML = event.target.value;
     shows[index].children[1].innerHTML = event.target.value;
+
+    //update local store
+    let names = JSON.parse(localStorage.getItem("names"));
+    names[index] = event.target.value;
+    localStorage.setItem("names", JSON.stringify(names));
 }
 
 // update the URL of the selected shortcut
@@ -528,16 +534,21 @@ function urlFieldUpdate(event) {
         return;
     }
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
     let index = getIndex(selected[0]);
     if (index == -1) { 
         alert("No item selected, please click a link to edit");
         return; 
     }
-    cuts[index].children[1].innerHTML = event.target.value;
-    let x = cuts[index].children[1].innerHTML;
+
+    let x = event.target.value;
     if (x.slice(0, 4) != "http") { x = "http://" + x; }
-    shows[index].children[2].innerHTML = x;
+    shows[index].children[1].innerHTML = event.target.value;
+    shows[index].children[1].href = x;
+
+    //update local store
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    urls[index] = event.target.value;
+    localStorage.setItem("urls", JSON.stringify(urls));
 }
 
 // update the icon URL of the selected shortcut
@@ -548,14 +559,17 @@ function iconFieldUpdate(event) {
         return;
     }
     let shows = document.getElementsByClassName("show");
-    let cuts = document.getElementsByClassName("cut");
     let index = getIndex(selected[0]);
     if (index == -1) { 
         alert("No item selected, please click a link to edit");
         return; 
     }
-    cuts[index].children[2].innerHTML = event.target.value;
     shows[index].children[0].src = event.target.value;
+
+    //update local store
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    icons[index] = event.target.value;
+    localStorage.setItem("icons", JSON.stringify(icons));
 }
 
 // PAGE CUSTOMIZATION FUNCTIONS
@@ -563,10 +577,16 @@ function iconFieldUpdate(event) {
 function setBackGroundColor(event) {
     let selectedColor = event.target.value;
     document.getElementsByTagName("body")[0].style.backgroundColor = selectedColor;
+
+    //save to localstorage
+    localStorage.setItem("bgcolor", selectedColor);
 }
 
 function setFrameColor(event) {
     document.getElementById("mainlist").style.backgroundColor = event.target.value;
+
+    //save to localstorage
+    localStorage.setItem("framecolor", event.target.value);
 }
 
 function setIconSize(event) {
