@@ -30,7 +30,6 @@ function cssChange(selector, property, value){
 // PAGE SETUP FUNCTIONS
 
 // adds a style tag to the head of the document with the CSS for the icons
-
 function addStyleTag() {
     const style = document.createElement('style');
     style.id = "customStyleTag";
