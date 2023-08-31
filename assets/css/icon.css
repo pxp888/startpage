@@ -103,8 +103,7 @@ body > a {
 
 
 #spacer {
-    height: 480px;
-    display: none;
+    height: 0px;
 }
 
 #settingScreen {
@@ -210,6 +209,7 @@ body > a {
         flex-direction: column;
     }
     #spacer {
-        height: 0px;
+        height: 120px;
+
     }
 }

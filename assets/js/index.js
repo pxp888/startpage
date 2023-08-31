@@ -250,16 +250,18 @@ function toggleEditMode() {
     if (editmode){
         displayEditIcons();
         settingScreen.style.display = "block";
-        document.getElementById("spacer").style.display = "block";
+        // document.getElementById("spacer").style.display = "block";
         
         //set the spacer element to the same height as the settingScreen
         let x = settingScreen.getBoundingClientRect();
+        if (x.width < 700) { x.height = 0; }
         document.getElementById("spacer").style.height = x.height + "px";
     }
     else {
         displayNormalIcons();
         settingScreen.style.display = "none";
-        document.getElementById("spacer").style.display = "none";
+        // document.getElementById("spacer").style.display = "none";
+        document.getElementById("spacer").style.height = "100px";
     }
 }
 
