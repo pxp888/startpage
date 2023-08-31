@@ -433,7 +433,7 @@ function removeItem(event) {
     cuts[index].remove();
 }
 
-function nameUpdate(event) {
+function nameFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
@@ -449,7 +449,7 @@ function nameUpdate(event) {
     shows[index].children[1].innerHTML = event.target.value;
 }
 
-function urlUpdate(event) {
+function urlFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
@@ -468,7 +468,7 @@ function urlUpdate(event) {
     shows[index].children[2].innerHTML = x;
 }
 
-function iconUpdate(event) {
+function iconFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
@@ -598,13 +598,13 @@ let settingButton = document.getElementById("settingButton");
 settingButton.addEventListener("click", toggleEditMode);
 
 let shortcutName = document.getElementById("shortcutName");
-shortcutName.addEventListener("input", nameUpdate);
+shortcutName.addEventListener("input", nameFieldUpdate);
 
 let shortcutURL = document.getElementById("shortcutURL");
-shortcutURL.addEventListener("input", urlUpdate);
+shortcutURL.addEventListener("input", urlFieldUpdate);
 
 let shortcutIcon = document.getElementById("shortcutIcon");
-shortcutIcon.addEventListener("input", iconUpdate);
+shortcutIcon.addEventListener("input", iconFieldUpdate);
 
 let leftArrow = document.getElementById("leftArrow");
 leftArrow.addEventListener("click", moveItemUp);
