@@ -5,7 +5,7 @@ body {
     font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
     font-weight: 300;
     font-variant-ligatures: common-ligatures;
-    line-height: 1.67;
+    /* line-height: 1.67; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale  
 }
@@ -96,8 +96,8 @@ body {
 
 /* --------------------------------- ICONS ---------------------------------- */
 
-
-.show {
+/*
+ .show {
     color: white;
     position: relative;
     display: flex;
@@ -162,16 +162,7 @@ body {
 .xbut:hover {
     background-color: rgb(255, 97, 24);
     opacity: 1;
-}
-
-/* .plusButton {
-    width: 182px;
-    height: 182px;
-} */
-
-.plusButton:hover {
-    background-color: gray;
-}
+} 
 
 .selected {
     border: 3px solid rgb(255, 97, 24);
@@ -179,7 +170,19 @@ body {
 
 .unselected {
     opacity: 0.5;
+} 
+
+
+.plusButton {
+    width: 182px;
+    height: 182px;
 }
+
+.plusButton:hover {
+    background-color: gray;
+} 
+*/
+
 
 
 /* --------------------------------- SETTING SCREEN ---------------------------------- */
@@ -201,7 +204,7 @@ body {
     padding: 5px 0px 5px 0px;
 }
 
-#settingScreen > div {
+#settingScreen > div > div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

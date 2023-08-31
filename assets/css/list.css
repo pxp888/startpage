@@ -5,7 +5,7 @@ body {
     font-family: 'Lato',Helvetica Neue,Helvetica,sans-serif;
     font-weight: 300;
     font-variant-ligatures: common-ligatures;
-    line-height: 1.67;
+    /* line-height: 1.67; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale  
 }
@@ -87,8 +87,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     background-color: rgb(31, 31, 31);
-    /* justify-content: center; */
-    justify-content: flex-start;
+    justify-content: center;
     padding: 5rem;
 }
 
@@ -98,14 +97,13 @@ body {
 /* --------------------------------- ICONS ---------------------------------- */
 
 
-/* .show {
+.show {
     color: white;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    
 }
 
 .show img {
@@ -142,6 +140,16 @@ body {
     animation-fill-mode: forwards;
 }
 
+.show .xbut {
+    width: 25%;
+    height: 25%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: gray;
+    opacity: 0.3;
+}
+
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -149,38 +157,17 @@ body {
     100% {
         opacity: 1;
     }
-} */
-
-.show {
-    color: white;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    width: 300px;
-}
-
-.show a, .show p {
-    text-decoration: none;
-    flex-grow: 1;
-    color: white;
-}
-
-.show .xbut {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
 }
 
 .xbut:hover {
     background-color: rgb(255, 97, 24);
+    opacity: 1;
 }
 
-.plusButton {
+/* .plusButton {
     width: 182px;
     height: 182px;
-}
+} */
 
 .plusButton:hover {
     background-color: gray;

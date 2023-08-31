@@ -30,58 +30,74 @@
     </div>
     
     <div id="info" style="display: none;"></div>
-        
+
 
     <!-- Settings section, normally hidden -->
     <div id="spacer"></div>
     <div id="settingScreen">
-        <h4>Icon Settings</h4>
         <div>
-            <label for="shortcutName">Name</label>
-            <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
-        </div>
-        <div>
-            <label for="shortcutURL">URL</label>
-            <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
-        </div>
-        <div>
-            <label for="shortcutIcon">Icon URL</label>
-            <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
-        </div>
-        <div>
-            <p>Move Item</p>
-            <p class="darkButton" id="leftArrow">Left</p>
-            <p class="darkButton" id="rightArrow">Right</p>
+            <h4>Shortcut Settings</h4>
+            <div>
+                <label for="shortcutName">Name</label>
+                <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
+            </div>
+            <div>
+                <label for="shortcutURL">URL</label>
+                <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
+            </div>
+            <div>
+                <label for="shortcutIcon">Icon URL</label>
+                <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
+            </div>
+            <div>
+                <p>Item Order</p>
+                <p class="darkButton" id="leftArrow">Up</p>
+                <p class="darkButton" id="rightArrow">Down</p>
+            </div>
         </div>
 
-        <h4>Page Settings</h4>
-        <div>
-            <label for="backgroundColorPicker">Back Color: </label>
-            <input type="color" id="backgroundColorPicker">
-            <label for="frameColorPicker">Frame color: </label>
-            <input type="color" id="frameColorPicker">
-            <label for="iconSize">Icon Size: </label>
-            <input type="range" id="iconSize" min="40" max="300" name="iconSize">
-            <label for="frameSize">Frame Size: </label>
-            <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
-        </div>
-        <div>
-            <p>Other stuff </p>
-            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
-            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
-            <p class="darkButton" id="showHeaderButton">Hide Header</p>
-            <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
 
-            <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
-            <a id="helpLink" href="help.html" style="display: none;">hidden help button</a>
-            <button id="downloadButton" style="display: none;">Save Data</button>
-            <input type="file" id="uploadButton" accept=".json" style="display: none;">
+        <div>
+            <h4>Page Settings</h4>
+            <div>
+                <label for="backgroundColorPicker">Back Color: </label>
+                <input type="color" id="backgroundColorPicker">
+                <label for="frameColorPicker">Frame color: </label>
+                <input type="color" id="frameColorPicker">
+            </div>
+            <div>
+                <label for="frameSize">Frame Size: </label>
+                <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
+                <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
+                <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
+                
+                <label class = "listSettingItem" for="listItemWidth">List Item Width: </label>
+                <input class = "listSettingItem" type="range" id="listItemWidth" min="100" max="1000" name="listItemWidth">
+                <label class = "listSettingItem" for="listItemHeight">List Item Height: </label>
+                <input class = "listSettingItem" type="range" id="listItemHeight" min="10" max="400" name="listItemHeight">
+            </div>
+            <div>
+                <p>View</p>
+                <p class="darkButton" id="viewModeButton">List View</p>
+            </div>
+            <div>
+                <p>Other stuff</p>
+                <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
+                <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
+                <p class="darkButton" id="showHeaderButton">Hide Header</p>
+                <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
+            </div>
+                <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
+                <a id="helpLink" href="help.html" style="display: none;">hidden help button</a>
+                <button id="downloadButton" style="display: none;">Save Data</button>
+                <input type="file" id="uploadButton" accept=".json" style="display: none;">
         </div>
     </div>
 
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
     <script src="icon.js"></script>
+    <script src="list.js"></script>
 </body>
 </html>
 

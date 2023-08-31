@@ -13,9 +13,8 @@ function getIndex(x){
     return index;
 }
 
-function addStyleTag() {
-    const style = document.createElement('style');
-    style.id = "customStyleTag";
+function setIconCSS() {
+    let style = document.getElementById("customStyleTag");
     style.textContent = `
     .show {
         color: white;
@@ -24,10 +23,18 @@ function addStyleTag() {
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        width: 120px;
-        height: 120px;
-    }
 
+        width: 182px;
+        height: 182px;
+    }
+    
+    .show img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+    }
+    
     .show a, .show p {
         position: absolute;
         bottom: 0;
@@ -35,7 +42,7 @@ function addStyleTag() {
         width: 100%;
         height: 100%;
         margin: 0;
-
+    
         background-color: rgba(0, 0, 0, 0.8);
         color: white;
         font-size: 1.5rem;
@@ -46,17 +53,64 @@ function addStyleTag() {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+    
         opacity: 0;
     }
-
+    
     .show a:hover, .show p:hover {
         opacity: 1;
         animation: 0.2s fadeIn;
         animation-fill-mode: forwards;
     }
+    
+    .show .xbut {
+        width: 25%;
+        height: 25%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: gray;
+        opacity: 0.3;
+    }
+    
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    
+    .xbut:hover {
+        background-color: rgb(255, 97, 24);
+        opacity: 1;
+    } 
+    
+    .selected {
+        border: 3px solid rgb(255, 97, 24);
+    }
+    
+    .unselected {
+        opacity: 0.5;
+    }    
+
+    .plusButton {
+        width: 182px;
+        height: 182px;
+    }
+    
+    .plusButton:hover {
+        background-color: gray;
+    }
     `;
+}
+
+function addStyleTag() {
+    const style = document.createElement('style');
+    style.id = "customStyleTag";
     document.head.appendChild(style);
+    setIconCSS();
 }
 
 function cssChange(selector, property, value){
@@ -176,6 +230,13 @@ function restoreDataFromLocalstorage() {
         cssChange(".show", "height", targetIconSize + "px");
         cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
     }
+
+    //set frame size
+    let targetFrameSize = localStorage.getItem("framesize");
+    if (targetFrameSize != null) {
+        document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
+        document.getElementById("frameSize").value = targetFrameSize;
+    }
 }
 
 function saveDataToLocalstorage() {
@@ -210,9 +271,7 @@ function displayNormalIcons() {
     let shows = document.getElementsByClassName("show");
     let mainlist = document.getElementById("mainlist");
     
-    let plusses = document.getElementsByClassName("plus");
     while (shows.length > 0) {shows[0].remove();}
-    while (plusses.length > 0) {plusses[0].remove();}
 
     for (let i = 0; i < cuts.length; i++) {
         let ndiv = document.createElement("div");
@@ -272,12 +331,14 @@ function displayEditIcons() {
     }
 
     let plus = document.createElement("img");
-    plus.classList.add("show");
-    plus.classList.add("plusButton");
+    plus.className = "plusButton";
     plus.src = "assets/images/plus.png";
     plus.addEventListener("click", addBlankItem);
+    let pdiv = document.createElement("div");
+    pdiv.className = "show";
+    pdiv.appendChild(plus);
 
-    mainlist.appendChild(plus);
+    mainlist.appendChild(pdiv);
 
     document.getElementById("shortcutName").value = "";
     document.getElementById("shortcutURL").value = "";
@@ -528,7 +589,6 @@ function toggleHeaderVisibility(){
     }
 }
 
-
 addStyleTag();
 checkHeaderShowing();
 restoreDataFromLocalstorage();
@@ -572,4 +632,5 @@ uploadButton.addEventListener("change", uploadLocalStorage);
 
 let showHeaderButton = document.getElementById("showHeaderButton");
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
+
 
