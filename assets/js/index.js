@@ -251,6 +251,12 @@ function toggleEditMode() {
         displayEditIcons();
         settingScreen.style.display = "block";
         document.getElementById("spacer").style.display = "block";
+        
+        let box = document.querySelector("settingScreen");
+        let setHeight = box.clientHeight;
+        
+        let spacer = document.getElementById("spacer");
+        spacer.style.height = setHeight + "px";
     }
     else {
         displayNormalIcons();
