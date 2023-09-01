@@ -46,38 +46,45 @@
             <label for="shortcutIcon">Icon URL</label>
             <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
         </div>
-        <div>
+        <div class="vertable">
             <p>Item Order</p>
             <p class="darkButton" id="leftArrow">Up</p>
             <p class="darkButton" id="rightArrow">Down</p>
         </div>
         
         <h4>Page Settings</h4>
-        <div>
-            <label for="backgroundColorPicker">Background: </label>
-            <input type="color" id="backgroundColorPicker">
-            <label for="frameColorPicker">Frame color: </label>
-            <input type="color" id="frameColorPicker">
+        <div class="vertable">
+            <div>
+                <label for="backgroundColorPicker">Background: </label>
+                <input type="color" id="backgroundColorPicker">
+            </div>
+            <div>
+                <label for="frameColorPicker">Frame color: </label>
+                <input type="color" id="frameColorPicker">
+            </div>
         </div>
-        <div>
-            <label for="frameSize">Frame Size: </label>
-            <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
-            
-            <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
-            <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
-            
+        <div class="vertable">
+            <div>
+                <label for="frameSize">Frame Size: </label>
+                <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
+            </div>
+            <div>
+                <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
+                <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
+            </div>
+
             <label class = "listSettingItem" style="display: none;" for="listItemWidth">Item Width: </label>
             <input class = "listSettingItem" style="display: none;" type="range" id="listItemWidth" min="100" max="1000" name="listItemWidth">
             <label class = "listSettingItem" style="display: none;" for="listItemHeight">Item Height: </label>
             <input class = "listSettingItem" style="display: none;" type="range" id="listItemHeight" min="10" max="400" name="listItemHeight">
         </div>
-        <div>
+        <div class="vertable">
             <p>View</p>
             <p class="darkButton" id="viewModeButton">List View</p>
             <p class="darkButton" id="showHeaderButton">Hide Header</p>
             <p class="darkButton" onclick="document.getElementById('helpLink').click()" = 'none'">Help page</p>
         </div>
-        <div>
+        <div class="vertable">
             <p>Backup</p>
             <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
             <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>

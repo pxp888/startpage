@@ -103,7 +103,7 @@ body > a {
 
 
 #spacer {
-    height: 0px;
+    height: 30vh;
 }
 
 #settingScreen {
@@ -113,17 +113,19 @@ body > a {
     bottom: 0;
     width: 100%;
 
+    max-height: 30vh;
+    overflow-y: auto;
+
     background-color: rgb(153, 153, 153);
     padding: 5px 0px 5px 0px;
 }
 
-#settingScreen > div {
+#settingScreen div {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 0.5rem;
-    padding: 0.5rem;
+    padding: 0.25rem;
 }
 
 #settingScreen input[type=text] {
@@ -133,7 +135,8 @@ body > a {
     color: gainsboro;
     font-weight: 400;
     padding: inherit;
-    /* width: 30rem; */
+    margin: inherit;
+    flex-grow: 2;
 }
 
 #settingScreen h4 {
@@ -146,6 +149,8 @@ body > a {
 
 #settingScreen label, #settingScreen p {
     width: 7rem;
+    padding: inherit;
+    margin: inherit;
     margin-left: 2rem;
     margin-right: 1rem;
     font-weight: 300;
@@ -193,6 +198,10 @@ body > a {
     animation-fill-mode: forwards;
 }
 
+
+/* --------------------------------- MEDIA QUERRIES ---------------------------------- */
+
+
 @media screen and (max-width: 700px) 
 {
     #mainlist {
@@ -200,16 +209,34 @@ body > a {
     }
 
     #settingScreen {
+        /* position: relative; */
+        height: 50%;
         padding: 0px;
-        position: relative;
         margin: 0px;
+        height: 50vh;
+        overflow-y: auto;
     }
 
-    #settingScreen > div {
+    #spacer {
+        height: 50vh;
+    }
+
+    #settingScreen .vertable {
         flex-direction: column;
     }
-    #spacer {
-        height: 120px;
 
+    #settingScreen label, #settingScreen p {
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 0rem;
+        margin-right: 0rem;
     }
+
+    #settingScreen input[type=text] {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    
+
 }
