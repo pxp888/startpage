@@ -38,6 +38,25 @@ Links can be edited and re-ordered through the settings pane.
 
 The settings pane is toggled by pressing the settings gear icon on the lower right corner of the page.  
 
+## How to customize icons
+1)  Click on the settings button at the lower right corner of the page.
+
+2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut. 
+
+3) In the **"Name"** field enter the display name you would like for the shortcut.  
+
+4) In the **"URL"** field enter the address of the target website.  
+
+5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Link"**.  
+
+6) Paste this link into the **"Icon URL"** field.  
+
+7) **That's it!**
+    
+
+
+
+
 ### Customizable Icon sizes and surrounding frame
 The size of onscreen icons can be set by the user through the settings pane.
 
