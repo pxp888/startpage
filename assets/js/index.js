@@ -149,6 +149,7 @@ function restoreDataFromLocalstorage() {
 }
 
 // sets the CSS for the icon view
+// this is defined here so CSS can be changed dynamically for these items.  
 function setIconCSS() {
     let style = document.getElementById("customStyleTag");
     style.textContent = `
@@ -587,6 +588,7 @@ function setBackGroundColor(event) {
     localStorage.setItem("bgcolor", selectedColor);
 }
 
+// the frame is the box surrounding the icon grid, this sets the color.  
 function setFrameColor(event) {
     document.getElementById("mainlist").style.backgroundColor = event.target.value;
 
@@ -594,6 +596,7 @@ function setFrameColor(event) {
     localStorage.setItem("framecolor", event.target.value);
 }
 
+// sets the size of individual icons
 function setIconSize(event) {
     let targetIconSize = event.target.value;
     if ((targetIconSize < 50)||(targetIconSize > 1000)) { return; }
@@ -604,6 +607,7 @@ function setIconSize(event) {
     cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
 }
 
+// sets the size of the frame surrounding the icon grid
 function setFrameSize(event) {
     let targetFrameSize = event.target.value;
     if ((targetFrameSize < 400)||(targetFrameSize > 2000)) { return; }
@@ -613,6 +617,7 @@ function setFrameSize(event) {
     mainlist.style.maxWidth = targetFrameSize + "px";
 }
 
+// toggles the header visibility
 function toggleHeaderVisibility(){
     let x = document.getElementById("header").style.visibility;
     if (x == "hidden") { 

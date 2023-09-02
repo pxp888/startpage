@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <!-- header is here -->
     <div id="header">
         <div>
             <p class="giant" onclick="document.getElementById('helplink').click()">Simple</p>
@@ -30,9 +31,10 @@
     </div>
 
     
-    <!-- Settings section, normally hidden -->
+    <!-- SETTING SECTION -->
     <div id="spacer"></div>
     <div id="settingScreen">
+        <!-- individual shortcut settings -->
         <h4>Shortcut Settings</h4>
         <div>
             <label for="shortcutName">Name</label>
@@ -52,6 +54,7 @@
             <p class="darkButton" id="rightArrow">Down</p>
         </div>
         
+        <!-- page settings -->
         <h4>Page Settings</h4>
         <div class="vertable">
             <div>
@@ -100,7 +103,7 @@
         </div>
     </div>
 
-    <!-- This is the button that toggles the visibility of the settings section -->
+    <!-- This is the button that toggles the visibility of the settings section, fixed location, always visible -->
     <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
     <script src="assets/js/index.js"></script>
