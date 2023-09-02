@@ -36,23 +36,39 @@ There are some default links shown if no data has been saved, but users are free
 
 Links can be edited and re-ordered through the settings pane.  
 
-The settings pane is toggled by pressing the settings gear icon on the lower right corner of the page.  
+The settings panelis toggled by pressing the settings gear icon on the lower right corner of the page.  
 
 ## How to customize icons
 1)  Click on the settings button at the lower right corner of the page.
 
+![how to 1](assets/screenshots/h1.png)
+
+
 2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut. 
+
+![how to 2](assets/screenshots/h2.png)
 
 3) In the **"Name"** field enter the display name you would like for the shortcut.  
 
 4) In the **"URL"** field enter the address of the target website.  
 
-5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Link"**.  
+![how to 3](assets/screenshots/h3.png)
+
+5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).  
+
+
+![how to 4](assets/screenshots/h4.png)
+
 
 6) Paste this link into the **"Icon URL"** field.  
 
-7) **That's it!**
-    
+
+![how to 5](assets/screenshots/h5.png)
+
+
+7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings pane.  
+
+
 
 
 
@@ -95,7 +111,7 @@ Narrow link width allows multiple columns to be shown when the browser window is
 
 All adjustments and settings are done through the settings pane. 
 
-The settings pane is toggled by pressing the settings gear icon on the lower right corner of the page.
+The settings panelis toggled by pressing the settings gear icon on the lower right corner of the page.
 
 ## feature details
 
