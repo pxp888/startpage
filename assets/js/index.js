@@ -660,6 +660,14 @@ function uploadLocalStorage(event) {
     restoreDataFromLocalstorage();
 }
 
+function restoreDefaults(event) {
+    if (confirm("Are you sure you want to restore defaults? This will delete all your shortcuts and settings."))
+    {
+        localStorage.clear();
+        window.location.reload();
+    }
+    else { return; }
+}
 
 // EVENT LISTENERS
 document.getElementById("settingButton").addEventListener("click", toggleEditMode);
@@ -675,7 +683,7 @@ document.getElementById("frameSize").addEventListener("input", setFrameSize);
 document.getElementById("downloadButton").addEventListener("click", downloadLocalStorage);
 document.getElementById("uploadButton").addEventListener("change", uploadLocalStorage);
 document.getElementById("showHeaderButton").addEventListener("click", toggleHeaderVisibility);
-
+document.getElementById("restoreDefaultsButton").addEventListener("click", restoreDefaults);
 
 addStyleTag();
 checkHeaderShowing();
