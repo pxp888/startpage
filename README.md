@@ -134,6 +134,10 @@ The header and setting button are shown with lower opacity to reduce the clutter
 |Google Chrome Developer Tools|Browser tool for testing and debugging|
 |Google Fonts|Font library|
 
+## other code sources
 
+#### Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.  
+
+#### Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of it.  
 
 
