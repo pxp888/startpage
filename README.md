@@ -138,6 +138,17 @@ The header and setting button are shown with lower opacity to reduce the clutter
 
 #### Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.  
 
-#### Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of it.  
+#### Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.  
+
+## Validation and Testing
+No errors were found in the for Javascript with JSHint.
+No errors were found in the for CSS with Jigsaw.
+No errors were found in the for HTML with W3C Markup Validation Service.
+
+## Deployment
+The page is deployed on github pages, from the main branch.  
+
+
+
 
 
