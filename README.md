@@ -1,4 +1,4 @@
-![screen](assets/screenshots/screen2.webp)
+![screen](assets/screenshots/screen5.webp)
 
 # Simple
 
@@ -144,6 +144,8 @@ The header and setting button are shown with lower opacity to reduce the clutter
 No errors were found in the for Javascript with JSHint.
 No errors were found in the for CSS with Jigsaw.
 No errors were found in the for HTML with W3C Markup Validation Service.
+
+In personal testing I have been unable to find bugs that break functionality.  This has already become part of my daily workflow. 
 
 ## Deployment
 The page is deployed on github pages, from the main branch.  
