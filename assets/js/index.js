@@ -27,16 +27,6 @@ function cssChange(selector, property, value){
     x.setProperty(property, value);
 }
 
-//validate entered URL's
-function isValidUrl(url) {
-    try {
-      new URL(url);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
 // PAGE SETUP FUNCTIONS
 
 // adds a style tag to the head of the document with the CSS for the icons
