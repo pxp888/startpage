@@ -6,12 +6,35 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 
 [Try it out here](https://pxp888.github.io/startpage/)
 
+## Table of Contents
+
+- [what is it? - User Experience](#what-is-it---user-experience)
+- [How does it work?](#how-does-it-work)
+- [Features](#features)
+    - [Customizable display name and Icon for each link](#customizable-display-name-and-icon-for-each-link)
+    - [Customizable Icon sizes and surrounding frame](#customizable-icon-sizes-and-surrounding-frame)
+    - [Customizable background colors](#customizable-background-colors)
+    - [Configurations can be saved to file, and replicated](#configurations-can-be-saved-to-file-and-replicated)
+    - [Hideable Header](#hideable-header)
+    - [Help page](#help-page)
+    - [List View](#list-view)
+    - [Settings Pane](#settings-pane)
+- [Feature Details](#feature-details)
+    - [animated display name over icons](#animated-display-name-over-icons)
+    - [animated Header and setting button opacity](#animated-header-and-setting-button-opacity)
+- [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
+- [Other Code Sources](#other-code-sources)
+- [Validation and Testing](#validation-and-testing)
+- [Deployment](#deployment)
+
+
+
 ## what is it? - User Experience
 It is a simple collection of links with corresponding icons for commonly used websites that is easy to customize for individual needs.
 
 Ideally this would be set as the homepage or new tab page of your browser. 
 
-## how does it work?  
+## How does it work?  
 Each link is represented by three pieces of data.  A name, which is up to the user.  A URL, which is the actual destination of the link, and another URL for the icon the user wants to use.  
 
 Users are free to use any image they like.  
@@ -20,7 +43,7 @@ Users can also customize the background colors of the page.
 
 Configuration data for the page is stored in localStorage, and not the cloud.  If users want to replicate the page on multiple machines they can save the configuration data 
 
-## features
+## Features
 
 ### Customizable display name and Icon for each link
 
@@ -145,7 +168,7 @@ No errors were found in the for Javascript with JSHint.
 No errors were found in the for CSS with Jigsaw.
 No errors were found in the for HTML with W3C Markup Validation Service.
 
-In personal testing I have been unable to find bugs that break functionality.  This has already become part of my daily workflow. 
+In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow. 
 
 ## Deployment
 The page is deployed on github pages, from the main branch.  
