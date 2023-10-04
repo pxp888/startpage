@@ -3,6 +3,7 @@ let editmode = false;
 // HELPER FUNCTIONS
 
 // GLOBAL VARIABLES for DOM elements
+const header = document.getElementById("header");
 const mainlist = document.getElementById("mainlist");
 const settingButton = document.getElementById("settingButton");
 const shortcutName = document.getElementById("shortcutName");
@@ -72,7 +73,7 @@ function checkHeaderShowing() {
     let x = localStorage.getItem("headerhidden");
     if (x == null) { return; }
     if (x == "true") {
-        document.getElementById("header").style.visibility = "hidden";
+        header.style.visibility = "hidden";
         showHeaderButton.innerHTML = "Show Header";
     }
 }
@@ -669,9 +670,6 @@ function setFrameSize(event) {
 
 // toggles the header visibility
 function toggleHeaderVisibility(){
-    const header = document.getElementById("header");
-    const showHeaderButton = document.getElementById("showHeaderButton");
-
     let x = header.style.visibility;
     if (x == "hidden") {
         header.style.visibility = "visible";
@@ -727,6 +725,15 @@ function restoreDefaults(event) {
     else { return; }
 }
 
+// PAGE SETUP
+function setupPage() {
+    addStyleTag();
+    checkHeaderShowing();
+    restoreDataFromLocalstorage();
+    displayNormalIcons();
+}
+
+
 // EVENT LISTENERS
 settingButton.addEventListener("click", toggleEditMode);
 shortcutName.addEventListener("blur", nameFieldUpdate);
@@ -743,7 +750,5 @@ uploadButton.addEventListener("change", uploadLocalStorage);
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 
-addStyleTag();
-checkHeaderShowing();
-restoreDataFromLocalstorage();
-displayNormalIcons();
+// RUN PAGE SETUP
+setupPage();
