@@ -1,15 +1,14 @@
 // This script is used to dynamically alter the color of the header
 // text based on the background color of the body.  
 
-// this changes the tags of the header elements so the custom css
-// below can be applied. 
-function setHeaderTags() {
-    const header = document.getElementById("header");
-    header.setAttribute("id", "dheader");
-}
 
 // this adds the custom css to the header
 function setHeaderCSS() {
+    // change header id to dheader
+    const header = document.getElementById("header");
+    header.setAttribute("id", "dheader");
+
+    // add custom css for dheader
     const style = document.createElement('style');
     style.id = "headerStyleTag";
     document.head.appendChild(style);
@@ -51,19 +50,10 @@ function setHeaderCSS() {
         text-decoration: none;
     }
     
-    #dhelplink {
-        margin-right: 2rem;
-    }
-    
-    #dhelplink:hover {
-        color: black;
-        background-color: gainsboro;
-        cursor: pointer;
-    }
     `;
 }
 
-// this is a helper function that changes the css of the header
+// this is a helper function that changes the css values of the header
 function headerCssChange(selector, property, value){
     let sheet = document.getElementById("headerStyleTag").sheet;
     let rules=sheet.cssRules;
@@ -89,8 +79,9 @@ function updateHeaderColor(color) {
 }
 
 // setup functions
-setHeaderTags();
 setHeaderCSS();
+
+// initial call to updateHeaderColor when page loads
 updateHeaderColor();
 
 // event listeners
