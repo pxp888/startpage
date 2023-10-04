@@ -165,13 +165,20 @@ The header and setting button are shown with lower opacity to reduce the clutter
 
 ## Validation and Testing
 No errors were found in the for Javascript with JSHint.
+
 No errors were found in the for CSS with Jigsaw.
+
 No errors were found in the for HTML with W3C Markup Validation Service.
 
 In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow. 
 
 ## Deployment
-The page is deployed on github pages, from the main branch.  
+The page is deployed on Github Pages, from the main branch.  
+
+Github Pages is a good choice for this project because it is free, and the code is already hosted on Github.  Also, all the code is static, so there Github Pages functionality is sufficient.
+
+The page can be accessed at https://pxp888.github.io/startpage/
+
 
 
 
