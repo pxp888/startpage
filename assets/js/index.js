@@ -541,7 +541,6 @@ function urlFieldUpdate(event) {
 
     let x = event.target.value;
     if (x.slice(0, 4) != "http") { x = "http://" + x; }
-    shows[index].children[1].innerHTML = event.target.value;
     shows[index].children[1].href = x;
     shows[index].children[1].target = "_blank";
 
