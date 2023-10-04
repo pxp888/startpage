@@ -1,7 +1,5 @@
 let editmode = false;
 
-// HELPER FUNCTIONS
-
 // GLOBAL VARIABLES for DOM elements
 const header = document.getElementById("header");
 const mainlist = document.getElementById("mainlist");
@@ -20,6 +18,7 @@ const uploadButton = document.getElementById("uploadButton");
 const showHeaderButton = document.getElementById("showHeaderButton");
 const restoreDefaultsButton = document.getElementById("restoreDefaultsButton");
 
+// HELPER FUNCTIONS
 
 // Returns the index of the element in its group
 function getIndex(x){
