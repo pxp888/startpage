@@ -27,6 +27,18 @@ function cssChange(selector, property, value){
     x.setProperty(property, value);
 }
 
+// Returns the length of the longest word in a string
+function findLongestWordLength(str) {
+    const words = str.split(" ");
+    let longestWordLength = 0;
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].length > longestWordLength) {
+        longestWordLength = words[i].length;
+        }
+    }
+    return longestWordLength;
+}
+
 // PAGE SETUP FUNCTIONS
 
 // adds a style tag to the head of the document with the CSS for the icons
@@ -519,6 +531,13 @@ function nameFieldUpdate(event) {
     }
     shows[index].children[1].innerHTML = event.target.value;
 
+    if (findLongestWordLength(event.target.value) > 16) {
+        alert("Long words may not display correctly");
+    }
+    if (event.target.value.length > 50) {
+        alert("Long names may not display correctly");
+    }
+
     //update local store
     let names = JSON.parse(localStorage.getItem("names"));
     names[index] = event.target.value;
@@ -687,7 +706,7 @@ function restoreDefaults(event) {
 
 // EVENT LISTENERS
 document.getElementById("settingButton").addEventListener("click", toggleEditMode);
-document.getElementById("shortcutName").addEventListener("input", nameFieldUpdate);
+document.getElementById("shortcutName").addEventListener("blur", nameFieldUpdate);
 document.getElementById("shortcutURL").addEventListener("blur", urlFieldUpdate);
 document.getElementById("shortcutIcon").addEventListener("input", iconFieldUpdate);
 document.getElementById("leftArrow").addEventListener("click", moveItemUp);
