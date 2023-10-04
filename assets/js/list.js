@@ -90,7 +90,7 @@ function setListCSS() {
 
 // changes the CSS of the main view area between icon grid and list view.
 function changeViewMode(event) {
-    viewmode = localStorage.getItem("viewmode");
+    let viewmode = localStorage.getItem("viewmode");
     if (viewmode == null) {viewmode = "icon";}
 
     let x;
@@ -147,8 +147,7 @@ document.getElementById("viewModeButton").addEventListener("click", changeViewMo
 document.getElementById("listItemWidth").addEventListener("input", setListItemWidth);
 document.getElementById("listItemHeight").addEventListener("input", setListItemHeight);
 
-
-viewmode = localStorage.getItem("viewmode");
+let viewmode = localStorage.getItem("viewmode");
 if (viewmode == "list") { 
     localStorage.setItem("viewmode", "icon");
     changeViewMode();
