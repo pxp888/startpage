@@ -1,6 +1,22 @@
-var editmode = false;
+let editmode = false;
 
 // HELPER FUNCTIONS
+const mainlist = document.getElementById("mainlist");
+const settingButton = document.getElementById("settingButton");
+const shortcutName = document.getElementById("shortcutName");
+const shortcutURL = document.getElementById("shortcutURL");
+const shortcutIcon = document.getElementById("shortcutIcon");
+const leftArrow = document.getElementById("leftArrow");
+const rightArrow = document.getElementById("rightArrow");
+const backgroundColorPicker = document.getElementById("backgroundColorPicker");
+const frameColorPicker = document.getElementById("frameColorPicker");
+const iconSize = document.getElementById("iconSize");
+const frameSize = document.getElementById("frameSize");
+const downloadButton = document.getElementById("downloadButton");
+const uploadButton = document.getElementById("uploadButton");
+const showHeaderButton = document.getElementById("showHeaderButton");
+const restoreDefaultsButton = document.getElementById("restoreDefaultsButton");
+
 
 // Returns the index of the element in its group
 function getIndex(x){
@@ -55,7 +71,7 @@ function checkHeaderShowing() {
     if (x == null) { return; }
     if (x == "true") {
         document.getElementById("header").style.visibility = "hidden";
-        document.getElementById("showHeaderButton").innerHTML = "Show Header";
+        showHeaderButton.innerHTML = "Show Header";
     }
 }
 
@@ -134,14 +150,14 @@ function restoreDataFromLocalstorage() {
     let bgcolor = localStorage.getItem("bgcolor");
     if (bgcolor != null) {
         document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor;
-        document.getElementById("backgroundColorPicker").value = bgcolor;
+        backgroundColorPicker.value = bgcolor;
     }
 
     //set frame color
     let framecolor = localStorage.getItem("framecolor");
     if (framecolor != null) {
-        document.getElementById("mainlist").style.backgroundColor = framecolor;
-        document.getElementById("frameColorPicker").value = framecolor;
+        mainlist.style.backgroundColor = framecolor;
+        frameColorPicker.value = framecolor;
     }
 
     //set icon size
@@ -155,8 +171,8 @@ function restoreDataFromLocalstorage() {
     //set frame size
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize != null) {
-        document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
-        document.getElementById("frameSize").value = targetFrameSize;
+        mainlist.style.maxWidth = targetFrameSize + "px";
+        frameSize.value = targetFrameSize;
     }
 }
 
@@ -275,14 +291,13 @@ function displayNormalIcons() {
     // set the frame width
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
-    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
+    mainlist.style.maxWidth = targetFrameSize + "px";
 
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
     let urls = JSON.parse(localStorage.getItem("urls"));
 
     let shows = document.getElementsByClassName("show");
-    let mainlist = document.getElementById("mainlist");
 
     // remove existing icons
     while (shows.length > 0) {shows[0].remove();}
@@ -316,12 +331,11 @@ function displayEditIcons() {
     // set the frame width
     let targetFrameSize = localStorage.getItem("framesize");
     if (targetFrameSize == null) { targetFrameSize = 1200; }
-    document.getElementById("mainlist").style.maxWidth = targetFrameSize + "px";
+    mainlist.style.maxWidth = targetFrameSize + "px";
 
     let names = JSON.parse(localStorage.getItem("names"));
     let icons = JSON.parse(localStorage.getItem("icons"));
 
-    let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
 
     // remove existing icons
@@ -364,9 +378,10 @@ function displayEditIcons() {
     mainlist.appendChild(pdiv);
 
     // clear the editing fields
-    document.getElementById("shortcutName").value = "";
-    document.getElementById("shortcutURL").value = "";
-    document.getElementById("shortcutIcon").value = "";
+    shortcutName.value = "";
+    shortcutURL.value = "";
+    shortcutIcon.value = "";
+
 }
 
 // SHORTCUT EDITING FUNCTIONS
@@ -387,14 +402,13 @@ function selectItem(event) {
     shows[index].className="show selected";
 
     // update editing fields
-    document.getElementById("shortcutName").value = names[index];
-    document.getElementById("shortcutURL").value = urls[index];
-    document.getElementById("shortcutIcon").value = icons[index];
+    shortcutName.value = names[index];
+    shortcutURL.value = urls[index];
+    shortcutIcon.value = icons[index];
 }
 
 // create new shortcut
 function addBlankItem() {
-    let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
 
     //deselect all other shortcuts
@@ -423,9 +437,9 @@ function addBlankItem() {
     mainlist.insertBefore(newShow, shows[shows.length-1]);
 
     //update editing fields
-    document.getElementById("shortcutName").value = "";
-    document.getElementById("shortcutURL").value = "";
-    document.getElementById("shortcutIcon").value = "";
+    shortcutName.value = "";
+    shortcutURL.value = "";
+    shortcutIcon.value = "";
 
     //add new blank data to localstorage
     let names = JSON.parse(localStorage.getItem("names"));
@@ -620,7 +634,7 @@ function setBackGroundColor(event) {
 
 // the frame is the box surrounding the icon grid, this sets the color.
 function setFrameColor(event) {
-    document.getElementById("mainlist").style.backgroundColor = event.target.value;
+    mainlist.style.backgroundColor = event.target.value;
 
     //save to localstorage
     localStorage.setItem("framecolor", event.target.value);
@@ -643,7 +657,6 @@ function setFrameSize(event) {
     if ((targetFrameSize < 400)||(targetFrameSize > 2000)) { return; }
     localStorage.setItem("framesize", targetFrameSize);
 
-    let mainlist = document.getElementById("mainlist");
     mainlist.style.maxWidth = targetFrameSize + "px";
 }
 
@@ -705,20 +718,20 @@ function restoreDefaults(event) {
 }
 
 // EVENT LISTENERS
-document.getElementById("settingButton").addEventListener("click", toggleEditMode);
-document.getElementById("shortcutName").addEventListener("blur", nameFieldUpdate);
-document.getElementById("shortcutURL").addEventListener("blur", urlFieldUpdate);
-document.getElementById("shortcutIcon").addEventListener("input", iconFieldUpdate);
-document.getElementById("leftArrow").addEventListener("click", moveItemUp);
-document.getElementById("rightArrow").addEventListener("click", moveItemDown);
-document.getElementById("backgroundColorPicker").addEventListener("input", setBackGroundColor);
-document.getElementById("frameColorPicker").addEventListener("input", setFrameColor);
-document.getElementById("iconSize").addEventListener("input", setIconSize);
-document.getElementById("frameSize").addEventListener("input", setFrameSize);
-document.getElementById("downloadButton").addEventListener("click", downloadLocalStorage);
-document.getElementById("uploadButton").addEventListener("change", uploadLocalStorage);
-document.getElementById("showHeaderButton").addEventListener("click", toggleHeaderVisibility);
-document.getElementById("restoreDefaultsButton").addEventListener("click", restoreDefaults);
+settingButton.addEventListener("click", toggleEditMode);
+shortcutName.addEventListener("blur", nameFieldUpdate);
+shortcutURL.addEventListener("blur", urlFieldUpdate);
+shortcutIcon.addEventListener("input", iconFieldUpdate);
+leftArrow.addEventListener("click", moveItemUp);
+rightArrow.addEventListener("click", moveItemDown);
+backgroundColorPicker.addEventListener("input", setBackGroundColor);
+frameColorPicker.addEventListener("input", setFrameColor);
+iconSize.addEventListener("input", setIconSize);
+frameSize.addEventListener("input", setFrameSize);
+downloadButton.addEventListener("click", downloadLocalStorage);
+uploadButton.addEventListener("change", uploadLocalStorage);
+showHeaderButton.addEventListener("click", toggleHeaderVisibility);
+restoreDefaultsButton.addEventListener("click", restoreDefaults);
 
 addStyleTag();
 checkHeaderShowing();
