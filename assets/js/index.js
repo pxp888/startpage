@@ -27,6 +27,16 @@ function cssChange(selector, property, value){
     x.setProperty(property, value);
 }
 
+//validate entered URL's
+function isValidUrl(url) {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
 // PAGE SETUP FUNCTIONS
 
 // adds a style tag to the head of the document with the CSS for the icons
@@ -41,7 +51,7 @@ function addStyleTag() {
 function checkHeaderShowing() {
     let x = localStorage.getItem("headerhidden");
     if (x == null) { return; }
-    if (x == "true") { 
+    if (x == "true") {
         document.getElementById("header").style.visibility = "hidden";
         document.getElementById("showHeaderButton").innerHTML = "Show Header";
     }
@@ -55,7 +65,7 @@ function restoreDataFromLocalstorage() {
     let urls = JSON.parse(localStorage.getItem("urls"));
 
     if (names == null || names.length == 0) {
-        names = []; 
+        names = [];
         icons = [];
         urls = [];
         names.push("Google");
@@ -120,15 +130,15 @@ function restoreDataFromLocalstorage() {
 
     //set background color
     let bgcolor = localStorage.getItem("bgcolor");
-    if (bgcolor != null) { 
-        document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor; 
+    if (bgcolor != null) {
+        document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor;
         document.getElementById("backgroundColorPicker").value = bgcolor;
     }
-    
+
     //set frame color
     let framecolor = localStorage.getItem("framecolor");
-    if (framecolor != null) { 
-        document.getElementById("mainlist").style.backgroundColor = framecolor; 
+    if (framecolor != null) {
+        document.getElementById("mainlist").style.backgroundColor = framecolor;
         document.getElementById("frameColorPicker").value = framecolor;
     }
 
@@ -149,7 +159,7 @@ function restoreDataFromLocalstorage() {
 }
 
 // sets the CSS for the icon view
-// this is defined here so CSS can be changed dynamically for these items.  
+// this is defined here so CSS can be changed dynamically for these items.
 function setIconCSS() {
     let style = document.getElementById("customStyleTag");
     style.textContent = `
@@ -164,14 +174,14 @@ function setIconCSS() {
         width: 182px;
         height: 182px;
     }
-    
+
     .show img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         cursor: pointer;
     }
-    
+
     .show a, .show p {
         position: absolute;
         bottom: 0;
@@ -179,27 +189,27 @@ function setIconCSS() {
         width: 100%;
         height: 100%;
         margin: 0;
-    
+
         background-color: rgba(0, 0, 0, 0.8);
         color: white;
         font-size: 1.5rem;
         font-weight: 400;
         text-decoration: none;
-        
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    
+
         opacity: 0;
     }
-    
+
     .show a:hover, .show p:hover {
         opacity: 1;
         animation: 0.2s fadeIn;
         animation-fill-mode: forwards;
     }
-    
+
     .show .xbut {
         width: 25%;
         height: 25%;
@@ -209,7 +219,7 @@ function setIconCSS() {
         background-color: gray;
         opacity: 0.3;
     }
-    
+
     @keyframes fadeIn {
         0% {
             opacity: 0;
@@ -218,25 +228,25 @@ function setIconCSS() {
             opacity: 1;
         }
     }
-    
+
     .xbut:hover {
         background-color: rgb(255, 97, 24);
         opacity: 1;
-    } 
-    
+    }
+
     .selected {
         border: 3px solid rgb(255, 97, 24);
     }
-    
+
     .unselected {
         opacity: 0.5;
-    }    
+    }
 
     .plusButton {
         width: 182px;
         height: 182px;
     }
-    
+
     .plusButton:hover {
         background-color: gray;
     }
@@ -271,7 +281,7 @@ function displayNormalIcons() {
 
     let shows = document.getElementsByClassName("show");
     let mainlist = document.getElementById("mainlist");
-    
+
     // remove existing icons
     while (shows.length > 0) {shows[0].remove();}
 
@@ -279,7 +289,7 @@ function displayNormalIcons() {
     for (let i = 0; i < names.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        
+
         let im = document.createElement("img");
         let x = icons[i];
         if (x ==""){ x = "assets/images/blankimage.png";}
@@ -287,7 +297,7 @@ function displayNormalIcons() {
 
         let link = document.createElement("a");
         link.innerHTML = names[i];
-    
+
         x = urls[i];
         if (x.slice(0, 4) != "http") { x = "http://" + x; }
         link.href = x;
@@ -299,7 +309,7 @@ function displayNormalIcons() {
     }
 }
 
-// displays the icons with the editing controls, 
+// displays the icons with the editing controls,
 function displayEditIcons() {
     // set the frame width
     let targetFrameSize = localStorage.getItem("framesize");
@@ -314,21 +324,21 @@ function displayEditIcons() {
 
     // remove existing icons
     while (shows.length > 0) {shows[0].remove();}
-    
+
     // create new icons from shortcut data
     for (let i=0; i < names.length; i++) {
         let ndiv = document.createElement("div");
         ndiv.className = "show";
-        
+
         let im = document.createElement("img");
         let x = icons[i];
         if (x ==""){ x = "assets/images/blankimage.png";}
         im.src = x;
-        
+
         let link = document.createElement("p");
         link.innerHTML = names[i];
         link.addEventListener("click", selectItem);
-        
+
         let xbut = document.createElement("img");
         xbut.classList.add("xbut");
         xbut.src = "assets/images/x.webp";
@@ -384,7 +394,7 @@ function selectItem(event) {
 function addBlankItem() {
     let mainlist = document.getElementById("mainlist");
     let shows = document.getElementsByClassName("show");
-    
+
     //deselect all other shortcuts
     for (let i=0; i < shows.length-1; i++) { shows[i].className="show unselected"; }
 
@@ -395,7 +405,7 @@ function addBlankItem() {
     //apply default blank image icon
     let im = document.createElement("img");
     im.src = "assets/images/blankimage.png";
-    
+
     let link = document.createElement("p");
     link.innerHTML = "New Link";
     link.addEventListener("click", selectItem);
@@ -451,9 +461,9 @@ function moveItemUp(event){
     let shows = document.getElementsByClassName("show");
 
     let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) { 
+    if (index == -1) {
         alert("No item selected, please click a link to edit");
-        return; 
+        return;
     }
     if ((index == 0)||(index == shows.length)) { return; }
     shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
@@ -480,9 +490,9 @@ function moveItemDown(event){
     let shows = document.getElementsByClassName("show");
 
     let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) { 
+    if (index == -1) {
         alert("No item selected, please click a link to edit");
-        return; 
+        return;
     }
     if (index == shows.length-2) { return; }
     shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
@@ -514,8 +524,8 @@ function nameFieldUpdate(event) {
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) { 
-        return; 
+    if (index == -1) {
+        return;
     }
     shows[index].children[1].innerHTML = event.target.value;
 
@@ -534,13 +544,31 @@ function urlFieldUpdate(event) {
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) { 
+    if (index == -1) {
         alert("No item selected, please click a link to edit");
-        return; 
+        return;
     }
 
     let x = event.target.value;
-    if (x.slice(0, 4) != "http") { x = "http://" + x; }
+    // try to fix common URL mistakes
+    if (x.slice(0, 4) != "http") { 
+        if (x.slice(0, 3) == "www") 
+            { x = "http://" + x; }
+        else {
+            x = "http://www." + x;
+        }
+    }
+
+    // validate URL
+    try {
+        x = new URL(x);
+    } catch (error) {
+        alert("Invalid URL");
+        return;
+    }
+    x = x.toString();
+    event.target.value = x;
+
     shows[index].children[1].href = x;
     shows[index].children[1].target = "_blank";
 
@@ -559,9 +587,9 @@ function iconFieldUpdate(event) {
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) { 
+    if (index == -1) {
         alert("No item selected, please click a link to edit");
-        return; 
+        return;
     }
     shows[index].children[0].src = event.target.value;
 
@@ -581,7 +609,7 @@ function setBackGroundColor(event) {
     localStorage.setItem("bgcolor", selectedColor);
 }
 
-// the frame is the box surrounding the icon grid, this sets the color.  
+// the frame is the box surrounding the icon grid, this sets the color.
 function setFrameColor(event) {
     document.getElementById("mainlist").style.backgroundColor = event.target.value;
 
@@ -613,12 +641,12 @@ function setFrameSize(event) {
 // toggles the header visibility
 function toggleHeaderVisibility(){
     let x = document.getElementById("header").style.visibility;
-    if (x == "hidden") { 
+    if (x == "hidden") {
         document.getElementById("header").style.visibility = "visible";
         localStorage.setItem("headerhidden", "false");
         document.getElementById("showHeaderButton").innerHTML = "Hide Header";
     }
-    else { 
+    else {
         document.getElementById("header").style.visibility = "hidden";
         localStorage.setItem("headerhidden", "true");
         document.getElementById("showHeaderButton").innerHTML = "Show Header";
@@ -670,7 +698,7 @@ function restoreDefaults(event) {
 // EVENT LISTENERS
 document.getElementById("settingButton").addEventListener("click", toggleEditMode);
 document.getElementById("shortcutName").addEventListener("input", nameFieldUpdate);
-document.getElementById("shortcutURL").addEventListener("input", urlFieldUpdate);
+document.getElementById("shortcutURL").addEventListener("blur", urlFieldUpdate);
 document.getElementById("shortcutIcon").addEventListener("input", iconFieldUpdate);
 document.getElementById("leftArrow").addEventListener("click", moveItemUp);
 document.getElementById("rightArrow").addEventListener("click", moveItemDown);
