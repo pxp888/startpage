@@ -299,6 +299,7 @@ function displayNormalIcons() {
         x = urls[i];
         if (x.slice(0, 4) != "http") { x = "http://" + x; }
         link.href = x;
+        link.target = "_blank";
 
         ndiv.appendChild(im);
         ndiv.appendChild(link);
@@ -550,6 +551,7 @@ function urlFieldUpdate(event) {
     if (x.slice(0, 4) != "http") { x = "http://" + x; }
     shows[index].children[1].innerHTML = event.target.value;
     shows[index].children[1].href = x;
+    shows[index].children[1].target = "_blank";
 
     //update local store
     let urls = JSON.parse(localStorage.getItem("urls"));
