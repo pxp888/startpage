@@ -35,6 +35,21 @@ function getIndex(x){
     return index;
 }
 
+// get shortcut data from localstorage
+function getInfo() {
+    let names = JSON.parse(localStorage.getItem("names"));
+    let icons = JSON.parse(localStorage.getItem("icons"));
+    let urls = JSON.parse(localStorage.getItem("urls"));
+    return {names: names, icons: icons, urls: urls};
+}
+
+// write shortcut data to localstorage
+function setInfo(names, icons, urls) {
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
+}
+
 // Changes the CSS of a selector
 function cssChange(selector, property, value){
     let sheet = document.getElementById("customStyleTag").sheet;
@@ -312,9 +327,7 @@ function displayNormalIcons() {
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     mainlist.style.maxWidth = targetFrameSize + "px";
 
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+    let {names, icons, urls} = getInfo();
 
     let shows = document.getElementsByClassName("show");
 
@@ -352,8 +365,7 @@ function displayEditIcons() {
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     mainlist.style.maxWidth = targetFrameSize + "px";
 
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
+    let {names, icons, urls} = getInfo();
 
     let shows = document.getElementsByClassName("show");
 
@@ -409,9 +421,8 @@ function displayEditIcons() {
 function selectItem(event) {
     if (event.target==null) { return; }
     let shows = document.getElementsByClassName("show");
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+
+    let {names, icons, urls} = getInfo();
 
     let index = getIndex(event.target);
     if (index == -1) { return; }
@@ -461,15 +472,12 @@ function addBlankItem() {
     shortcutIcon.value = "";
 
     //add new blank data to localstorage
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+    let {names, icons, urls} = getInfo();
+
     names.push("");
     icons.push("");
     urls.push("");
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("icons", JSON.stringify(icons));
-    localStorage.setItem("urls", JSON.stringify(urls));
+    setInfo(names, icons, urls);
 }
 
 // remove shortcut
@@ -481,15 +489,11 @@ function removeItem(event) {
     shows[index].remove();
 
     //remove data from localstorage
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+    let {names, icons, urls} = getInfo();
     names.splice(index, 1);
     icons.splice(index, 1);
     urls.splice(index, 1);
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("icons", JSON.stringify(icons));
-    localStorage.setItem("urls", JSON.stringify(urls));
+    setInfo(names, icons, urls);
 }
 
 function moveItemUp(event){
@@ -504,9 +508,8 @@ function moveItemUp(event){
     shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
 
     //update local store
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+    let {names, icons, urls} = getInfo();
+    
     let temp = names[index];
     names[index] = names[index-1];
     names[index-1] = temp;
@@ -516,9 +519,7 @@ function moveItemUp(event){
     temp = urls[index];
     urls[index] = urls[index-1];
     urls[index-1] = temp;
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("icons", JSON.stringify(icons));
-    localStorage.setItem("urls", JSON.stringify(urls));
+    setInfo(names, icons, urls);
 }
 
 function moveItemDown(event){
@@ -533,9 +534,7 @@ function moveItemDown(event){
     shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
 
     //update local store
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
+    let {names, icons, urls} = getInfo();
     let temp = names[index];
     names[index] = names[index+1];
     names[index+1] = temp;
@@ -545,9 +544,7 @@ function moveItemDown(event){
     temp = urls[index];
     urls[index] = urls[index+1];
     urls[index+1] = temp;
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("icons", JSON.stringify(icons));
-    localStorage.setItem("urls", JSON.stringify(urls));
+    setInfo(names, icons, urls);
 }
 
 // update the name of the selected shortcut
