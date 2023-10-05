@@ -8,9 +8,9 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 
 ## Table of Contents
 
-- [what is it? - User Experience](#what-is-it---user-experience)
-- [How does it work?](#how-does-it-work)
-- [Features](#features)
+- [__what is it? - User Experience__](#what-is-it---user-experience)
+- [__How does it work?__](#how-does-it-work)
+- [__Features__](#features)
     - [Customizable display name and Icon for each link](#customizable-display-name-and-icon-for-each-link)
     - [Customizable Icon sizes and surrounding frame](#customizable-icon-sizes-and-surrounding-frame)
     - [Customizable background colors](#customizable-background-colors)
@@ -19,13 +19,13 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
     - [Help page](#help-page)
     - [List View](#list-view)
     - [Settings Pane](#settings-pane)
-- [Feature Details](#feature-details)
+- [__Feature Details__](#feature-details)
     - [animated display name over icons](#animated-display-name-over-icons)
     - [animated Header and setting button opacity](#animated-header-and-setting-button-opacity)
-- [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
-- [Other Code Sources](#other-code-sources)
-- [Validation and Testing](#validation-and-testing)
-- [Deployment](#deployment)
+- [__Frameworks, Libraries & Programs Used__](#frameworks-libraries--programs-used)
+- [__Other Code Sources__](#other-code-sources)
+- [__Validation and Testing__](#validation-and-testing)
+- [__Deployment__](#deployment)
 
 
 
@@ -97,7 +97,7 @@ The settings panelis toggled by pressing the settings gear icon on the lower rig
 
 
 ### Customizable Icon sizes and surrounding frame
-The size of onscreen icons can be set by the user through the settings pane.
+The size of onscreen icons can be set by the user through the settings pane.  The margin around each icon can also be customized. 
 
 
 ### Customizable background colors
@@ -180,7 +180,20 @@ Github Pages is a good choice for this project because it is free, and the code 
 The page can be accessed at https://pxp888.github.io/startpage/
 
 
+### Forking the GitHub Repository
+By forking the repository, we make a copy of the original repository on our GitHub account to view and change without affecting the original repository by using these steps:
 
+1.  Log in to GitHub and locate GitHub Repository [startpage](https://github.com/pxp888/startpage)
+2.  At the top of the Repository(under the main navigation) locate "Fork" button.
+3.  Now you should have a copy of the original repository in your GitHub account.
 
+### Local Clone
 
+1.  Log in to GitHub and locate GitHub Repository [startpage](https://github.com/pxp888/startpage)
+2.  Under the repository name click "Clone or download"
+3.  Click on the code button, select clone with HTTPS, SSH or GitHub CLI and copy the link shown.
+4.  Open Git Bash
+5.  Change the current working directory to the location where you want the cloned directory to be made.
+6.  Type git clone and then paste The URL copied in the step 3.
+7.  Press Enter and your local clone will be created.
 
