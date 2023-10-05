@@ -73,6 +73,14 @@ function findLongestWordLength(str) {
     return longestWordLength;
 }
 
+// swap two elements in an array
+function swapItems(array, index1, index2) {
+    let temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+}
+
+
 // PAGE SETUP FUNCTIONS
 
 // adds a style tag to the head of the document with the CSS for the icons
@@ -496,54 +504,41 @@ function removeItem(event) {
     setInfo(names, icons, urls);
 }
 
-function moveItemUp(event){
+function moveItemUp(event) {
     let shows = document.getElementsByClassName("show");
-
-    let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
         return;
     }
-    if ((index == 0)||(index == shows.length)) { return; }
-    shows[index].parentNode.insertBefore(shows[index], shows[index-1]);
-
-    //update local store
+    let index = getIndex(selected[0]);
+    if ((index == 0) || (index == shows.length)) {
+        return;
+    }
+    shows[index].parentNode.insertBefore(shows[index], shows[index - 1]);
     let {names, icons, urls} = getInfo();
-    
-    let temp = names[index];
-    names[index] = names[index-1];
-    names[index-1] = temp;
-    temp = icons[index];
-    icons[index] = icons[index-1];
-    icons[index-1] = temp;
-    temp = urls[index];
-    urls[index] = urls[index-1];
-    urls[index-1] = temp;
+    swapItems(names, index, index - 1);
+    swapItems(icons, index, index - 1);
+    swapItems(urls, index, index - 1);
     setInfo(names, icons, urls);
 }
 
-function moveItemDown(event){
+function moveItemDown(event) {
     let shows = document.getElementsByClassName("show");
-
-    let index = getIndex(document.getElementsByClassName("selected")[0]);
-    if (index == -1) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
         return;
     }
-    if (index == shows.length-2) { return; }
-    shows[index].parentNode.insertBefore(shows[index+1], shows[index]);
-
-    //update local store
+    let index = getIndex(selected[0]);
+    if (index == shows.length - 2) {
+        return;
+    }
+    shows[index].parentNode.insertBefore(shows[index + 1], shows[index]);
     let {names, icons, urls} = getInfo();
-    let temp = names[index];
-    names[index] = names[index+1];
-    names[index+1] = temp;
-    temp = icons[index];
-    icons[index] = icons[index+1];
-    icons[index+1] = temp;
-    temp = urls[index];
-    urls[index] = urls[index+1];
-    urls[index+1] = temp;
+    swapItems(names, index, index + 1);
+    swapItems(icons, index, index + 1);
+    swapItems(urls, index, index + 1);
     setInfo(names, icons, urls);
 }
 
