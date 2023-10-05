@@ -170,6 +170,13 @@ No errors were found in the for CSS with Jigsaw.
 
 No errors were found in the for HTML with W3C Markup Validation Service.
 
+__Validators Used:__
+*   [JS Hint](https://jshint.com/)
+*   [Jigsaw](https://jigsaw.w3.org/css-validator/)
+*   [W3C Markup Validation Service](https://validator.w3.org/)
+
+
+
 In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow. 
 
 ## Deployment
