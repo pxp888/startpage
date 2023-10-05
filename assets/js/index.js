@@ -745,6 +745,8 @@ function setupPage() {
     displayNormalIcons();
 }
 
+// RUN PAGE SETUP
+setupPage();
 
 // EVENT LISTENERS
 settingButton.addEventListener("click", toggleEditMode);
@@ -763,5 +765,3 @@ showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 iconMargin.addEventListener("input", setIconMargin);
 
-// RUN PAGE SETUP
-setupPage();
