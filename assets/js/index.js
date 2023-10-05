@@ -13,6 +13,7 @@ const backgroundColorPicker = document.getElementById("backgroundColorPicker");
 const frameColorPicker = document.getElementById("frameColorPicker");
 const iconSize = document.getElementById("iconSize");
 const frameSize = document.getElementById("frameSize");
+const iconMargin = document.getElementById("iconMargin");
 const downloadButton = document.getElementById("downloadButton");
 const uploadButton = document.getElementById("uploadButton");
 const showHeaderButton = document.getElementById("showHeaderButton");
@@ -180,6 +181,17 @@ function restoreDataFromLocalstorage() {
     if (targetFrameSize != null) {
         mainlist.style.maxWidth = targetFrameSize + "px";
         frameSize.value = targetFrameSize;
+    }
+
+    //set icon margin
+    let targetIconMargin = localStorage.getItem("iconMargin");
+    if (targetIconMargin != null) {
+        cssChange(".show", "margin", targetIconMargin + "px");
+        iconMargin.value = targetIconMargin;
+    }
+    else {
+        cssChange(".show", "margin", "0px");
+        iconMargin.value = "0";
     }
 }
 
@@ -658,6 +670,15 @@ function setIconSize(event) {
     cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
 }
 
+// sets the padding around icons
+function setIconMargin(event) {
+    let targetIconMargin = event.target.value;
+    if ((targetIconMargin < 0)||(targetIconMargin > 50)) { return; }
+    localStorage.setItem("iconMargin", targetIconMargin);
+
+    cssChange(".show", "margin", targetIconMargin + "px");
+}
+
 // sets the size of the frame surrounding the icon grid
 function setFrameSize(event) {
     let targetFrameSize = event.target.value;
@@ -748,6 +769,7 @@ downloadButton.addEventListener("click", downloadLocalStorage);
 uploadButton.addEventListener("change", uploadLocalStorage);
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
+iconMargin.addEventListener("input", setIconMargin);
 
 // RUN PAGE SETUP
 setupPage();
