@@ -199,7 +199,7 @@ body > a {
 /* --------------------------------- MEDIA QUERRIES ---------------------------------- */
 
 
-@media screen and (max-width: 700px) 
+@media screen and (max-width: 800px) 
 {
     #mainlist {
         padding: 0rem;
