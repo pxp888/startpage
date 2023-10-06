@@ -119,6 +119,7 @@ body > a {
 #settingScreen div {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     padding: 0.25rem;
