@@ -18,8 +18,10 @@ const downloadButton = document.getElementById("downloadButton");
 const uploadButton = document.getElementById("uploadButton");
 const showHeaderButton = document.getElementById("showHeaderButton");
 const restoreDefaultsButton = document.getElementById("restoreDefaultsButton");
+const helpPageButton = document.getElementById("helpPageButton");
 
-// HELPER FUNCTIONS
+
+// HELPER FUNCTIONS  -----------------------------------------
 
 // Returns the index of the element in its group
 function getIndex(x){
@@ -80,10 +82,15 @@ function swapItems(array, index1, index2) {
     array[index2] = temp;
 }
 
+// show the help page
+function helpPage() {
+    window.open("help.html", "_blank");
+}
 
-// PAGE SETUP FUNCTIONS
 
-// adds a style tag to the head of the document with the CSS for the icons
+// PAGE SETUP FUNCTIONS -----------------------------------------
+
+// add a style tag to the head of the document with the CSS for the icons
 function addStyleTag() {
     const style = document.createElement('style');
     style.id = "customStyleTag";
@@ -423,9 +430,36 @@ function displayEditIcons() {
 
 }
 
-// SHORTCUT EDITING FUNCTIONS
+// create a button to add a hidden file input
+function addHiddenFileInputButton() {
+    let fileInput = document.createElement("input");
+    fileInput.id = "hiddenFileInput";
+    fileInput.type = "file";
+    fileInput.accept = ".json";
+    fileInput.style.display = "none";
+    fileInput.addEventListener("change", uploadLocalStorage);
+    uploadButton.appendChild(fileInput);
+}
+
+// when the upload button is pressed, click the hidden file input
+function uploadButtonPressed(event) {
+    document.getElementById("hiddenFileInput").click();
+}
+
+// set up the page - run this when loading the page
+function setupPage() {
+    addStyleTag();
+    checkHeaderShowing();
+    restoreDataFromLocalstorage();
+    displayNormalIcons();
+    addHiddenFileInputButton();
+}
+
+
+// SHORTCUT EDITING FUNCTIONS  -----------------------------------------
 
 // update CSS for a selected shortcut, and update the editing fields
+
 function selectItem(event) {
     if (event.target==null) { return; }
     let shows = document.getElementsByClassName("show");
@@ -633,7 +667,8 @@ function iconFieldUpdate(event) {
     localStorage.setItem("icons", JSON.stringify(icons));
 }
 
-// PAGE CUSTOMIZATION FUNCTIONS
+
+// PAGE CUSTOMIZATION FUNCTIONS  -----------------------------------------
 
 function setBackGroundColor(event) {
     let selectedColor = event.target.value;
@@ -695,7 +730,8 @@ function toggleHeaderVisibility(){
     }
 }
 
-// DATA EXPORT/IMPORT FUNCTIONS
+
+// DATA EXPORT/IMPORT FUNCTIONS  -----------------------------------------
 
 function downloadLocalStorage() {
     const localStorageData = JSON.stringify(localStorage);
@@ -737,18 +773,11 @@ function restoreDefaults(event) {
     else { return; }
 }
 
-// PAGE SETUP
-function setupPage() {
-    addStyleTag();
-    checkHeaderShowing();
-    restoreDataFromLocalstorage();
-    displayNormalIcons();
-}
-
 // RUN PAGE SETUP
 setupPage();
 
-// EVENT LISTENERS
+
+// EVENT LISTENERS  -----------------------------------------
 settingButton.addEventListener("click", toggleEditMode);
 shortcutName.addEventListener("blur", nameFieldUpdate);
 shortcutURL.addEventListener("blur", urlFieldUpdate);
@@ -760,8 +789,9 @@ frameColorPicker.addEventListener("input", setFrameColor);
 iconSize.addEventListener("input", setIconSize);
 frameSize.addEventListener("input", setFrameSize);
 downloadButton.addEventListener("click", downloadLocalStorage);
-uploadButton.addEventListener("change", uploadLocalStorage);
+uploadButton.addEventListener("click", uploadButtonPressed);
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 iconMargin.addEventListener("input", setIconMargin);
+helpPageButton.addEventListener("click", helpPage);
 

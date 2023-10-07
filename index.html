@@ -92,21 +92,13 @@
             <p>View</p>
             <p class="darkButton" id="viewModeButton">List View</p>
             <p class="darkButton" id="showHeaderButton">Hide Header</p>
-            <p class="darkButton" onclick="document.getElementById('helpLink').click()">Help page</p>
+            <p class="darkButton" id="helpPageButton">Show Help Page</p>
         </div>
         <div class="vertable">
             <p>Backup</p>
-            <p class="darkButton" onclick="document.getElementById('downloadButton').click()">Save Config</p>
-            <p class="darkButton" onclick="document.getElementById('uploadButton').click()">Upload Config</p>
+            <p class="darkButton" id="downloadButton">Save Config</p>
+            <p class="darkButton" id="uploadButton">Upload Config</p>
             <p class="darkButton" id="restoreDefaultsButton">Restore Defaults</p>
-            
-        </div>
-        
-        <!-- these are hidden for visual consistency, and clicks simulated by the 'darkButtons' above-->
-        <div style="display: none;">
-            <a id="helpLink" href="help.html">hidden help button</a>
-            <button id="downloadButton">Save Data</button>
-            <input type="file" id="uploadButton" accept=".json">
         </div>
     </div>
 
