@@ -1,3 +1,9 @@
+```
+This file adds the functionality for the list view. It changes the CSS 
+of the main view area for the list view instead of an icon grid, as well 
+as showing relevant controls for each view in the settings menu.
+```
+
 
 // changes the CSS of the main view area for the list view instead of an icon grid.  
 function setListCSS() {
@@ -143,15 +149,21 @@ function setListItemHeight(event) {
     cssChange(".show a, .show p", "font-size", height * 0.6 + "px");        
 }
 
-document.getElementById("viewModeButton").addEventListener("click", changeViewMode);
-document.getElementById("listItemWidth").addEventListener("input", setListItemWidth);
-document.getElementById("listItemHeight").addEventListener("input", setListItemHeight);
 
+// check if list view was the last viewmode used, and if so, change to list view.
 let viewmode = localStorage.getItem("viewmode");
 if (viewmode == "list") { 
     localStorage.setItem("viewmode", "icon");
     changeViewMode();
 }
+else {
+    // hide listview related settings
+    let x = document.getElementsByClassName("listSettingItem");
+    for (let i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+}
 
 
 
+document.getElementById("viewModeButton").addEventListener("click", changeViewMode);
+document.getElementById("listItemWidth").addEventListener("input", setListItemWidth);
+document.getElementById("listItemHeight").addEventListener("input", setListItemHeight);
