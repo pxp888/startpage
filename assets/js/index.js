@@ -213,8 +213,8 @@ function restoreDataFromLocalstorage() {
         iconMargin.value = targetIconMargin;
     }
     else {
-        cssChange(".show", "margin", "0px");
-        iconMargin.value = "0";
+        cssChange(".show", "margin", "5px");
+        iconMargin.value = "5";
     }
 }
 
