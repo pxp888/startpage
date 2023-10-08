@@ -146,6 +146,65 @@ By default the user only sees the images for each link.  As the user moves their
 ### animated Header and setting button opacity
 The header and setting button are shown with lower opacity to reduce the clutter and distraction of these items.  They are shown with full opacity as the user moves the mouse cursor over them.  
 
+## Project Structure
+
+The project essentially consists of two HTML pages.  One is for the main page, and the other is for the help page.
+
+The HTML is relatively simple for the main page as most of the functionality comes from Javascript.  
+
+### Data Structure 
+
+There are two types of data handled for the project.  The first is the actual shortcut data for each link.  The second is customization data for how the page is displayed.  These are both stored in localStorage, but can be exported to a file and/or imported to replicate the page on other machines.
+
+|Item|Description|
+|-|-|
+|Names|list of names for each link|
+|URLs|list of URLs for each link|
+|Icon URLs|list of icon URLs for each link|
+|View Mode|whether the page is in icon or list view|
+|Background Color|background color of the page|
+|Header Visibility|whether the header is visible or not|
+|Frame Color|color of the frame around the links|
+|Frame Size|size of the frame around the links|
+|Icon Size|size of the icons|
+|List Item Width|width of the list items|
+|List Item Height|height of the list items|
+|Item Margins|margin around each link|
+
+
+### File Reference Structure
+
+The __index.html__ file is the main document, along with __help.html__ for the help page.
+
+The __index.js__ file handles the main functionality of the page.  It handles the management of data for both localStorage and file import/export, and the display of the icons.  
+
+The __list-view.js__ file adds a list-view option, which alters the CSS applied to icons.
+
+The __dynamic-header.js__ file changes the color of header text based on the background color to ensure readability.  
+
+The __icon.css__ file handles most of the page styling, except for the icons themselves.  The CSS for the icon view is defined in the __index.js__ and __list-view.js__ files.
+
+
+```mermaid
+graph LR
+A[index.html]
+B[help.html]
+
+A --> css1[icon.css] -.- e4([page styling])
+A --> js1[index.js]
+js1 -.- e5([icon view])
+js1 -.- e1([localStorage management]) 
+js1 -.- e6([file import/export])
+
+A --> js2[list-view.js] -.- e2([adds list view functionality])
+A --> js3[dynamic-header.js] -.- e3([adds dynamic color to header])
+B --> css2[help-style.css]
+A <--> B
+```
+
+_Note - arrows indicate links, dashed lines are explanations of what the linked files do_
+
+
 ## Frameworks, Libraries & Programs Used
 
 |Name|Description|
@@ -159,9 +218,9 @@ The header and setting button are shown with lower opacity to reduce the clutter
 
 ## other code sources
 
-#### Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.  
+Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.  
 
-#### Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.  
+Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.  
 
 ## Validation and Testing
 No errors were found in the for Javascript with JSHint.
