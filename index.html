@@ -15,94 +15,97 @@
 
 <body>
     <!-- header is here -->
-    <div id="header">
+    <header id="header">
         <div>
             <p class="giant" onclick="document.getElementById('helplink').click()">Simple</p>
             <p>is better.</p>
         </div>
         <a href="help.html"><p id="helplink">How it works</p></a>
-    </div>
+    </header>
 
-    <!-- main shortcut list is here -->
-    <div id="outerlist">
-        <div id="mainlist">
-            
-        </div>
-    </div>
-    
-    <!-- SETTING SECTION -->
-    <div id="spacer"></div>
-    <div id="settingScreen">
-        <!-- individual shortcut settings -->
-        <h4>Shortcut Settings</h4>
-        <div>
-            <label for="shortcutName">Name</label>
-            <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
-        </div>
-        <div>
-            <label for="shortcutURL">URL</label>
-            <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
-        </div>
-        <div>
-            <label for="shortcutIcon">Icon URL</label>
-            <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
-        </div>
-        <div class="vertable">
-            <p>Item Order</p>
-            <p class="darkButton" id="leftArrow">Up</p>
-            <p class="darkButton" id="rightArrow">Down</p>
-        </div>
+    <main>
+        <!-- main shortcut list is here -->
+        <section id="outerlist">
+            <div id="mainlist">
+                
+            </div>
+        </section>
         
-        <!-- page settings -->
-        <h4>Page Settings</h4>
-        <div class="vertable">
+        <!-- SETTING SECTION -->
+        <div id="spacer"></div>
+        <section id="settingScreen">
+            <!-- individual shortcut settings -->
+            <h4>Shortcut Settings</h4>
             <div>
-                <label for="backgroundColorPicker">Background: </label>
-                <input type="color" id="backgroundColorPicker">
+                <label for="shortcutName">Name</label>
+                <input type="text" id="shortcutName" name="shortcutName" placeholder="Name">
             </div>
             <div>
-                <label for="frameColorPicker">Frame color: </label>
-                <input type="color" id="frameColorPicker">
-            </div>
-        </div>
-        <div class="vertable">
-            <div>
-                <label for="frameSize">Frame Size: </label>
-                <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
+                <label for="shortcutURL">URL</label>
+                <input type="text" id="shortcutURL" name="shortcutURL" placeholder="URL">
             </div>
             <div>
-                <label for="iconMargin">Margins: </label>
-                <input type="range" id="iconMargin" min="0" max="50" name="iconMargin">
+                <label for="shortcutIcon">Icon URL</label>
+                <input type="text" id="shortcutIcon" name="shortcutIcon" placeholder="Icon URL">
             </div>
-            <div>
-                <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
-                <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
+            <div class="vertable">
+                <p>Item Order</p>
+                <p class="darkButton" id="leftArrow">Up</p>
+                <p class="darkButton" id="rightArrow">Down</p>
             </div>
-            <div>
-                <label class = "listSettingItem" for="listItemWidth">Item Width: </label>
-                <input class = "listSettingItem" type="range" id="listItemWidth" min="250" max="1000" name="listItemWidth">
+            
+            <!-- page settings -->
+            <h4>Page Settings</h4>
+            <div class="vertable">
+                <div>
+                    <label for="backgroundColorPicker">Background: </label>
+                    <input type="color" id="backgroundColorPicker">
+                </div>
+                <div>
+                    <label for="frameColorPicker">Frame color: </label>
+                    <input type="color" id="frameColorPicker">
+                </div>
             </div>
-            <div>
-                <label class = "listSettingItem" for="listItemHeight">Item Height: </label>
-                <input class = "listSettingItem" type="range" id="listItemHeight" min="20" max="50" name="listItemHeight">
+            <div class="vertable">
+                <div>
+                    <label for="frameSize">Frame Size: </label>
+                    <input type="range" id="frameSize" min="400" max="2500" name="frameSize">
+                </div>
+                <div>
+                    <label for="iconMargin">Margins: </label>
+                    <input type="range" id="iconMargin" min="0" max="50" name="iconMargin">
+                </div>
+                <div>
+                    <label class = "iconSettingItem" for="iconSize">Icon Size: </label>
+                    <input class = "iconSettingItem" type="range" id="iconSize" min="40" max="300" name="iconSize">
+                </div>
+                <div>
+                    <label class = "listSettingItem" for="listItemWidth">Item Width: </label>
+                    <input class = "listSettingItem" type="range" id="listItemWidth" min="250" max="1000" name="listItemWidth">
+                </div>
+                <div>
+                    <label class = "listSettingItem" for="listItemHeight">Item Height: </label>
+                    <input class = "listSettingItem" type="range" id="listItemHeight" min="20" max="50" name="listItemHeight">
+                </div>
             </div>
-        </div>
-        <div class="vertable">
-            <p>View</p>
-            <p class="darkButton" id="viewModeButton">List View</p>
-            <p class="darkButton" id="showHeaderButton">Hide Header</p>
-            <p class="darkButton" id="helpPageButton">Show Help Page</p>
-        </div>
-        <div class="vertable">
-            <p>Backup</p>
-            <p class="darkButton" id="downloadButton">Save Config</p>
-            <p class="darkButton" id="uploadButton">Upload Config</p>
-            <p class="darkButton" id="restoreDefaultsButton">Restore Defaults</p>
-        </div>
-    </div>
+            <div class="vertable">
+                <p>View</p>
+                <p class="darkButton" id="viewModeButton">List View</p>
+                <p class="darkButton" id="showHeaderButton">Hide Header</p>
+                <p class="darkButton" id="helpPageButton">Show Help Page</p>
+            </div>
+            <div class="vertable">
+                <p>Backup</p>
+                <p class="darkButton" id="downloadButton">Save Config</p>
+                <p class="darkButton" id="uploadButton">Upload Config</p>
+                <p class="darkButton" id="restoreDefaultsButton">Restore Defaults</p>
+            </div>
+        </section>
 
-    <!-- This is the button that toggles the visibility of the settings section, fixed location, always visible -->
-    <img id="settingButton" src="assets/images/settings.png" alt="settings">
+        <!-- This is the button that toggles the visibility of the settings section, fixed location, always visible -->
+        <img id="settingButton" src="assets/images/settings.png" alt="settings">
+
+    </main>
 
     <script src="assets/js/index.js"></script>
     <script src="assets/js/list-view.js"></script>

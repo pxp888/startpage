@@ -57,8 +57,7 @@ body > a {
 }
 
 #helplink:hover {
-    color: black;
-    background-color: gainsboro;
+    font-weight: 900;
     cursor: pointer;
 }
 
