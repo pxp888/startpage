@@ -177,13 +177,13 @@ function getDefaultData() {
         iconsize: 182,
         framesize: 1200,
         iconMargin: 5
-    }
+    };
 }
 
 // restores the data from localstorage, or sets defaults if there is no data
 function restoreDataFromLocalstorage() {
     const defaultData = getDefaultData();
-    
+
     // if there is no data in localstorage, set it to the default data
     const names = JSON.parse(localStorage.getItem("names")) || defaultData.names;
     const icons = JSON.parse(localStorage.getItem("icons")) || defaultData.icons;
@@ -198,7 +198,7 @@ function restoreDataFromLocalstorage() {
     const framecolor = localStorage.getItem("framecolor") || defaultData.framecolor;
     mainlist.style.backgroundColor = framecolor;
     frameColorPicker.value = framecolor;
-    
+
     const iconsize = localStorage.getItem("iconsize") || defaultData.iconsize;
     cssChange(".show", "width", iconsize + "px");
     cssChange(".show", "height", iconsize + "px");
@@ -368,7 +368,7 @@ function displayEditIcons() {
     if (targetFrameSize == null) { targetFrameSize = 1200; }
     mainlist.style.maxWidth = targetFrameSize + "px";
 
-    let {names, icons, urls} = getInfo();
+    let {names, icons} = getInfo();
 
     let shows = document.getElementsByClassName("show");
 
