@@ -234,9 +234,27 @@ __Validators Used:__
 *   [Jigsaw](https://jigsaw.w3.org/css-validator/)
 *   [W3C Markup Validation Service](https://validator.w3.org/)
 
-
-
 In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow. 
+
+__HTML & CSS__
+
+The layout of the icon view of the main page is relatively simple, and changes in screen size are handled by a flex container.  This is straight.  
+
+The settings pane is slightly more complex, because there are multiple controls that are grouped according to their function.  Keeping this organized and correctly responsive required both flex containers and a media query adjustment in the CSS. 
+
+__Javascript__
+
+This required a lot more experimentation, particularly to make sure that icon data was kept consistently synchronized between the view of the document itself and localStorage.  
+
+This required lots of trial and error, and a lot of console.log() statements to make sure that the data was being handled correctly. 
+
+The same was true between localStorage and the file import/export functionality, but this is a much simpler process because there is no attention paid to individual pieces of data.  The entire localStorage object is simply exported to a file, and the entire file is imported to localStorage.
+
+The other area that required lots of experimentation was the manipulation of CSS values from javascript.  While it was relatively simple to change rules applied to elements by changing the class of the element, it was more difficult to change the values of CSS attributes directly.  
+
+If I tried to alter CSS that was loaded from a .css file the browser would give me an error saying this was not allowed due to cross-site scripting.  The only functional way I found was to load the CSS that I wanted to change from the javascript file.  
+
+I have a feeling that there must be a better of doing this, but this approach did work. 
 
 ## Deployment
 The page is deployed on Github Pages, from the main branch.  
