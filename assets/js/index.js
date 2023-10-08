@@ -430,22 +430,6 @@ function displayEditIcons() {
 
 }
 
-// create a button to add a hidden file input
-function addHiddenFileInputButton() {
-    let fileInput = document.createElement("input");
-    fileInput.id = "hiddenFileInput";
-    fileInput.type = "file";
-    fileInput.accept = ".json";
-    fileInput.style.display = "none";
-    fileInput.addEventListener("change", uploadLocalStorage);
-    uploadButton.appendChild(fileInput);
-}
-
-// when the upload button is pressed, click the hidden file input
-function uploadButtonPressed(event) {
-    document.getElementById("hiddenFileInput").click();
-}
-
 // set up the page - run this when loading the page
 function setupPage() {
     addStyleTag();
@@ -772,6 +756,23 @@ function restoreDefaults(event) {
     }
     else { return; }
 }
+
+// create a button to add a hidden file input
+function addHiddenFileInputButton() {
+    let fileInput = document.createElement("input");
+    fileInput.id = "hiddenFileInput";
+    fileInput.type = "file";
+    fileInput.accept = ".json";
+    fileInput.style.display = "none";
+    fileInput.addEventListener("change", uploadLocalStorage);
+    uploadButton.appendChild(fileInput);
+}
+
+// when the upload button is pressed, click the hidden file input
+function uploadButtonPressed(event) {
+    document.getElementById("hiddenFileInput").click();
+}
+
 
 // RUN PAGE SETUP
 setupPage();
