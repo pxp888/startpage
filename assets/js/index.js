@@ -185,17 +185,10 @@ function restoreDataFromLocalstorage() {
     const defaultData = getDefaultData();
     
     // if there is no data in localstorage, set it to the default data
-    const storedNames = JSON.parse(localStorage.getItem("names")) || [];
-    const storedIcons = JSON.parse(localStorage.getItem("icons")) || [];
-    const storedUrls = JSON.parse(localStorage.getItem("urls")) || [];
-
-    const names = storedNames.length ? storedNames : defaultData.names;
-    const icons = storedIcons.length ? storedIcons : defaultData.icons;
-    const urls = storedUrls.length ? storedUrls : defaultData.urls;
-
-    localStorage.setItem("names", JSON.stringify(names));
-    localStorage.setItem("icons", JSON.stringify(icons));
-    localStorage.setItem("urls", JSON.stringify(urls));
+    const names = JSON.parse(localStorage.getItem("names")) || defaultData.names;
+    const icons = JSON.parse(localStorage.getItem("icons")) || defaultData.icons;
+    const urls = JSON.parse(localStorage.getItem("urls")) || defaultData.urls;
+    setInfo(names, icons, urls);
 
     // apply appearance settings
     const bgcolor = localStorage.getItem("bgcolor") || defaultData.bgcolor;
