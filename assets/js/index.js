@@ -108,15 +108,10 @@ function checkHeaderShowing() {
     }
 }
 
-// restores the data from localstorage, or sets defaults if there is no data
-function restoreDataFromLocalstorage() {
-    // create shortcut data
-    let names = JSON.parse(localStorage.getItem("names"));
-    let icons = JSON.parse(localStorage.getItem("icons"));
-    let urls = JSON.parse(localStorage.getItem("urls"));
-
-    if (names == null || names.length == 0) {
-        names = [
+// return a default data object
+function getDefaultData() {
+    return {
+        names : [
             "Google",
             "Youtube",
             "Gmail",
@@ -135,9 +130,8 @@ function restoreDataFromLocalstorage() {
             "Booking.com",
             "Google Photos",
             "Google Calendar"
-        ];
-
-        urls = [
+        ],
+        urls : [
             "www.google.com",
             "www.youtube.com",
             "www.gmail.com",
@@ -156,9 +150,8 @@ function restoreDataFromLocalstorage() {
             "www.booking.com",
             "www.photos.google.com",
             "https://calendar.google.com/calendar/"
-        ];
-
-        icons = [
+        ],
+        icons : [
             "https://static-00.iconduck.com/assets.00/google-icon-2048x2048-czn3g8x8.png",
             "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
             "https://cdn-icons-png.flaticon.com/512/732/732200.png",
@@ -177,52 +170,54 @@ function restoreDataFromLocalstorage() {
             "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Booking.com_Icon_2022.svg/1200px-Booking.com_Icon_2022.svg.png",
             "https://cdn-icons-png.flaticon.com/512/2991/2991131.png",
             "https://cdn-icons-png.flaticon.com/512/5968/5968499.png"
-        ];
+        ],
 
-        localStorage.setItem("names", JSON.stringify(names));
-        localStorage.setItem("urls", JSON.stringify(urls));
-        localStorage.setItem("icons", JSON.stringify(icons));
+        bgcolor: "#3d3d43",
+        framecolor: "#1f1f1f",
+        iconsize: 182,
+        framesize: 1200,
+        iconMargin: 5
     }
+}
 
-    //set background color
-    let bgcolor = localStorage.getItem("bgcolor");
-    if (bgcolor != null) {
-        document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor;
-        backgroundColorPicker.value = bgcolor;
-    }
+// restores the data from localstorage, or sets defaults if there is no data
+function restoreDataFromLocalstorage() {
+    const defaultData = getDefaultData();
+    
+    // if there is no data in localstorage, set it to the default data
+    const storedNames = JSON.parse(localStorage.getItem("names")) || [];
+    const storedIcons = JSON.parse(localStorage.getItem("icons")) || [];
+    const storedUrls = JSON.parse(localStorage.getItem("urls")) || [];
 
-    //set frame color
-    let framecolor = localStorage.getItem("framecolor");
-    if (framecolor != null) {
-        mainlist.style.backgroundColor = framecolor;
-        frameColorPicker.value = framecolor;
-    }
+    const names = storedNames.length ? storedNames : defaultData.names;
+    const icons = storedIcons.length ? storedIcons : defaultData.icons;
+    const urls = storedUrls.length ? storedUrls : defaultData.urls;
 
-    //set icon size
-    let targetIconSize = localStorage.getItem("iconsize");
-    if (targetIconSize != null) {
-        cssChange(".show", "width", targetIconSize + "px");
-        cssChange(".show", "height", targetIconSize + "px");
-        cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
-    }
+    localStorage.setItem("names", JSON.stringify(names));
+    localStorage.setItem("icons", JSON.stringify(icons));
+    localStorage.setItem("urls", JSON.stringify(urls));
 
-    //set frame size
-    let targetFrameSize = localStorage.getItem("framesize");
-    if (targetFrameSize != null) {
-        mainlist.style.maxWidth = targetFrameSize + "px";
-        frameSize.value = targetFrameSize;
-    }
+    // apply appearance settings
+    const bgcolor = localStorage.getItem("bgcolor") || defaultData.bgcolor;
+    document.getElementsByTagName("body")[0].style.backgroundColor = bgcolor;
+    backgroundColorPicker.value = bgcolor;
 
-    //set icon margin
-    let targetIconMargin = localStorage.getItem("iconMargin");
-    if (targetIconMargin != null) {
-        cssChange(".show", "margin", targetIconMargin + "px");
-        iconMargin.value = targetIconMargin;
-    }
-    else {
-        cssChange(".show", "margin", "5px");
-        iconMargin.value = "5";
-    }
+    const framecolor = localStorage.getItem("framecolor") || defaultData.framecolor;
+    mainlist.style.backgroundColor = framecolor;
+    frameColorPicker.value = framecolor;
+    
+    const iconsize = localStorage.getItem("iconsize") || defaultData.iconsize;
+    cssChange(".show", "width", iconsize + "px");
+    cssChange(".show", "height", iconsize + "px");
+    cssChange(".show a, .show p", "font-size", iconsize/8 + "px");
+
+    const framesizeValue = localStorage.getItem("framesize") || defaultData.framesize;
+    mainlist.style.maxWidth = framesizeValue + "px";
+    frameSize.value = framesizeValue;
+
+    const iconMarginValue = localStorage.getItem("iconMargin") || defaultData.iconMargin;
+    cssChange(".show", "margin", iconMarginValue + "px");
+    iconMargin.value = iconMarginValue;
 }
 
 // sets the CSS for the icon view
