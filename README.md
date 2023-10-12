@@ -18,10 +18,11 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
     - [Hideable Header](#hideable-header)
     - [Help page](#help-page)
     - [List View](#list-view)
-    - [Settings Pane](#settings-pane)
+    - [Settings Panel](#settings-panel)
 - [__Feature Details__](#feature-details)
     - [animated display name over icons](#animated-display-name-over-icons)
     - [animated Header and setting button opacity](#animated-header-and-setting-button-opacity)
+    - [animated Settings Panel](#animated-settings-panel)
 - [__Project Structure__](#project-structure)
     - [Data Structure](#data-structure)
     - [File Reference Structure](#file-reference-structure)
@@ -35,34 +36,34 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 ## what is it? - User Experience
 It is a simple collection of links with corresponding icons for commonly used websites that is easy to customize for individual needs.
 
-Ideally this would be set as the homepage or new tab page of your browser. 
+Ideally this would be set as the homepage or new tab page of your browser.
 
-## How does it work?  
-Each link is represented by three pieces of data.  A name, which is up to the user.  A URL, which is the actual destination of the link, and another URL for the icon the user wants to use.  
+## How does it work?
+Each link is represented by three pieces of data.  A name, which is up to the user.  A URL, which is the actual destination of the link, and another URL for the icon the user wants to use.
 
-Users are free to use any image they like.  
+Users are free to use any image they like.
 
-Users can also customize the background colors of the page.  
+Users can also customize the background colors of the page.
 
-Configuration data for the page is stored in localStorage, and not the cloud.  If users want to replicate the page on multiple machines they can save the configuration data 
+Configuration data for the page is stored in localStorage, and not the cloud.  If users want to replicate the page on multiple machines they can save the configuration data
 
 ## Features
 
 ### Customizable display name and Icon for each link
 
-Eech link is represented by three pieces of data. 
+Eech link is represented by three pieces of data.
 
 |Item|Description|
 |-|-|
-|name|This is the displayed name, which is up to the user. 
-|URL|This is the actual web address of the target website. 
-|Icon URL|This is the image address the user wants to use.  
+|name|This is the displayed name, which is up to the user.
+|URL|This is the actual web address of the target website.
+|Icon URL|This is the image address the user wants to use.
 
 There are some default links shown if no data has been saved, but users are free to change these to their needs.
 
-Links can be edited and re-ordered through the settings pane.  
+Links can be edited and re-ordered through the settings panel.
 
-The settings panelis toggled by pressing the settings gear icon on the lower right corner of the page.  
+The settings panel is toggled by pressing the settings gear icon on the lower right corner of the page.
 
 ## How to customize icons
 1)  Click on the settings button at the lower right corner of the page.
@@ -70,29 +71,29 @@ The settings panelis toggled by pressing the settings gear icon on the lower rig
 ![how to 1](assets/screenshots/h1.png)
 
 
-2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut. 
+2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut.
 
 ![how to 2](assets/screenshots/h2.png)
 
-3) In the **"Name"** field enter the display name you would like for the shortcut.  
+3) In the **"Name"** field enter the display name you would like for the shortcut.
 
-4) In the **"URL"** field enter the address of the target website.  
+4) In the **"URL"** field enter the address of the target website.
 
 ![how to 3](assets/screenshots/h3.png)
 
-5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).  
+5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).
 
 
 ![how to 4](assets/screenshots/h4.png)
 
 
-6) Paste this link into the **"Icon URL"** field.  
+6) Paste this link into the **"Icon URL"** field.
 
 
 ![how to 5](assets/screenshots/h5.png)
 
 
-7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings pane.  
+7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings panel.
 
 
 
@@ -100,18 +101,18 @@ The settings panelis toggled by pressing the settings gear icon on the lower rig
 
 
 ### Customizable Icon sizes and surrounding frame
-The size of onscreen icons can be set by the user through the settings pane.  The margin around each icon can also be customized. 
+The size of onscreen icons can be set by the user through the settings panel.  The margin around each icon can also be customized.
 
 
 ### Customizable background colors
 
 ![background colors](assets/screenshots/colors.webp)
 
-The background and frame around the links can be customized.  
+The background and frame around the links can be customized.
 
-### Configurations can be saved to file, and replicated 
+### Configurations can be saved to file, and replicated
 
-Configuration data is stored locally on each browser, and can be exported to a file.  This file can then be imported to replicate the configuration on other browsers or computers. 
+Configuration data is stored locally on each browser, and can be exported to a file.  This file can then be imported to replicate the configuration on other browsers or computers.
 
 ### Hideable Header
 
@@ -119,43 +120,48 @@ For a cleaner look the header can be permanently hidden.  This is a page that wi
 
 ### Help page
 ![help page](assets/screenshots/help_page.webp)
-There is a link on the header to a help page showing how the controls work, and how to edit the page as desired.  
+There is a link on the header to a help page showing how the controls work, and how to edit the page as desired.
 
-There is also a link in the settings pane, which is toggled by pressing the settings gear icon on the lower right corner of the page.
+There is also a link in the settings panel, which is toggled by pressing the settings gear icon on the lower right corner of the page.
 
 ### List View
 ![list view](assets/screenshots/list_view.webp)
-In addition to the standard grid view, there is also a list view.  This is toggled by pressing the list view button on the settings pane.  
+In addition to the standard grid view, there is also a list view.  This is toggled by pressing the list view button on the settings panel.
 
-The list view is also customizable, and link widths and heights can be set by the user.  
+The list view is also customizable, and link widths and heights can be set by the user.
 
 Narrow link width allows multiple columns to be shown when the browser window is wide enough.
 
-### Settings Pane
+### Settings Panel
 
-![settingsPanePicture](assets/screenshots/settings_pane.webp)
+![settingsPanelPicture](assets/screenshots/settings_panel.webp)
 
-All adjustments and settings are done through the settings pane. 
+All adjustments and settings are done through the settings panel.
 
-The settings panelis toggled by pressing the settings gear icon on the lower right corner of the page.
+The settings panel is toggled by pressing the settings gear icon on the lower right corner of the page.
 
 ## feature details
 
 ### animated display name over icons
 ![animated icon](assets/screenshots/animated_icons.webp)
 
-By default the user only sees the images for each link.  As the user moves their mouse cursor over each link the display name is shown.  
+By default the user only sees the images for each link.  As the user moves their mouse cursor over each link the display name is shown.
 
 ### animated Header and setting button opacity
-The header and setting button are shown with lower opacity to reduce the clutter and distraction of these items.  They are shown with full opacity as the user moves the mouse cursor over them.  
+The header and setting button are shown with lower opacity to reduce the clutter and distraction of these items.  They are shown with full opacity as the user moves the mouse cursor over them.
+
+### animated Settings Panel
+
+The settings panel rises and drops from the bottom of the page when the settings button is pressed.
+
 
 ## Project Structure
 
 The project essentially consists of two HTML pages.  One is for the main page, and the other is for the help page.
 
-The HTML is relatively simple for the main page as most of the functionality comes from Javascript.  
+The HTML is relatively simple for the main page as most of the functionality comes from Javascript.
 
-### Data Structure 
+### Data Structure
 
 There are two types of data handled for the project.  The first is the actual shortcut data for each link.  The second is customization data for how the page is displayed.  These are both stored in localStorage, but can be exported to a file and/or imported to replicate the page on other machines.
 
@@ -179,11 +185,11 @@ There are two types of data handled for the project.  The first is the actual sh
 
 The __index.html__ file is the main document, along with __help.html__ for the help page.
 
-The __index.js__ file handles the main functionality of the page.  It handles the management of data for both localStorage and file import/export, and the display of the icons.  
+The __index.js__ file handles the main functionality of the page.  It handles the management of data for both localStorage and file import/export, and the display of the icons.
 
 The __list-view.js__ file adds a list-view option, which alters the CSS applied to icons.
 
-The __dynamic-header.js__ file changes the color of header text based on the background color to ensure readability.  
+The __dynamic-header.js__ file changes the color of header text based on the background color to ensure readability.
 
 The __icon.css__ file handles most of the page styling, except for the icons themselves.  The CSS for the icon view is defined in the __index.js__ and __list-view.js__ files.
 
@@ -196,7 +202,7 @@ B[help.html]
 A --> css1[icon.css] -.- e4([page styling])
 A --> js1[index.js]
 js1 -.- e5([icon view])
-js1 -.- e1([localStorage management]) 
+js1 -.- e1([localStorage management])
 js1 -.- e6([file import/export])
 
 A --> js2[list-view.js] -.- e2([adds list view functionality])
@@ -221,9 +227,9 @@ _Note - arrows indicate links, dashed lines are explanations of what the linked 
 
 ## other code sources
 
-Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.  
+Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.
 
-Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.  
+Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.
 
 ## Validation and Testing
 No errors were found in the for Javascript with JSHint.
@@ -237,30 +243,30 @@ __Validators Used:__
 *   [Jigsaw](https://jigsaw.w3.org/css-validator/)
 *   [W3C Markup Validation Service](https://validator.w3.org/)
 
-In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow. 
+In personal testing I have been unable to find bugs that break functionality.  This site has become part of my daily workflow.
 
 __HTML & CSS__
 
-The layout of the icon view of the main page is relatively simple, and changes in screen size are handled by a flex container.  This is straight.  
+The layout of the icon view of the main page is relatively simple, and changes in screen size are handled by a flex container.  This is straight.
 
-The settings pane is slightly more complex, because there are multiple controls that are grouped according to their function.  Keeping this organized and correctly responsive required both flex containers and a media query adjustment in the CSS. 
+The settings panel is slightly more complex, because there are multiple controls that are grouped according to their function.  Keeping this organized and correctly responsive required both flex containers and a media query adjustment in the CSS.
 
 __Javascript__
 
-This required a lot more experimentation, particularly to make sure that icon data was kept consistently synchronized between the view of the document itself and localStorage.  
+This required a lot more experimentation, particularly to make sure that icon data was kept consistently synchronized between the view of the document itself and localStorage.
 
-This required lots of trial and error, and a lot of console.log() statements to make sure that the data was being handled correctly. 
+This required lots of trial and error, and a lot of console.log() statements to make sure that the data was being handled correctly.
 
 The same was true between localStorage and the file import/export functionality, but this is a much simpler process because there is no attention paid to individual pieces of data.  The entire localStorage object is simply exported to a file, and the entire file is imported to localStorage.
 
-The other area that required lots of experimentation was the manipulation of CSS values from javascript.  While it was relatively simple to change rules applied to elements by changing the class of the element, it was more difficult to change the values of CSS attributes directly.  
+The other area that required lots of experimentation was the manipulation of CSS values from javascript.  While it was relatively simple to change rules applied to elements by changing the class of the element, it was more difficult to change the values of CSS attributes directly.
 
-If I tried to alter CSS that was loaded from a .css file the browser would give me an error saying this was not allowed due to cross-site scripting.  The only functional way I found was to load the CSS that I wanted to change from the javascript file.  
+If I tried to alter CSS that was loaded from a .css file the browser would give me an error saying this was not allowed due to cross-site scripting.  The only functional way I found was to load the CSS that I wanted to change from the javascript file.
 
-I have a feeling that there must be a better of doing this, but this approach did work. 
+I have a feeling that there must be a better of doing this, but this approach did work.
 
 ## Deployment
-The page is deployed on Github Pages, from the main branch.  
+The page is deployed on Github Pages, from the main branch.
 
 Github Pages is a good choice for this project because it is free, and the code is already hosted on Github.  Also, all the code is static, so there Github Pages functionality is sufficient.
 
