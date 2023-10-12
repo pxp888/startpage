@@ -19,7 +19,7 @@ const uploadButton = document.getElementById("uploadButton");
 const showHeaderButton = document.getElementById("showHeaderButton");
 const restoreDefaultsButton = document.getElementById("restoreDefaultsButton");
 const helpPageButton = document.getElementById("helpPageButton");
-
+const settingScreen = document.getElementById("settingScreen");
 
 // HELPER FUNCTIONS  -----------------------------------------
 
@@ -315,7 +315,6 @@ function setIconCSS() {
 // shows the settings pane and editing controls, or hides them
 function toggleEditMode() {
     editmode = !editmode;
-    let settingScreen = document.getElementById("settingScreen");
     if (editmode){
         displayEditIcons();
         cssChange("#settingScreen", "bottom", "0");

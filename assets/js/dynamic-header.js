@@ -39,6 +39,7 @@ function setHeaderCSS() {
     #dheader .giant {
         font-size: 4rem;
         margin: 0rem;
+        margin-left: 1rem;
         color: gainsboro;
     }
     
