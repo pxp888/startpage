@@ -89,6 +89,10 @@ function setListCSS() {
     .plusButton:hover {
         background-color: gray;
     }
+
+    #settingScreen {
+        bottom: -100%;
+    }
     `;
     let x = document.getElementsByClassName("listSettingItem");
     for (let i = 0; i < x.length; i++) { x[i].style.display = "none"; }
@@ -103,6 +107,9 @@ function changeViewMode(event) {
     if (viewmode == "icon") {
         localStorage.setItem("viewmode", "list");
         setListCSS();
+        if (editmode) {
+            cssChange("#settingScreen", "bottom", "0");
+        }
 
         //change settings items
         x = document.getElementsByClassName("listSettingItem");
@@ -127,6 +134,9 @@ function changeViewMode(event) {
     else {
         localStorage.setItem("viewmode", "icon");
         setIconCSS();
+        if (editmode) {
+            cssChange("#settingScreen", "bottom", "0");
+        }
 
         //change settings items
         x = document.getElementsByClassName("listSettingItem");

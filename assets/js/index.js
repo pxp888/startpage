@@ -305,6 +305,10 @@ function setIconCSS() {
     .plusButton:hover {
         background-color: gray;
     }
+
+    #settingScreen {
+        bottom: -100%;
+    }
     `;
 }
 
@@ -312,14 +316,17 @@ function setIconCSS() {
 function toggleEditMode() {
     editmode = !editmode;
     let settingScreen = document.getElementById("settingScreen");
-
     if (editmode){
         displayEditIcons();
-        settingScreen.style.display = "block";
+        cssChange("#settingScreen", "bottom", "0");
+        settingScreen.classList.remove("panel-slide-down");
+        settingScreen.classList.add("panel-slide-up");
     }
     else {
         displayNormalIcons();
-        settingScreen.style.display = "none";
+        cssChange("#settingScreen", "bottom", "-100%");
+        settingScreen.classList.remove("panel-slide-up");
+        settingScreen.classList.add("panel-slide-down");
     }
 }
 
