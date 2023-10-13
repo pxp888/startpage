@@ -95,6 +95,15 @@ function handleDragOver(event)
     }
 }
 
+// warns user if editing is happening with no icon selected
+function selectCheck(event) {
+    let selected = document.getElementsByClassName("selected");
+    if (selected.length == 0) {
+        alert("No item selected, please click a link to edit");
+        document.activeElement.blur();
+        return;
+    }
+}
 
 // PAGE SETUP FUNCTIONS -----------------------------------------
 
@@ -565,11 +574,7 @@ function moveItemDown(event) {
 // update the name of the selected shortcut
 function nameFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
-    if (selected.length == 0) {
-        alert("No item selected, please click a link to edit");
-        document.activeElement.blur();
-        return;
-    }
+    if (selected.length == 0) { return; }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
     if (index == -1) { return; }
@@ -591,11 +596,7 @@ function nameFieldUpdate(event) {
 // update the URL of the selected shortcut
 function urlFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
-    if (selected.length == 0) {
-        alert("No item selected, please click a link to edit");
-        document.activeElement.blur();
-        return;
-    }
+    if (selected.length == 0) { return; }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
     if (index == -1) { return; }
@@ -632,11 +633,7 @@ function urlFieldUpdate(event) {
 // update the icon URL of the selected shortcut
 function iconFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
-    if (selected.length == 0) {
-        alert("No item selected, please click a link to edit");
-        document.activeElement.blur();
-        return;
-    }
+    if (selected.length == 0) { return; }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
     if (index == -1) { return; }
@@ -791,6 +788,9 @@ setupPage();
 
 // EVENT LISTENERS  -----------------------------------------
 settingButton.addEventListener("click", toggleEditMode);
+shortcutName.addEventListener("input",selectCheck);
+shortcutURL.addEventListener("input",selectCheck);
+shortcutIcon.addEventListener("input",selectCheck);
 shortcutName.addEventListener("blur", nameFieldUpdate);
 shortcutURL.addEventListener("blur", urlFieldUpdate);
 shortcutIcon.addEventListener("blur", iconFieldUpdate);
@@ -808,3 +808,4 @@ iconMargin.addEventListener("input", setIconMargin);
 helpPageButton.addEventListener("click", helpPage);
 document.addEventListener("dragover", handleDragOver);
 document.addEventListener("drop", imageDrop);
+
