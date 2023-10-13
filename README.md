@@ -24,6 +24,7 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
     - [animated display name over icons](#animated-display-name-over-icons)
     - [animated Header and setting button opacity](#animated-header-and-setting-button-opacity)
     - [animated Settings Panel](#animated-settings-panel)
+    - [Mouseover Hints for shortcut input fields](#mouseover-hints-for-shortcut-input-fields)
 - [__How to customize icons__](#how-to-customize-icons)
     - [The Easy way - drag and drop](#the-easy-way---drag-and-drop)
     - [The Hard way - manually inputting the image URL](#the-hard-way---manually-inputting-the-image-url)
