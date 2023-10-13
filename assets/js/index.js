@@ -87,6 +87,12 @@ function helpPage() {
     window.open("help.html", "_blank");
 }
 
+// this is necessary for drag and drop to work
+function handleDragOver(event) 
+{
+    event.preventDefault();
+}
+
 
 // PAGE SETUP FUNCTIONS -----------------------------------------
 
@@ -645,6 +651,21 @@ function iconFieldUpdate(event) {
     localStorage.setItem("icons", JSON.stringify(icons));
 }
 
+// set icon URL from dropped images
+function imageDrop(event) {
+    event.preventDefault();
+
+    const imageUrl = event.dataTransfer.getData("text/html");
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(imageUrl, "text/html");
+    const img = doc.querySelector("img");
+    if (img==null) {
+        return; }
+    const imageAddress = img.src;
+    shortcutIcon.value = imageAddress;
+    iconFieldUpdate({target: shortcutIcon});
+}
+
 
 // PAGE CUSTOMIZATION FUNCTIONS  -----------------------------------------
 
@@ -771,7 +792,6 @@ function uploadButtonPressed(event) {
 // RUN PAGE SETUP
 setupPage();
 
-
 // EVENT LISTENERS  -----------------------------------------
 settingButton.addEventListener("click", toggleEditMode);
 shortcutName.addEventListener("blur", nameFieldUpdate);
@@ -789,4 +809,6 @@ showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 iconMargin.addEventListener("input", setIconMargin);
 helpPageButton.addEventListener("click", helpPage);
+document.addEventListener("dragover", handleDragOver);
+document.addEventListener("drop", imageDrop);
 
