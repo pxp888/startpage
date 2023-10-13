@@ -567,13 +567,12 @@ function nameFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
+        document.activeElement.blur();
         return;
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) {
-        return;
-    }
+    if (index == -1) { return; }
     shows[index].children[1].innerHTML = event.target.value;
 
     if (findLongestWordLength(event.target.value) > 16) {
@@ -594,14 +593,12 @@ function urlFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
+        document.activeElement.blur();
         return;
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) {
-        alert("No item selected, please click a link to edit");
-        return;
-    }
+    if (index == -1) { return; }
 
     let x = event.target.value;
     // try to fix common URL mistakes
@@ -637,14 +634,12 @@ function iconFieldUpdate(event) {
     let selected = document.getElementsByClassName("selected");
     if (selected.length == 0) {
         alert("No item selected, please click a link to edit");
+        document.activeElement.blur();
         return;
     }
     let shows = document.getElementsByClassName("show");
     let index = getIndex(selected[0]);
-    if (index == -1) {
-        alert("No item selected, please click a link to edit");
-        return;
-    }
+    if (index == -1) { return; }
     shows[index].children[0].src = event.target.value;
 
     //update local store
@@ -798,7 +793,7 @@ setupPage();
 settingButton.addEventListener("click", toggleEditMode);
 shortcutName.addEventListener("blur", nameFieldUpdate);
 shortcutURL.addEventListener("blur", urlFieldUpdate);
-shortcutIcon.addEventListener("input", iconFieldUpdate);
+shortcutIcon.addEventListener("blur", iconFieldUpdate);
 leftArrow.addEventListener("click", moveItemUp);
 rightArrow.addEventListener("click", moveItemDown);
 backgroundColorPicker.addEventListener("input", setBackGroundColor);
@@ -813,4 +808,3 @@ iconMargin.addEventListener("input", setIconMargin);
 helpPageButton.addEventListener("click", helpPage);
 document.addEventListener("dragover", handleDragOver);
 document.addEventListener("drop", imageDrop);
-
