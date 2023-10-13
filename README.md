@@ -135,6 +135,10 @@ The header and setting button are shown with lower opacity to reduce the clutter
 
 The settings panel rises and drops from the bottom of the page when the settings button is pressed.
 
+### Mouseover Hints for shortcut input fields
+![mouse over hints](assets/screenshots/mousehint.webp)
+
+When the user holds the mouse cursor over the input fields for the shortcut names, URLs and icon URLs, a hint is shown to the user.
 
 
 <br>
@@ -225,6 +229,8 @@ The __list-view.js__ file adds a list-view option, which alters the CSS applied 
 
 The __dynamic-header.js__ file changes the color of header text based on the background color to ensure readability.
 
+The __mouse-hint.js__ file adds mouseover hints to the input fields in the settings panel.
+
 The __icon.css__ file handles most of the page styling, except for the icons themselves.  The CSS for the icon view is defined in the __index.js__ and __list-view.js__ files.
 
 
@@ -241,6 +247,7 @@ js1 -.- e6([file import/export])
 
 A --> js2[list-view.js] -.- e2([adds list view functionality])
 A --> js3[dynamic-header.js] -.- e3([adds dynamic color to header])
+A --> js4[mouse-hint.js] -.- e7([adds mouseover hints to input fields])
 B --> css2[help-style.css]
 A <--> B
 ```

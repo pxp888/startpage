@@ -1,4 +1,4 @@
-// this is the mouse hint that appears when you hover over the input fields
+// this is the mouse hint element that appears when you hover over the input fields
 let hint = document.createElement('div');
 
 // sets up the hint element
