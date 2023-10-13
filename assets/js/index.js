@@ -21,7 +21,8 @@ const restoreDefaultsButton = document.getElementById("restoreDefaultsButton");
 const helpPageButton = document.getElementById("helpPageButton");
 const settingScreen = document.getElementById("settingScreen");
 
-// HELPER FUNCTIONS  -----------------------------------------
+
+// ###########################  HELPER FUNCTIONS  ###########################
 
 // Returns the index of the element in its group
 function getIndex(x){
@@ -105,7 +106,8 @@ function selectCheck(event) {
     }
 }
 
-// PAGE SETUP FUNCTIONS -----------------------------------------
+
+// ###########################  PAGE SETUP FUNCTIONS ###########################
 
 // add a style tag to the head of the document with the CSS for the icons
 function addStyleTag() {
@@ -451,7 +453,7 @@ function setupPage() {
 }
 
 
-// SHORTCUT EDITING FUNCTIONS  -----------------------------------------
+// ###########################  SHORTCUT EDITING FUNCTIONS  ###########################
 
 // update CSS for a selected shortcut, and update the editing fields
 
@@ -661,7 +663,7 @@ function imageDrop(event) {
 }
 
 
-// PAGE CUSTOMIZATION FUNCTIONS  -----------------------------------------
+// ###########################  PAGE CUSTOMIZATION FUNCTIONS  ###########################
 
 function setBackGroundColor(event) {
     let selectedColor = event.target.value;
@@ -724,7 +726,7 @@ function toggleHeaderVisibility(){
 }
 
 
-// DATA EXPORT/IMPORT FUNCTIONS  -----------------------------------------
+// ###########################  DATA EXPORT/IMPORT FUNCTIONS  ###########################
 
 function downloadLocalStorage() {
     const localStorageData = JSON.stringify(localStorage);
@@ -786,7 +788,7 @@ function uploadButtonPressed(event) {
 // RUN PAGE SETUP
 setupPage();
 
-// EVENT LISTENERS  -----------------------------------------
+// ###########################  EVENT LISTENERS  ###########################
 settingButton.addEventListener("click", toggleEditMode);
 shortcutName.addEventListener("input",selectCheck);
 shortcutURL.addEventListener("input",selectCheck);

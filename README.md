@@ -39,9 +39,6 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 - [__Deployment__](#deployment)
     - [Forking the GitHub Repository](#forking-the-github-repository)
     - [Local Clone](#local-clone)
-    
-
-
 
 
 # what is it? - User Experience
@@ -108,6 +105,7 @@ There is also a link in the settings panel, which is toggled by pressing the set
 
 ### List View
 ![list view](assets/screenshots/list_view.webp)
+
 In addition to the standard grid view, there is also a list view.  This is toggled by pressing the list view button on the settings panel.
 
 The list view is also customizable, and link widths and heights can be set by the user.

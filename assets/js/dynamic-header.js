@@ -1,6 +1,8 @@
 // This script is used to dynamically alter the color of the header
 // text based on the background color of the body.  
 
+// Note - functions defined in index.js are called here.
+
 
 // this adds the custom css to the header
 function setHeaderCSS() {

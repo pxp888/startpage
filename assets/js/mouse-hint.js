@@ -1,3 +1,8 @@
+// This file adds hints shown to the user when input fields are hovered over.  
+
+// Note - functions defined in index.js are called here.
+
+
 // this is the mouse hint element that appears when you hover over the input fields
 let hint = document.createElement('div');
 
