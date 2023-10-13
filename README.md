@@ -12,6 +12,7 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 - [__How does it work?__](#how-does-it-work)
 - [__Features__](#features)
     - [Customizable display name and Icon for each link](#customizable-display-name-and-icon-for-each-link)
+    - [Drag and Drop icon images](#drag-and-drop-icon-images)
     - [Customizable Icon sizes and surrounding frame](#customizable-icon-sizes-and-surrounding-frame)
     - [Customizable background colors](#customizable-background-colors)
     - [Configurations can be saved to file, and replicated](#configurations-can-be-saved-to-file-and-replicated)
@@ -19,26 +20,35 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
     - [Help page](#help-page)
     - [List View](#list-view)
     - [Settings Panel](#settings-panel)
-- [__Feature Details__](#feature-details)
+- [__feature details__](#feature-details)
     - [animated display name over icons](#animated-display-name-over-icons)
     - [animated Header and setting button opacity](#animated-header-and-setting-button-opacity)
     - [animated Settings Panel](#animated-settings-panel)
+- [__How to customize icons__](#how-to-customize-icons)
+    - [The Easy way - drag and drop](#the-easy-way---drag-and-drop)
+    - [The Hard way - manually inputting the image URL](#the-hard-way---manually-inputting-the-image-url)
 - [__Project Structure__](#project-structure)
     - [Data Structure](#data-structure)
     - [File Reference Structure](#file-reference-structure)
 - [__Frameworks, Libraries & Programs Used__](#frameworks-libraries--programs-used)
-- [__Other Code Sources__](#other-code-sources)
+- [__other code sources__](#other-code-sources)
 - [__Validation and Testing__](#validation-and-testing)
+    - [HTML & CSS](#html--css)
+    - [Javascript](#javascript)
 - [__Deployment__](#deployment)
+    - [Forking the GitHub Repository](#forking-the-github-repository)
+    - [Local Clone](#local-clone)
+    
 
 
 
-## what is it? - User Experience
+
+# what is it? - User Experience
 It is a simple collection of links with corresponding icons for commonly used websites that is easy to customize for individual needs.
 
 Ideally this would be set as the homepage or new tab page of your browser.
 
-## How does it work?
+# How does it work?
 Each link is represented by three pieces of data.  A name, which is up to the user.  A URL, which is the actual destination of the link, and another URL for the icon the user wants to use.
 
 Users are free to use any image they like.
@@ -47,9 +57,11 @@ Users can also customize the background colors of the page.
 
 Configuration data for the page is stored in localStorage, and not the cloud.  If users want to replicate the page on multiple machines they can save the configuration data
 
-## Features
+# Features
 
 ### Customizable display name and Icon for each link
+
+![customizable icons](assets/screenshots/animated_icons.webp)
 
 Eech link is represented by three pieces of data.
 
@@ -65,40 +77,9 @@ Links can be edited and re-ordered through the settings panel.
 
 The settings panel is toggled by pressing the settings gear icon on the lower right corner of the page.
 
-## How to customize icons
-1)  Click on the settings button at the lower right corner of the page.
+### Drag and Drop icon images
 
-![how to 1](assets/screenshots/h1.png)
-
-
-2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut.
-
-![how to 2](assets/screenshots/h2.png)
-
-3) In the **"Name"** field enter the display name you would like for the shortcut.
-
-4) In the **"URL"** field enter the address of the target website.
-
-![how to 3](assets/screenshots/h3.png)
-
-5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).
-
-
-![how to 4](assets/screenshots/h4.png)
-
-
-6) Paste this link into the **"Icon URL"** field.
-
-
-![how to 5](assets/screenshots/h5.png)
-
-
-7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings panel.
-
-
-
-
-
+The image URLs to define icons can be set by the user through the settings panel.  The user can also drag and drop images from other websites onto the page to set the icon.
 
 ### Customizable Icon sizes and surrounding frame
 The size of onscreen icons can be set by the user through the settings panel.  The margin around each icon can also be customized.
@@ -140,7 +121,7 @@ All adjustments and settings are done through the settings panel.
 
 The settings panel is toggled by pressing the settings gear icon on the lower right corner of the page.
 
-## feature details
+# feature details
 
 ### animated display name over icons
 ![animated icon](assets/screenshots/animated_icons.webp)
@@ -155,7 +136,60 @@ The header and setting button are shown with lower opacity to reduce the clutter
 The settings panel rises and drops from the bottom of the page when the settings button is pressed.
 
 
-## Project Structure
+
+<br>
+
+# How to customize icons
+
+## The Easy way - drag and drop
+1)  Click on the settings button at the lower right corner of the page.
+
+![how to 1](assets/screenshots/h1.png)
+
+2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut.
+
+![how to 2](assets/screenshots/h2.png)
+
+3) Drag an image from another website onto the simple startpage.  
+
+![drag and drop](assets/screenshots/drag1.webp)
+
+This should automatically update the icon URL field, and the icon should change to the new image.
+
+![drag and drop](assets/screenshots/drag2.webp)
+
+7) **That's it!** Your shortcut icon is set up.  Click the setting button again to close the settings panel.
+
+
+
+## The Hard way - manually inputting the image URL
+1)  Click on the settings button at the lower right corner of the page.
+
+![how to 1](assets/screenshots/h1.png)
+
+2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut.
+
+![how to 2](assets/screenshots/h2.png)
+
+3) In the **"Name"** field enter the display name you would like for the shortcut.
+
+4) In the **"URL"** field enter the address of the target website.
+
+![how to 3](assets/screenshots/h3.png)
+
+5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).
+
+![how to 4](assets/screenshots/h4.png)
+
+6) Paste this link into the **"Icon URL"** field.
+
+![how to 5](assets/screenshots/h5.png)
+
+7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings panel.
+
+
+
+# Project Structure
 
 The project essentially consists of two HTML pages.  One is for the main page, and the other is for the help page.
 
@@ -214,7 +248,7 @@ A <--> B
 _Note - arrows indicate links, dashed lines are explanations of what the linked files do_
 
 
-## Frameworks, Libraries & Programs Used
+# Frameworks, Libraries & Programs Used
 
 |Name|Description|
 |-|-|
@@ -225,13 +259,13 @@ _Note - arrows indicate links, dashed lines are explanations of what the linked 
 |Google Chrome Developer Tools|Browser tool for testing and debugging|
 |Google Fonts|Font library|
 
-## other code sources
+# other code sources
 
 Code for export and import of localStorage data to file, and vice versa was taken from a Stack Overflow comment.
 
 Some of the CSS used on the help page page was taken from stackedit.io, because I liked the clean look of the body text.
 
-## Validation and Testing
+# Validation and Testing
 No errors were found in the for Javascript with JSHint.
 
 No errors were found in the for CSS with Jigsaw.
@@ -265,7 +299,7 @@ If I tried to alter CSS that was loaded from a .css file the browser would give 
 
 I have a feeling that there must be a better of doing this, but this approach did work.
 
-## Deployment
+# Deployment
 The page is deployed on Github Pages, from the main branch.
 
 Github Pages is a good choice for this project because it is free, and the code is already hosted on Github.  Also, all the code is static, so there Github Pages functionality is sufficient.
