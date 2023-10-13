@@ -90,7 +90,9 @@ function helpPage() {
 // this is necessary for drag and drop to work
 function handleDragOver(event) 
 {
-    event.preventDefault();
+    if (editmode){
+        event.preventDefault();
+    }
 }
 
 
