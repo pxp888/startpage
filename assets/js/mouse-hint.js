@@ -21,7 +21,7 @@ function setupMouseHint() {
     hint.style.color = 'black';
     hint.style.opacity = 0;
     hint.style.transition = 'opacity 0.3s ease-in-out';
-    document.getElementsByTagName('body')[0].appendChild(hint);
+    settingScreen.appendChild(hint);
 }
 
 // Show the hint element over the Icon URL input field
