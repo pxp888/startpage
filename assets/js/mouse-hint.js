@@ -29,7 +29,8 @@ function showIconMouseHint(event) {
     hint.textContent = 'Hint: You can drag images from other websites to set the Icon URL.';
     hint.style.opacity = 1;
     hint.style.left = event.clientX + 30 + 'px';
-    hint.style.top = event.clientY + 'px';
+    const rect = settingScreen.getBoundingClientRect();
+    hint.style.top = event.clientY - rect.top + 'px';
 }
 
 // Show the hint element over the Shortcut Name input field
@@ -37,7 +38,8 @@ function showNameMouseHint(event) {
     hint.textContent = 'This is whatever you want to call your shortcut.';
     hint.style.opacity = 1;
     hint.style.left = event.clientX + 30 + 'px';
-    hint.style.top = event.clientY + 'px';
+    const rect = settingScreen.getBoundingClientRect();
+    hint.style.top = event.clientY - rect.top + 'px';
 }
 
 // Show the hint element over the Shortcut URL input field
@@ -45,7 +47,8 @@ function showUrlMouseHint(event) {
     hint.textContent = 'This is the URL that the shortcut will open.';
     hint.style.opacity = 1;
     hint.style.left = event.clientX + 30 + 'px';
-    hint.style.top = event.clientY + 'px';
+    const rect = settingScreen.getBoundingClientRect();
+    hint.style.top = event.clientY - rect.top + 'px';
 }
 
 // Hide the hint element
