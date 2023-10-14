@@ -645,16 +645,12 @@ function iconFieldUpdate(event) {
 function setBackGroundColor(event) {
     let selectedColor = event.target.value;
     document.getElementsByTagName("body")[0].style.backgroundColor = selectedColor;
-
-    //save to localstorage
     localStorage.setItem("bgcolor", selectedColor);
 }
 
 // the frame is the box surrounding the icon grid, this sets the color.
 function setFrameColor(event) {
     mainlist.style.backgroundColor = event.target.value;
-
-    //save to localstorage
     localStorage.setItem("framecolor", event.target.value);
 }
 
@@ -669,7 +665,7 @@ function setIconSize(event) {
     cssChange(".show a, .show p", "font-size", targetIconSize/8 + "px");
 }
 
-// sets the padding around icons
+// sets the margin around icons
 function setIconMargin(event) {
     let targetIconMargin = event.target.value;
     if ((targetIconMargin < 0)||(targetIconMargin > 50)) { return; }

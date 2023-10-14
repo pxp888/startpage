@@ -77,6 +77,8 @@ The settings panel is toggled by pressing the settings gear icon on the lower ri
 
 ### Drag and Drop icon images
 
+![drag and drop](assets/screenshots/drag1.webp)
+
 The image URLs to define icons can be set by the user through the settings panel.  The user can also drag and drop images from other websites onto the page to set the icon.
 
 ### Customizable Icon sizes and surrounding frame
