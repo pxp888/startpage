@@ -153,7 +153,7 @@ When the user holds the mouse cursor over the input fields for the shortcut name
 
 ![how to 2](assets/screenshots/h2.png)
 
-3) Drag an image from another website onto the simple startpage.  
+3) Drag an image from another website onto the startpage.
 
 ![drag and drop](assets/screenshots/drag1.webp)
 
@@ -198,7 +198,7 @@ The project essentially consists of two HTML pages.  One is for the main page, a
 
 The HTML is relatively simple for the main page as most of the functionality comes from Javascript.
 
-### Data Structure
+## Data Structure
 
 There are two types of data handled for the project.  The first is the actual shortcut data for each link.  The second is customization data for how the page is displayed.  These are both stored in localStorage, but can be exported to a file and/or imported to replicate the page on other machines.
 
@@ -218,7 +218,7 @@ There are two types of data handled for the project.  The first is the actual sh
 |Item Margins|margin around each link|
 
 
-### File Reference Structure
+## File Reference Structure
 
 The __index.html__ file is the main document, along with __help.html__ for the help page.
 
@@ -230,29 +230,45 @@ The __dynamic-header.js__ file changes the color of header text based on the bac
 
 The __mouse-hint.js__ file adds mouseover hints to the input fields in the settings panel.
 
-The __icon.css__ file handles most of the page styling, except for the icons themselves.  The CSS for the icon view is defined in the __index.js__ and __list-view.js__ files.
+The __drag-drop.js__ file adds drag and drop functionality to the icon image input fields.
+
+The __index.css__ file handles most of the page styling, except for the icons themselves.  The CSS for the icon view is defined in the __index.js__ and __list-view.js__ files.
+
+The __help-style.css__ file handles the styling for the help page.
+
+The __mouse-hint.css__ file handles the styling for the mouseover hints.
+
+The __drag-drop.css__ file handles the styling for the drop-zone for drag and drop functionality.
 
 
 ```mermaid
 graph LR
-A[index.html]
-B[help.html]
+A[[index.html]]
+B[[help.html]]
 
-A --> css1[icon.css] -.- e4([page styling])
-A --> js1[index.js]
+A --> css1[index.css] -.- e4([page styling])
+A --> css3[mouse-hint.css] -.- e8([mouse hint styling])
+A --> css4[drag-drop.css] -.- e9([drag and drop styling])
+A --> js1{{index.js}}
 js1 -.- e5([icon view])
 js1 -.- e1([localStorage management])
 js1 -.- e6([file import/export])
 
-A --> js2[list-view.js] -.- e2([adds list view functionality])
-A --> js3[dynamic-header.js] -.- e3([adds dynamic color to header])
-A --> js4[mouse-hint.js] -.- e7([adds mouseover hints to input fields])
+A --> js2{{list-view.js}} -.- e2([adds list view functionality])
+A --> js3{{dynamic-header.js}} -.- e3([adds dynamic color to header])
+A --> js4{{mouse-hint.js}} -.- e7([adds mouseover hints to input fields])
+A --> js5{{drag-drop.js}} -.- e10([adds drag and drop functionality])
+B -.- e11([how-to page])
 B --> css2[help-style.css]
 A <--> B
+
+
 ```
 
-_Note - arrows indicate links, dashed lines are explanations of what the linked files do_
+_Note - arrows indicate links or scripts, dashed lines are explanations of what the linked files do_
 
+
+<br>
 
 # Frameworks, Libraries & Programs Used
 
@@ -299,11 +315,13 @@ This required lots of trial and error, and a lot of console.log() statements to 
 
 The same was true between localStorage and the file import/export functionality, but this is a much simpler process because there is no attention paid to individual pieces of data.  The entire localStorage object is simply exported to a file, and the entire file is imported to localStorage.
 
-The other area that required lots of experimentation was the manipulation of CSS values from javascript.  While it was relatively simple to change rules applied to elements by changing the class of the element, it was more difficult to change the values of CSS attributes directly.
+The other area that required lots of experimentation was the manipulation of CSS values from javascript.  While working on this project I learned quite a bit about where to place styling and the correct way to manipulate it from javascript.  
 
-If I tried to alter CSS that was loaded from a .css file the browser would give me an error saying this was not allowed due to cross-site scripting.  The only functional way I found was to load the CSS that I wanted to change from the javascript file.
+Because of this learning mid-process I found that the features I added after were more "correctly" implemented than the features I added earlier.  Particularly with keeping styling more separate from the javascript.
 
-I have a feeling that there must be a better of doing this, but this approach did work.
+_Given that, I would like to go back and re-write some of the earlier code to be cleaner than it was the first time._
+
+
 
 # Deployment
 The page is deployed on Github Pages, from the main branch.
