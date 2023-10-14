@@ -83,11 +83,6 @@ function swapItems(array, index1, index2) {
     array[index2] = temp;
 }
 
-// show the help page
-function helpPage() {
-    window.open("help.html", "_blank");
-}
-
 // warns user if editing is happening with no icon selected
 function selectCheck(event) {
     let selected = document.getElementsByClassName("selected");
@@ -780,5 +775,4 @@ uploadButton.addEventListener("click", uploadButtonPressed);
 showHeaderButton.addEventListener("click", toggleHeaderVisibility);
 restoreDefaultsButton.addEventListener("click", restoreDefaults);
 iconMargin.addEventListener("input", setIconMargin);
-helpPageButton.addEventListener("click", helpPage);
-
+helpPageButton.addEventListener("click", () => {window.open("help.html", "_blank");})
