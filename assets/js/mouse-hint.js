@@ -37,7 +37,7 @@ function showNameMouseHint(event) {
 
 // Show the hint element over the Shortcut URL input field
 function showUrlMouseHint(event) {
-    hint.textContent = 'This is the URL that the shortcut will open.';
+    hint.textContent = 'Hint: You can drag links from other websites to set the target URL.';
 
     hint.classList.add('active');
     hint.style.left = event.clientX + 30 + 'px';

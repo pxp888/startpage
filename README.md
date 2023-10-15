@@ -12,7 +12,7 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
 - [__How does it work?__](#how-does-it-work)
 - [__Features__](#features)
     - [Customizable display name and Icon for each link](#customizable-display-name-and-icon-for-each-link)
-    - [Drag and Drop icon images](#drag-and-drop-icon-images)
+    - [Drag and Drop icon images and URLs](#drag-and-drop-icon-images-and-urls)
     - [Customizable Icon sizes and surrounding frame](#customizable-icon-sizes-and-surrounding-frame)
     - [Customizable background colors](#customizable-background-colors)
     - [Configurations can be saved to file, and replicated](#configurations-can-be-saved-to-file-and-replicated)
@@ -75,9 +75,11 @@ Links can be edited and re-ordered through the settings panel.
 
 The settings panel is toggled by pressing the settings gear icon on the lower right corner of the page.
 
-### Drag and Drop icon images
+### Drag and Drop icon images and URLs
 
-![drag and drop](assets/screenshots/drag1.webp)
+![drag and drop](assets/screenshots/drag4.webp)
+
+The shortcut URL's can be set manually, or by dragging links and images from other websites onto the page.
 
 The image URLs to define icons can be set by the user through the settings panel.  The user can also drag and drop images from other websites onto the page to set the icon.
 
@@ -155,43 +157,31 @@ When the user holds the mouse cursor over the input fields for the shortcut name
 
 ![how to 2](assets/screenshots/h2.png)
 
-3) Drag an image from another website onto the startpage.
+3) Enter a name you would like to use for the shortcut. (optional)
+
+4) Drag an image from another website onto the startpage.
 
 ![drag and drop](assets/screenshots/drag1.webp)
 
 This should automatically update the icon URL field, and the icon should change to the new image.
 
+5) Drag a link from another page, or enter one manually in the URL field.  
+
 ![drag and drop](assets/screenshots/drag2.webp)
 
-7) **That's it!** Your shortcut icon is set up.  Click the setting button again to close the settings panel.
+**That's it!** Your shortcut icon is set up.  Click the setting button again to close the settings panel.
 
 
 
-## The Hard way - manually inputting the image URL
-1)  Click on the settings button at the lower right corner of the page.
+## The Hard way - manual input
 
-![how to 1](assets/screenshots/h1.png)
+You can also manually input the URL's for the shortcuts, either by typing or pasting them into the input fields.
 
-2) Click on the icon you would like to edit, or on the plus icon to create a new shortcut.
+The easiest way to get the image URL is to right click on the image you want to use, and select "Copy Image Address" from the menu, and paste that into the icon URL field.
 
-![how to 2](assets/screenshots/h2.png)
+![copy image address](assets/screenshots/h4.png)
 
-3) In the **"Name"** field enter the display name you would like for the shortcut.
-
-4) In the **"URL"** field enter the address of the target website.
-
-![how to 3](assets/screenshots/h3.png)
-
-5) You can use any online image for the icon, but the easiest is to simply use an image search.  For this example we'll use a google image search.  Right click on the image you would like to use and select **"Copy Image Address"** (if using chrome).
-
-![how to 4](assets/screenshots/h4.png)
-
-6) Paste this link into the **"Icon URL"** field.
-
-![how to 5](assets/screenshots/h5.png)
-
-7) **That's it!** Your shortcut is set up.  Click the setting button again to close the settings panel.
-
+<br>
 
 
 # Project Structure
