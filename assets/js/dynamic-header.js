@@ -43,6 +43,9 @@ function setHeaderCSS() {
         margin: 0rem;
         margin-left: 1rem;
         color: gainsboro;
+        font-family: "roboto", sans-serif;
+        font-weight: 300;
+        font-style: italic;
     }
     
     #dheader p {
@@ -52,6 +55,7 @@ function setHeaderCSS() {
     #dheader a {
         text-decoration: none;
     }
+
     
     `;
 }
