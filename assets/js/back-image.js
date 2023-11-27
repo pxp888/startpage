@@ -10,7 +10,7 @@ const noBackButton = document.getElementById("noBackButton");
 function setupbackDropZone() {
     backDropZone.id = "backDropZone";
     backDropZone.className = "dropZone";
-    backDropZone.innerHTML = "Drop link here to set background Image";
+    backDropZone.innerHTML = "Drop image here to set background Image";
     backDropZone.style.top = "60%";
     settingScreen.appendChild(backDropZone);
 }
