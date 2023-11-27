@@ -646,6 +646,7 @@ function setBackGroundColor(event) {
 // the frame is the box surrounding the icon grid, this sets the color.
 function setFrameColor(event) {
     mainlist.style.backgroundColor = event.target.value;
+    console.log(event.target.value);
     localStorage.setItem("framecolor", event.target.value);
 }
 

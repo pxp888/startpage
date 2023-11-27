@@ -61,11 +61,12 @@
             <div class="vertable">
                 <div>
                     <label for="backgroundColorPicker">Background: </label>
-                    <input type="color" id="backgroundColorPicker">
+                    <input id="backgroundColorPicker" data-jscolor="{format:'rgb'}">
+                    <p class="darkButton" id="noBackButton">clear Background</p>
                 </div>
                 <div>
                     <label for="frameColorPicker">Frame color: </label>
-                    <input type="color" id="frameColorPicker">
+                    <input id="frameColorPicker" data-jscolor="{format:'rgba'}">
                 </div>
             </div>
             <div class="vertable">
@@ -95,7 +96,7 @@
                 <p class="darkButton" id="viewModeButton">List View</p>
                 <p class="darkButton" id="showHeaderButton">Hide Header</p>
                 <p class="darkButton" id="helpPageButton">Show Help Page</p>
-                <p class="darkButton" id="noBackButton">clear Background</p>
+                
             </div>
             <div class="vertable">
                 <p>Backup</p>
@@ -109,7 +110,7 @@
         <img id="settingButton" src="assets/images/settings.png" alt="settings">
 
     </main>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.4.5/jscolor.min.js"></script>
     <script src="assets/js/index.js"></script>
     <script src="assets/js/list-view.js"></script>
     <script src="assets/js/dynamic-header.js"></script>
