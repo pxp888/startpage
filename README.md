@@ -14,7 +14,7 @@ a minimalist but beautiful and efficient startpage or homepage for design-consci
     - [Customizable display name and Icon for each link](#customizable-display-name-and-icon-for-each-link)
     - [Drag and Drop icon images and URLs](#drag-and-drop-icon-images-and-urls)
     - [Customizable Icon sizes and surrounding frame](#customizable-icon-sizes-and-surrounding-frame)
-    - [Customizable background colors](#customizable-background-colors)
+    - [Customizable background colors and images](#customizable-background-colors-and-images)
     - [Configurations can be saved to file, and replicated](#configurations-can-be-saved-to-file-and-replicated)
     - [Hideable Header](#hideable-header)
     - [Help page](#help-page)
@@ -87,11 +87,11 @@ The image URLs to define icons can be set by the user through the settings panel
 The size of onscreen icons can be set by the user through the settings panel.  The margin around each icon can also be customized.
 
 
-### Customizable background colors
+### Customizable background colors and images
 
 ![background colors](assets/screenshots/colors.webp)
 
-The background and frame around the links can be customized.
+The background and frame around the links can be customized.  Custom background images can also be set by through drag and drop.  Frame opacity can also be set as desired.  
 
 ### Configurations can be saved to file, and replicated
 
@@ -182,6 +182,10 @@ The easiest way to get the image URL is to right click on the image you want to 
 ![copy image address](assets/screenshots/h4.png)
 
 <br>
+
+
+
+
 
 
 # Project Structure
