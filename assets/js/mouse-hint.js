@@ -28,7 +28,7 @@ function showIconMouseHint(event) {
 
 // Show the hint element over the Shortcut Name input field
 function showNameMouseHint(event) {
-    hint.textContent = 'This is whatever you want to call your shortcut.';
+    hint.textContent = 'Hint: This is whatever you want to call your shortcut.';
     hint.classList.add('active');
     hint.style.left = event.clientX + 30 + 'px';
     const rect = settingScreen.getBoundingClientRect();
@@ -44,6 +44,17 @@ function showUrlMouseHint(event) {
     const rect = settingScreen.getBoundingClientRect();
     hint.style.top = event.clientY - rect.top + 'px';
 }
+
+
+// Show the hint element over the background image URL input field
+function showBackImageMouseHint(event) {
+    hint.textContent = 'Hint: You can drag images from other websites to set the background image URL.';
+    hint.classList.add('active');
+    hint.style.left = event.clientX + 30 + 'px';
+    const rect = settingScreen.getBoundingClientRect();
+    hint.style.top = event.clientY - rect.top + 'px';
+}
+
 
 // Hide the hint element
 function hideMouseHint(event) {
@@ -61,3 +72,5 @@ shortcutName.addEventListener('mouseout', hideMouseHint);
 shortcutURL.addEventListener('mouseover', showUrlMouseHint);
 shortcutURL.addEventListener('mouseout', hideMouseHint);
 
+backImageURL.addEventListener('mouseover', showBackImageMouseHint);
+backImageURL.addEventListener('mouseout', hideMouseHint);

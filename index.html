@@ -58,17 +58,30 @@
             
             <!-- page settings -->
             <h4>Page Settings</h4>
-            <div class="vertable">
+
+            <div>
+                <label for="backImageURL">BackImage URL</label>
+                <input type="text" id="backImageURL" name="backImageURL" placeholder="backImage URL">
+            </div>
+            
+            <div class="vertable" id="backColorDiv">
                 <div>
                     <label for="backgroundColorPicker">Background: </label>
                     <input id="backgroundColorPicker" data-jscolor="{format:'rgb'}">
-                    <p class="darkButton" id="noBackButton">clear Background</p>
                 </div>
                 <div>
                     <label for="frameColorPicker">Frame color: </label>
                     <input id="frameColorPicker" data-jscolor="{format:'rgba'}">
                 </div>
             </div>
+
+            <div class="vertable" id="clearBackDiv">
+                <div>
+                    <label for="noBackButton">Background: </label>
+                    <p class="darkButton" id="noBackButton">clear Background</p>
+                </div>
+            </div>
+
             <div class="vertable">
                 <div>
                     <label for="frameSize">Frame Size: </label>
@@ -114,9 +127,9 @@
     <script src="assets/js/index.js"></script>
     <script src="assets/js/list-view.js"></script>
     <script src="assets/js/dynamic-header.js"></script>
-    <script src="assets/js/mouse-hint.js"></script>
     <script src="assets/js/drag-drop.js"></script>
     <script src="assets/js/back-image.js"></script>
+    <script src="assets/js/mouse-hint.js"></script>
 </body>
 </html>
 

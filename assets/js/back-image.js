@@ -4,6 +4,9 @@
 
 const backDropZone = document.createElement("div");
 const noBackButton = document.getElementById("noBackButton");
+const backImageURL = document.getElementById("backImageURL");
+const clearBackDiv = document.getElementById("clearBackDiv");
+const backColorDiv = document.getElementById("backColorDiv");
 
 
 // set up the drop target
@@ -35,12 +38,13 @@ function setupBackImage() {
     const backImageAddress = localStorage.getItem("backImage");
     if (backImageAddress != null) {
         backImage.style.backgroundImage = "url('" + backImageAddress + "')";
-        noBackButton.style.display = "block";
-        backgroundColorPicker.style.display = "None";
+        backImageURL.value = backImageAddress;
+        clearBackDiv.style.display = "flex";
+        backColorDiv.style.display = "none";
     }
     else {
-        noBackButton.style.display = "None";
-        backgroundColorPicker.style.display = "block";
+        clearBackDiv.style.display = "none";
+        backColorDiv.style.display = "flex";
     }
 }
 
@@ -59,8 +63,20 @@ function backDrop(event) {
     backImage.style.backgroundImage = "url('" + imageAddress + "')";
 
     localStorage.setItem("backImage", imageAddress);
-    noBackButton.style.display = "block";
-    backgroundColorPicker.style.display = "None";
+    backImageURL.value = imageAddress;
+    clearBackDiv.style.display = "flex";
+    backColorDiv.style.display = "none";
+}
+
+
+// set background image
+function manualBackImage() {
+    const imageAddress = backImageURL.value;
+    backImage.style.backgroundImage = "url('" + imageAddress + "')";
+
+    localStorage.setItem("backImage", imageAddress);
+    clearBackDiv.style.display = "flex";
+    backColorDiv.style.display = "none";
 }
 
 
@@ -68,8 +84,9 @@ function backDrop(event) {
 function clearBackImage() {
     backImage.style.backgroundImage = "url('')";
     localStorage.removeItem("backImage");
-    noBackButton.style.display = "None";
-    backgroundColorPicker.style.display = "block";
+    backImageURL.value = "";
+    clearBackDiv.style.display = "none";
+    backColorDiv.style.display = "flex";
 }
 
 
@@ -77,4 +94,5 @@ setupbackDropZone();
 setupBackImage();
 
 backDropZone.addEventListener("drop", backDrop);
+backImageURL.addEventListener("blur", manualBackImage);
 document.getElementById("noBackButton").addEventListener("click", clearBackImage);
